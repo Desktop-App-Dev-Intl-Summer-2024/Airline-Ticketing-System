@@ -60,3 +60,13 @@ Primary users of the Airline Ticketing System: Airline Admin, consumers, travel 
 - Microsoft Server Management Studio 19.3
 - Git and GitHub
 
+### Project Plan
+- Create views for various functionalities: Week 1-2 (3 June – 16 June) 
+- Database design: Week 2 (10 June – 16 June)
+- Stored procedure creation: Week 3 (17 June – 23 June)
+- Create REST APIs and bridge between front and back ends: Week 4 (24 June – 30 June)
+- NUnit testing: Week 5 (1 July – 7 July)
+- UI optimization: Week 6 (8 July – 14 July)
+- Final Edits: Week 7 (15 July – 21 July)
+- Project Presentation: 29 July
+
