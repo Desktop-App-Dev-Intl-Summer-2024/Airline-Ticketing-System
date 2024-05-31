@@ -18,11 +18,11 @@ This project aims to implement an Airline Ticketing System that runs as a Deskto
 - As a travel agent, I should be able to book tickets for my clients.
 
 ### Areas Covered
-**User registration:** The users must be able to register with the airline with their email address.
-**Agent registration:** The travel agents must be able to register their account with the airline.
-**Admin module:** Admin must be able to create and maintain flight details in the system.
-**Browsing module:** All users must be able to view available flights based on specific filter criteria.
-**Reservation module:** All users must be able to reserve tickets
-**Billing module:** To calculate and display the total amount to be paid by the user to confirm a ticket.
+1. **User registration:** The users must be able to register with the airline with their email address.  
+2. **Agent registration:** The travel agents must be able to register their account with the airline.  
+3. **Admin module:** Admin must be able to create and maintain flight details in the system.  
+4. **Browsing module:** All users must be able to view available flights based on specific filter criteria.  
+5. **Reservation module:** All users must be able to reserve tickets.  
+6. **Billing module:** To calculate and display the total amount to be paid by the user to confirm a ticket.  
 
 
