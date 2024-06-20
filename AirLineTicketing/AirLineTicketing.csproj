@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="raimond-klavins-SDjolVGHLwc-unsplash.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="raimond-klavins-SDjolVGHLwc-unsplash.jpg" />
+  </ItemGroup>
+
 </Project>
