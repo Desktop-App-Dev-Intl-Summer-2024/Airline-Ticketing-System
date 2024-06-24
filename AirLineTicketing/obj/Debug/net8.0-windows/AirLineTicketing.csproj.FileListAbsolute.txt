@@ -19,3 +19,5 @@ C:\Users\Dell\Documents\GitHub\Airline-Ticketing-System\AirLineTicketing\obj\Deb
 C:\Users\Dell\Documents\GitHub\Airline-Ticketing-System\AirLineTicketing\obj\Debug\net8.0-windows\AirLineTicketing.pdb
 C:\Users\Dell\Documents\GitHub\Airline-Ticketing-System\AirLineTicketing\obj\Debug\net8.0-windows\AirLineTicketing.genruntimeconfig.cache
 C:\Users\Dell\Documents\GitHub\Airline-Ticketing-System\AirLineTicketing\obj\Debug\net8.0-windows\ref\AirLineTicketing.dll
+C:\Users\Dell\Documents\GitHub\Airline-Ticketing-System\AirLineTicketing\obj\Debug\net8.0-windows\SignInSignUp.g.cs
+C:\Users\Dell\Documents\GitHub\Airline-Ticketing-System\AirLineTicketing\obj\Debug\net8.0-windows\SignInSignUp.baml
