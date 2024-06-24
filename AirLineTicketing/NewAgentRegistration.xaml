@@ -1,0 +1,83 @@
+﻿<Window x:Class="AirLineTicketing.NewAgentRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AirLineTicketing"
+        mc:Ignorable="d"
+        Title="NewAgentRegistration" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/raimond-klavins-SDjolVGHLwc-unsplash.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="59*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="395*"/>
+            </Grid.RowDefinitions>
+            <Rectangle HorizontalAlignment="Center" Width="210" Grid.RowSpan="2">
+                <Rectangle.Stroke>
+                    <SolidColorBrush Color="Black" Opacity="0"/>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="#FFED9564" Opacity="0.6"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <StackPanel Margin="0,39,0,10" Grid.RowSpan="2">
+                <Button x:Name="backBtn" Content="Back" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
+                <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
+                <Button Content="Search" Margin="10,10,10,10" Padding="1,2,1,2" Background="#FFA9E679" BorderBrush="#FFA9E679" FontWeight="Bold"/>
+            </StackPanel>
+            <Rectangle HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="800">
+                <Rectangle.Stroke>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.9">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="270" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF8AB644" Offset="1"/>
+                        <GradientStop Color="#FF9E400D" Offset="0"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Label Content="Airline Ticketing App" VerticalAlignment="Center" FontSize="18" Foreground="White" FontFamily="Arial" FontWeight="SemiBold" Height="31"/>
+            <Button x:Name="logInBtn" Grid.Column="1" Content="Log In" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Center" Width="135" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                </Button.BorderBrush>
+            </Button>
+            <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="360" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="570" Margin="0,15,0,0">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="#FFA9E679" Opacity="0.6"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBox x:Name="agentUsernameTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,47,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" Background="White" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18"/>
+            <TextBox x:Name="agentPasswordTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,91,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" FontStyle="Italic" BorderBrush="#FFA9E679" Height="18"/>
+            <TextBox x:Name="agentFirstNameTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,135,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="17"/>
+            <TextBox x:Name="agentLastNameTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,178,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" FontStyle="Italic" BorderBrush="#FFA9E679" Height="18"/>
+            <TextBox x:Name="agentEmailTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,218,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18"/>
+            <Label Grid.Column="1" Content="Username*" HorizontalAlignment="Left" Margin="185,42,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="78" FontWeight="Bold"/>
+            <Label Grid.Column="1" Content="Password*" HorizontalAlignment="Left" Margin="190,87,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="78" FontWeight="Bold"/>
+            <Label Grid.Column="1" Content="First Name*" HorizontalAlignment="Left" Margin="185,131,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="86" FontWeight="Bold" RenderTransformOrigin="1.077,0.017"/>
+            <Label Grid.Column="1" Content="Last Name*" HorizontalAlignment="Left" Margin="190,174,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="84" FontWeight="Bold"/>
+            <Label Grid.Column="1" Content="Email*" HorizontalAlignment="Left" Margin="190,214,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="53" FontWeight="Bold"/>
+            <TextBox x:Name="agentDobTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,260,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18"/>
+            <TextBox x:Name="agentLicenseTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,301,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18"/>
+            <Label Grid.Column="1" Content="Date of Birth*" HorizontalAlignment="Left" Margin="190,256,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="95" FontWeight="Bold"/>
+            <Label Grid.Column="1" Content="License No*" HorizontalAlignment="Left" Margin="190,297,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="84" FontWeight="Bold"/>
+            <Button x:Name="submitAgentRegBtn" Grid.Column="1" Content="Save &amp; Submit" HorizontalAlignment="Left" Margin="42,166,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Background="#FFECDC49" Height="30" Width="99" BorderBrush="#FFECDC49"/>
+        </Grid>
+
+    </Grid>
+</Window>
