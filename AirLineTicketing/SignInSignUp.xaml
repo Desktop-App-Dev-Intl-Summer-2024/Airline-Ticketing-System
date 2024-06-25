@@ -1,0 +1,62 @@
+﻿<Window x:Class="AirLineTicketing.SignInSignUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AirLineTicketing"
+        mc:Ignorable="d"
+        Title="SignInSignUp" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/raimond-klavins-SDjolVGHLwc-unsplash.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="195*"/>
+                <RowDefinition Height="200*"/>
+            </Grid.RowDefinitions>
+            <Rectangle HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="800">
+                <Rectangle.Stroke>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.9">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="270" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF8AB644" Offset="1"/>
+                        <GradientStop Color="#FF3D501E" Offset="0"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Label Content="Airline Ticketing App" VerticalAlignment="Center" FontSize="18" Foreground="White" FontFamily="Arial" FontWeight="SemiBold" Height="31"/>
+            <Button Grid.Column="1" Content="Back to Search" Margin="285,0,0,0" VerticalAlignment="Center" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27" HorizontalAlignment="Left" Width="105">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                </Button.BorderBrush>
+            </Button>
+            <Rectangle Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="250" Margin="65,75,0,0" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Top" Width="673">
+                <Rectangle.Stroke>
+                    <SolidColorBrush Color="Black" Opacity="0"/>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="#FFA9E679" Opacity="0.6"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Button x:Name="UserSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,0,75,35" Grid.Row="1" FontWeight="Bold" Height="22" VerticalAlignment="Bottom"/>
+            <Button x:Name="AgentSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,63,75,0" Grid.Row="2" FontWeight="Bold" Height="22" VerticalAlignment="Top"/>
+            <Label Content="New Users" HorizontalAlignment="Left" Margin="135,0,0,62" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom"/>
+            <Label Content="New Agents" HorizontalAlignment="Left" Margin="135,0,0,142" Grid.Row="2" VerticalAlignment="Bottom" FontWeight="Bold"/>
+        </Grid>
+    </Grid>
+</Window>

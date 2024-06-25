@@ -20,5 +20,10 @@ namespace AirLineTicketing
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new SignInSignUp().Show();
+        }
     }
 }
