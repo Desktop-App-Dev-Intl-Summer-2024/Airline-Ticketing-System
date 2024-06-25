@@ -10,6 +10,10 @@ namespace AirLineTicketing
 {
     class ApiRequest
     {
+        private static String server_env_var_name = "DEV_AIRLINE_TICKETING_APP_SERVER";
+        private static String local_server_name = Environment.GetEnvironmentVariable(server_env_var_name);
+
+
         // install sqlclient
         SqlConnection sqlConnection;
 
@@ -18,8 +22,12 @@ namespace AirLineTicketing
 
         private void Establish_Connection()
         {
+            if (String.IsNullOrEmpty(local_server_name)) {
+                throw new Exception("Please set environment variable: " + server_env_var_name);
+            }
+
             // Collect Connection String and Pass it to the connector
-            string connectionString = "Data Source=desktop-aiq6j2v;Initial Catalog=AirlineTicketingAppProjet;Integrated Security=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=" + local_server_name + ";Initial Catalog=AirlineTicketingAppProjet;Integrated Security=True;Trust Server Certificate=True";
 
             // initialize the connection String
             sqlConnection = new SqlConnection(connectionString);
