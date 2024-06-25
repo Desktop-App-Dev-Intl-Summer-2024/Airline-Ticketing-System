@@ -53,6 +53,13 @@
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[5.2.1, )"
+<<<<<<< HEAD
+=======
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
+>>>>>>> main
             }
           },
           "imports": [
