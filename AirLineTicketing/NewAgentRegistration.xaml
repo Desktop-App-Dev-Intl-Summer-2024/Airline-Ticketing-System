@@ -29,7 +29,7 @@
             </Rectangle>
             <StackPanel Margin="0,39,0,10" Grid.RowSpan="2">
                 <Button x:Name="backBtn" Content="Back" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
-                <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
+                <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White" Click="Button_Click"/>
                 <Button Content="Search" Margin="10,10,10,10" Padding="1,2,1,2" Background="#FFA9E679" BorderBrush="#FFA9E679" FontWeight="Bold"/>
             </StackPanel>
             <Rectangle HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="800">
@@ -62,21 +62,22 @@
                     <SolidColorBrush Color="#FFA9E679" Opacity="0.6"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBox x:Name="agentUsernameTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,47,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" Background="White" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18"/>
-            <TextBox x:Name="agentPasswordTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,91,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" FontStyle="Italic" BorderBrush="#FFA9E679" Height="18"/>
-            <TextBox x:Name="agentFirstNameTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,135,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="17"/>
-            <TextBox x:Name="agentLastNameTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,178,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" FontStyle="Italic" BorderBrush="#FFA9E679" Height="18"/>
-            <TextBox x:Name="agentEmailTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,218,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18"/>
+            <TextBox x:Name="agentUsernameTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,47,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" Background="White" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18" GotFocus="agentUsernameTxt_GotFocus"/>
+            <TextBox x:Name="agentPasswordTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,91,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" FontStyle="Italic" BorderBrush="#FFA9E679" Height="18" GotFocus="agentPasswordTxt_GotFocus"/>
+            <TextBox x:Name="agentFirstNameTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,135,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="17" GotFocus="agentFirstNameTxt_GotFocus"/>
+            <TextBox x:Name="agentLastNameTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,178,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" FontStyle="Italic" BorderBrush="#FFA9E679" Height="18" GotFocus="agentLastNameTxt_GotFocus"/>
+            <TextBox x:Name="agentEmailTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,218,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18" GotFocus="agentEmailTxt_GotFocus"/>
             <Label Grid.Column="1" Content="Username*" HorizontalAlignment="Left" Margin="185,42,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="78" FontWeight="Bold"/>
             <Label Grid.Column="1" Content="Password*" HorizontalAlignment="Left" Margin="190,87,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="78" FontWeight="Bold"/>
             <Label Grid.Column="1" Content="First Name*" HorizontalAlignment="Left" Margin="185,131,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="86" FontWeight="Bold" RenderTransformOrigin="1.077,0.017"/>
             <Label Grid.Column="1" Content="Last Name*" HorizontalAlignment="Left" Margin="190,174,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="84" FontWeight="Bold"/>
             <Label Grid.Column="1" Content="Email*" HorizontalAlignment="Left" Margin="190,214,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="53" FontWeight="Bold"/>
-            <TextBox x:Name="agentDobTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,260,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18"/>
-            <TextBox x:Name="agentLicenseTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,301,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18"/>
+            <TextBox x:Name="agentDobTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,260,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18" GotFocus="agentDobTxt_GotFocus"/>
+            <TextBox x:Name="agentLicenseTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="295,301,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18" GotFocus="agentLicenseTxt_GotFocus"/>
             <Label Grid.Column="1" Content="Date of Birth*" HorizontalAlignment="Left" Margin="190,256,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="95" FontWeight="Bold"/>
             <Label Grid.Column="1" Content="License No*" HorizontalAlignment="Left" Margin="190,297,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="84" FontWeight="Bold"/>
-            <Button x:Name="submitAgentRegBtn" Grid.Column="1" Content="Save &amp; Submit" HorizontalAlignment="Left" Margin="42,166,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Background="#FFECDC49" Height="30" Width="99" BorderBrush="#FFECDC49"/>
+            <Button x:Name="submitAgentRegBtn" Grid.Column="1" Content="Save &amp; Submit" HorizontalAlignment="Left" Margin="42,166,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Background="#FFECDC49" Height="30" Width="99" BorderBrush="#FFECDC49" Click="submitAgentRegBtn_Click"/>
+            <DataGrid x:Name="testGrid" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,144,0,0"/>
         </Grid>
 
     </Grid>
