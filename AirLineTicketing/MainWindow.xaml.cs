@@ -23,12 +23,7 @@ namespace AirLineTicketing
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-           NewAgentRegistration newAgentRegistration = new NewAgentRegistration();
-            newAgentRegistration.Show();
-=======
             new SignInSignUp().Show();
->>>>>>> 7993f9ef0c266520e0929d45ae785994cb0d1d5b
         }
     }
 }

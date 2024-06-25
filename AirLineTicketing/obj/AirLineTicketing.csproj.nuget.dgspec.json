@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marie\\Vanier\\APP1\\Projet\\Airline-Ticketing-System\\AirLineTicketing\\AirLineTicketing.csproj": {}
+    "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\AirLineTicketing.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marie\\Vanier\\APP1\\Projet\\Airline-Ticketing-System\\AirLineTicketing\\AirLineTicketing.csproj": {
+    "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\AirLineTicketing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marie\\Vanier\\APP1\\Projet\\Airline-Ticketing-System\\AirLineTicketing\\AirLineTicketing.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\AirLineTicketing.csproj",
         "projectName": "AirLineTicketing",
-        "projectPath": "C:\\Users\\marie\\Vanier\\APP1\\Projet\\Airline-Ticketing-System\\AirLineTicketing\\AirLineTicketing.csproj",
-        "packagesPath": "C:\\Users\\marie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marie\\Vanier\\APP1\\Projet\\Airline-Ticketing-System\\AirLineTicketing\\obj\\",
+        "projectPath": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\AirLineTicketing.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -50,6 +50,10 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.6, )"
@@ -74,7 +78,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

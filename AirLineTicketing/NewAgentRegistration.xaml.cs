@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -15,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Data.SqlClient;
 
 namespace AirLineTicketing
 {
@@ -33,7 +33,8 @@ namespace AirLineTicketing
         {
             //Collect connection string and pass it to the connector
             //Right click on data connection name, properties, copy and paste connection string
-            string connectionString = "Data Source=LAPTOP_DE_MARIE\\MSSQLSERVER01;Initial Catalog=AirlineTicketingAppProject;Integrated Security=True;Encrypt=True;";
+            // string connectionString = "Data Source=desktop-aiq6j2v;Initial Catalog=AirlineTicketingAppProjet;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=LAPTOP_DE_MARIE\\MSSQLSERVER01;Initial Catalog=AirlineTicketingAppProject;Integrated Security=True;Encrypt=True;;Trust Server Certificate=True";
             //initialize the connection string
             sqlConnection = new SqlConnection(connectionString);
             //open the connection
@@ -91,10 +92,10 @@ namespace AirLineTicketing
                 EstablishConnection();
 
                 //Step 3: generate the database query
-                string query = "insert into UserRegistration values (@username, @password, @firstname, @lastname, @email, @dob, @license)";
+                string query = "insert into AgentRegistration values (@username, @password, @firstname, @lastname, @email, @dob, @license)";
 
                 //Step 4: initialize the sql command
-                sqlCommand = new System.Data.SqlClient.SqlCommand(query, sqlConnection);
+                sqlCommand = new SqlCommand(query, sqlConnection);
 
                 //Step 5: initialize the variables of the query
                 sqlCommand.Parameters.AddWithValue("@username", agentUsernameTxt.Text);
@@ -116,7 +117,7 @@ namespace AirLineTicketing
                 //Step 7: Close the connection
                 sqlConnection.Close();
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
             }
