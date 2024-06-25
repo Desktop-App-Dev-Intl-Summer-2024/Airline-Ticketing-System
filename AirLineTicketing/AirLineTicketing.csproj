@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="raimond-klavins-SDjolVGHLwc-unsplash.jpg" />
   </ItemGroup>
 
