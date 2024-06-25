@@ -28,5 +28,10 @@ namespace AirLineTicketing
         {
             new NewAgentRegistration().Show();
         }
+
+        private void UserSignUpBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new NewUserRegistration().Show();
+        }
     }
 }

@@ -53,7 +53,7 @@
                     <SolidColorBrush Color="#FFA9E679" Opacity="0.6"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Button x:Name="UserSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,0,75,35" Grid.Row="1" FontWeight="Bold" Height="22" VerticalAlignment="Bottom"/>
+            <Button x:Name="UserSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,0,75,35" Grid.Row="1" FontWeight="Bold" Height="22" VerticalAlignment="Bottom" Click="UserSignUpBtn_Click"/>
             <Button x:Name="AgentSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,63,75,0" Grid.Row="2" FontWeight="Bold" Height="22" VerticalAlignment="Top" Click="AgentSignUpBtn_Click"/>
             <Label Content="New Users" HorizontalAlignment="Left" Margin="135,0,0,62" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom"/>
             <Label Content="New Agents" HorizontalAlignment="Left" Margin="135,0,0,142" Grid.Row="2" VerticalAlignment="Bottom" FontWeight="Bold"/>

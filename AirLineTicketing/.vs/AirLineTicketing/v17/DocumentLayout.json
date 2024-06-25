@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|c:\\users\\dell\\documents\\github\\airline-ticketing-system\\airlineticketing\\newagentregistration.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|solutionrelative:newagentregistration.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|c:\\users\\dell\\documents\\github\\airline-ticketing-system\\airlineticketing\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|c:\\users\\dell\\documents\\github\\airline-ticketing-system\\airlineticketing\\signinsignup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|solutionrelative:signinsignup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|c:\\users\\dell\\documents\\github\\airline-ticketing-system\\airlineticketing\\newagentregistration.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|solutionrelative:newagentregistration.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|c:\\users\\dell\\documents\\github\\airline-ticketing-system\\airlineticketing\\newagentregistration.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,7 +54,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SignInSignUp.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\SignInSignUp.xaml.cs",
               "RelativeDocumentMoniker": "SignInSignUp.xaml.cs",
@@ -67,33 +67,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAABkAAAAmAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-17T03:45:22.384Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "NewAgentRegistration.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\NewAgentRegistration.xaml.cs",
               "RelativeDocumentMoniker": "NewAgentRegistration.xaml.cs",
               "ToolTip": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\NewAgentRegistration.xaml.cs",
               "RelativeToolTip": "NewAgentRegistration.xaml.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAmwCQAAAAMAAAA",
+              "ViewState": "AQIAADAAAAAAAAAAAAAowBAAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-24T20:57:58.742Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "SignInSignUp.xaml",
               "DocumentMoniker": "C:\\Users\\Dell\\Documents\\GitHub\\Airline-Ticketing-System\\AirLineTicketing\\SignInSignUp.xaml",
               "RelativeDocumentMoniker": "SignInSignUp.xaml",
