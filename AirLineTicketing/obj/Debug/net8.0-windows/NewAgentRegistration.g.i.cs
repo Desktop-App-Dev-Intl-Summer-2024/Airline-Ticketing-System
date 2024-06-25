@@ -141,7 +141,7 @@ namespace AirLineTicketing {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AirLineTicketing;V1.0.0.0;component/newagentregistration.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AirLineTicketing;component/newagentregistration.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\NewAgentRegistration.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
