@@ -20,5 +20,11 @@ namespace AirLineTicketing
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           NewAgentRegistration newAgentRegistration = new NewAgentRegistration();
+            newAgentRegistration.Show();
+        }
     }
 }

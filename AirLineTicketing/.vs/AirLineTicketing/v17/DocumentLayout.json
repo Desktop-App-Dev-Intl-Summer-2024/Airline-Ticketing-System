@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|c:\\users\\marie\\vanier\\app1\\projet\\airline-ticketing-system\\airlineticketing\\newagentregistration.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|solutionrelative:newagentregistration.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|c:\\users\\marie\\vanier\\app1\\projet\\airline-ticketing-system\\airlineticketing\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|c:\\users\\marie\\vanier\\app1\\projet\\airline-ticketing-system\\airlineticketing\\newagentregistration.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{167CFEA7-E9EB-4291-A699-9E05EC744ACE}|AirLineTicketing.csproj|solutionrelative:newagentregistration.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +26,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
             },
             {
               "$type": "Document",
@@ -40,14 +44,14 @@
               "RelativeDocumentMoniker": "NewAgentRegistration.xaml.cs",
               "ToolTip": "C:\\Users\\marie\\Vanier\\APP1\\Projet\\Airline-Ticketing-System\\AirLineTicketing\\NewAgentRegistration.xaml.cs",
               "RelativeToolTip": "NewAgentRegistration.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC0AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-24T20:57:58.742Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "NewAgentRegistration.xaml",
               "DocumentMoniker": "C:\\Users\\marie\\Vanier\\APP1\\Projet\\Airline-Ticketing-System\\AirLineTicketing\\NewAgentRegistration.xaml",
               "RelativeDocumentMoniker": "NewAgentRegistration.xaml",
@@ -58,12 +62,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\marie\\Vanier\\APP1\\Projet\\Airline-Ticketing-System\\AirLineTicketing\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -81,7 +81,7 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\marie\\Vanier\\APP1\\Projet\\Airline-Ticketing-System\\AirLineTicketing\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "ViewState": "AQIAAA0AAAAAAAAAAAArwBoAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-17T03:45:22.384Z",
               "EditorCaption": ""
