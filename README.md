@@ -1,5 +1,8 @@
 # Airline-Ticketing-System
 
+## Trello Board Link
+https://trello.com/b/W1MN71TW/airline-ticketing-app-projet
+
 ## Description
 This project aims to implement an Airline Ticketing System that runs as a Desktop application which helps with browsing, filtering, and reserving airline tickets based on user preference. The major users of this project are the airline employees who acts as the admin who is capable of loading the flight information, and then comes the consumers and travel agents who are both capable of reserving the tickets on the flights of their choice. This app uses C# .NET Framework for its front-end implementation, and Microsoft SQL for its backend.
 
