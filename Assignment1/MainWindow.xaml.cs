@@ -20,6 +20,7 @@ namespace Assignment1_FarmersMarketApp
         {
             InitializeComponent();
             new Admin().Show();
+            this.Close();
         }
     }
 }
