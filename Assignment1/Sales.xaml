@@ -57,7 +57,7 @@
                 <Label Content="Subtotal" Width="110" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Horizontal">
-                <Button x:Name="addSelectedProductBtn" Content="Add to Cart" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FF6AC810" Cursor="Hand">
+                <Button x:Name="addSelectedProductBtn" Content="Add to Cart" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FF6AC810" Cursor="Hand" Click="addSelectedProductBtn_Click">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
@@ -77,7 +77,7 @@
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
                 </Button>
-                <Button x:Name="DeleteProductBtn" Content="Delete" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FFFF5454" Cursor="Hand">
+                <Button x:Name="deleteSelectedProductBtn" Content="Delete" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FFFF5454" Cursor="Hand">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>

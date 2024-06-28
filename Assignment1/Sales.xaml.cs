@@ -32,7 +32,8 @@ namespace Assignment1_FarmersMarketApp
             
         }
 
-        private void AddProductBtn_Click(object sender, RoutedEventArgs e)
+        //ADD SELECTED PRODUCT TO CART BUTTON CLICK
+        private void addSelectedProductBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -46,7 +47,7 @@ namespace Assignment1_FarmersMarketApp
 
                 SelectedProduct selectedProduct = new SelectedProduct(name, id, amount, price, amountSelected);
 
-                for(int i = 0; i >= selectedProductList.Count; i++)
+                for (int i = 0; i >= selectedProductList.Count; i++)
                 {
                     if (selectedProductList[i].getId == selectedProduct.getId)
                     {
@@ -56,17 +57,29 @@ namespace Assignment1_FarmersMarketApp
 
                 selectedProductList.Add(selectedProduct);
 
-                selectedProductGrid.DataContext = selectedProductList;
+                selectedProductGrid.ItemsSource = selectedProductList;
 
                 cartTotal = cartTotal + selectedProduct.getSubTotal(selectedProduct.getAmount, selectedProduct.getPrice);
 
                 totalCartTxt.Text = "Total $ " + cartTotal;
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
             }
+        }
+
+        //CLEAR CART BUTTON CLICK
+        private void clearCartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            selectedProductList.Clear();
+            selectedProductGrid.ItemsSource = null;
+            productIDText.Text = "";
+            priceTxt.Text = "";
+            qtyAvailableTxt.Text = "";
+            qtySelectedTxt.Text = "";
+            subtotalTxt.Text = "";
         }
 
         public void PopulateSelectionComboBox()
@@ -80,9 +93,6 @@ namespace Assignment1_FarmersMarketApp
             productComboBox.Items.AddRange(availableProduct);
         }
 
-        private void clearCartBtn_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
     }
 }
