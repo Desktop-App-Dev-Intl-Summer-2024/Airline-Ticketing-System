@@ -20,6 +20,8 @@
                     </LinearGradientBrush.RelativeTransform>
                     <GradientStop Color="#FF5BE448"/>
                     <GradientStop Color="#FFFFFFFD" Offset="1"/>
+                    <GradientStop Color="#FFA7F09C" Offset="0.465"/>
+                    <GradientStop Color="#FF5CE449" Offset="0.01"/>
                 </LinearGradientBrush>
             </Grid.Background>
             <Grid.RowDefinitions>
@@ -70,14 +72,28 @@
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
                 </Button>
+                <Button x:Name="clearCartBtn" Content="Clear Cart" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FF6AC810" Cursor="Hand" Click="clearCartBtn_Click">
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                    </Button.BorderBrush>
+                </Button>
                 <Button x:Name="DeleteProductBtn" Content="Delete" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FFFF5454" Cursor="Hand">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
                 </Button>
             </StackPanel>
-            <DataGrid x:Name="DisplayProductsGrd" Grid.Row="4" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,36,10,10"/>
+            <DataGrid x:Name="selectedProductGrid" Grid.Row="4" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,36,10,10"/>
             <Label Content="My Cart" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="4" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+            <TextBox x:Name="totalCartTxt" HorizontalAlignment="Left" Margin="89,9,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Total $" VerticalAlignment="Top" Width="156" FontWeight="Bold" FontSize="14" BorderBrush="#FFA7F09C">
+                <TextBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5CE449" Offset="0"/>
+                        <GradientStop Color="#FFA7F09C" Offset="1"/>
+                        <GradientStop Color="#FFA7F09C" Offset="0.465"/>
+                    </LinearGradientBrush>
+                </TextBox.Background>
+            </TextBox>
 
         </Grid>
 
