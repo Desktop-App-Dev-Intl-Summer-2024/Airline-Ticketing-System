@@ -26,6 +26,7 @@ namespace Assignment1_FarmersMarketApp
         {
             InitializeComponent();
             apiRequest = new ApiRequest();
+            PopulateDisplayGrid();
         }
 
         private void ProductIdTbx_GotFocus(object sender, RoutedEventArgs e)
@@ -76,38 +77,71 @@ namespace Assignment1_FarmersMarketApp
 
         private void FindProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            // query the DB
+            try
+            {
+                string name = ProductNameTbx.Text.Trim();
+                int id = ProductIdTbx.Text.Trim() != String.Empty ? int.Parse(ProductIdTbx.Text) : -1;
 
-            // if success
-                // populate the text fields
-            // else
-                // display error
+                Product foundPerson = apiRequest.getProductApi(id, name);
+
+                if (foundPerson != null)
+                {
+                    ProductIdTbx.Text = foundPerson.getId().ToString();
+                    ProductNameTbx.Text = foundPerson.getName();
+                    ProductAmountTbx.Text = foundPerson.getAmount().ToString();
+                    ProductPriceTbx.Text = foundPerson.getPrice().ToString();
+                }
+                else {
+                    MessageBox.Show("Couldn't find any elements");
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void UpdateProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            String name = ProductNameTbx.Text;
-            int id = int.Parse(ProductIdTbx.Text);
-            double amount = double.Parse(ProductAmountTbx.Text);
-            double price = double.Parse(ProductPriceTbx.Text);
+            try
+            {
+                string name = ProductNameTbx.Text;
+                int id = int.Parse(ProductIdTbx.Text);
+                double amount = double.Parse(ProductAmountTbx.Text);
+                double price = double.Parse(ProductPriceTbx.Text);
 
-            Product product = new Product(name, id, amount, price);
+                Product product = new Product(name, id, amount, price);
 
-            // put to DB
-            // if success clear the input fields, success message
-            // refresh/reload DisplayGrid
-            // else
-            // display error
+                int status = apiRequest.putProductApi(product);
+
+                if (status == 1)
+                {
+                    PopulateDisplayGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void DeleteProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            // product id from text box
-            // delete from DB
-            // if success clear the input fields, success message
-            // refresh/reload DisplayGrid
-            // else
-            // display error
+            try
+            {
+                int id = int.Parse(ProductIdTbx.Text);
+
+                int status = apiRequest.deleteProductApi(id);
+
+                if (status == 1)
+                {
+                    ClearInputs();
+                    PopulateDisplayGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void PopulateDisplayGrid() {
