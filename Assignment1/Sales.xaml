@@ -77,7 +77,12 @@
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
                 </Button>
-                <Button x:Name="deleteSelectedProductBtn" Content="Delete" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FFFF5454" Cursor="Hand">
+                <Button x:Name="deleteSelectedProductBtn" Content="Delete" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FFFF5454" Cursor="Hand" Click="deleteSelectedProductBtn_Click">
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                    </Button.BorderBrush>
+                </Button>
+                <Button x:Name="purchaseBtn" Content="Confirm for Purchase!" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FF6AC810" Cursor="Hand" Click="clearCartBtn_Click">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>

@@ -58,10 +58,7 @@ namespace Assignment1_FarmersMarketApp
                 selectedProductList.Add(selectedProduct);
 
                 selectedProductGrid.ItemsSource = selectedProductList;
-
-                cartTotal = cartTotal + selectedProduct.getSubTotal(selectedProduct.getAmount, selectedProduct.getPrice);
-
-                totalCartTxt.Text = "Total $ " + cartTotal;
+                GetCartTotal(selectedProductList);
 
             }
             catch (Exception ex)
@@ -82,6 +79,21 @@ namespace Assignment1_FarmersMarketApp
             subtotalTxt.Text = "";
         }
 
+        //DELETE SELECTED PRODUCT BUTTON CLICK
+        private void deleteSelectedProductBtn_Click(object sender, RoutedEventArgs e)
+        {
+            for(int i = 0;i >= selectedProductList.Count;i++)
+            {
+                if(productIDText.Text == selectedProductList[i].getId)
+                {
+                    selectedProductList.RemoveAt(i);
+                }
+
+                selectedProductGrid.ItemsSource = selectedProductList;
+                GetCartTotal(selectedProductList);
+            }
+        }
+
         public void PopulateSelectionComboBox()
         {
             System.Object[] availableProduct = new System.Object[5];
@@ -91,6 +103,18 @@ namespace Assignment1_FarmersMarketApp
                 availableProduct[i] = "Item" + i;
             }
             productComboBox.Items.AddRange(availableProduct);
+        }
+
+        public void GetCartTotal(List<SelectedProduct> selectedProductList)
+        {
+            double cartTotal = 0.0;
+
+            for (int i = 0; i < selectedProductList.Count; i++)
+            {
+                cartTotal = cartTotal + selectedProductList[i].getAmountSelected() * selectedProductList[i].getPrice();
+
+                totalCartTxt.Text = "Total $ " + cartTotal;
+            }
         }
 
 
