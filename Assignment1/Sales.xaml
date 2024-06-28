@@ -55,22 +55,22 @@
                 <Label Content="Subtotal" Width="110" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Horizontal">
-                <Button x:Name="addSelectedProductBtn" Content="Add to Cart" MinWidth="107" Height="20" Margin="10,0,0,0" Click="AddProductBtn_Click" Background="#FF6AC810" Cursor="Hand">
+                <Button x:Name="addSelectedProductBtn" Content="Add to Cart" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FF6AC810" Cursor="Hand">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
                 </Button>
-                <Button x:Name="findProductBtn" Content="Find" MinWidth="107" Height="20" Margin="10,0,0,0" Click="FindProductBtn_Click" Background="#FF6AC810" Cursor="Hand">
+                <Button x:Name="findProductBtn" Content="Find" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FF6AC810" Cursor="Hand">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
                 </Button>
-                <Button x:Name="updateCartBtn" Content="Update Cart" MinWidth="107" Height="20" Margin="10,0,0,0" Click="UpdateProductBtn_Click" Background="#FF6AC810" Cursor="Hand">
+                <Button x:Name="updateCartBtn" Content="Update Cart" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FF6AC810" Cursor="Hand">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
                 </Button>
-                <Button x:Name="DeleteProductBtn" Content="Delete" MinWidth="107" Height="20" Margin="10,0,0,0" Click="DeleteProductBtn_Click" Background="#FFFF5454" Cursor="Hand">
+                <Button x:Name="DeleteProductBtn" Content="Delete" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FFFF5454" Cursor="Hand">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
