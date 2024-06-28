@@ -102,28 +102,46 @@ namespace Assignment1_FarmersMarketApp
 
         private void UpdateProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            String name = ProductNameTbx.Text;
-            int id = int.Parse(ProductIdTbx.Text);
-            double amount = double.Parse(ProductAmountTbx.Text);
-            double price = double.Parse(ProductPriceTbx.Text);
+            try
+            {
+                string name = ProductNameTbx.Text;
+                int id = int.Parse(ProductIdTbx.Text);
+                double amount = double.Parse(ProductAmountTbx.Text);
+                double price = double.Parse(ProductPriceTbx.Text);
 
-            Product product = new Product(name, id, amount, price);
+                Product product = new Product(name, id, amount, price);
 
-            // put to DB
-            // if success clear the input fields, success message
-            // refresh/reload DisplayGrid
-            // else
-            // display error
+                int status = apiRequest.putProductApi(product);
+
+                if (status == 1)
+                {
+                    PopulateDisplayGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void DeleteProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            // product id from text box
-            // delete from DB
-            // if success clear the input fields, success message
-            // refresh/reload DisplayGrid
-            // else
-            // display error
+            try
+            {
+                int id = int.Parse(ProductIdTbx.Text);
+
+                int status = apiRequest.deleteProductApi(id);
+
+                if (status == 1)
+                {
+                    ClearInputs();
+                    PopulateDisplayGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void PopulateDisplayGrid() {
