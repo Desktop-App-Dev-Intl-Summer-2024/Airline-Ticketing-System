@@ -30,8 +30,7 @@ namespace Assignment1_FarmersMarketApp
         {
             this.amountSelected = amountSelected;
         }
-<<<<<<< Updated upstream
-=======
+
 
         public double getSubTotal(int amountSelected, double price)
         {
@@ -41,6 +40,21 @@ namespace Assignment1_FarmersMarketApp
 
             return subTotal;
         }
->>>>>>> Stashed changes
+
+        public double calculateTotalCart(List<SelectedProduct> products)
+        {
+            double totalCart = 0.0;
+
+            for (int i = 0; i >= products.Count; i++)
+            {
+                double qty = products[i].getAmountSelected();
+                double price = products[i].getPrice();
+                totalCart += qty * price;   
+            }
+
+            return totalCart;
+        }
+
+
     }
 }
