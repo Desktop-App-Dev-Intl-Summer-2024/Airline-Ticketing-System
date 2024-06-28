@@ -26,6 +26,7 @@ namespace Assignment1_FarmersMarketApp
         {
             InitializeComponent();
             apiRequest = new ApiRequest();
+            PopulateDisplayGrid();
         }
 
         private void ProductIdTbx_GotFocus(object sender, RoutedEventArgs e)
@@ -76,12 +77,27 @@ namespace Assignment1_FarmersMarketApp
 
         private void FindProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            // query the DB
+            try
+            {
+                string name = ProductNameTbx.Text.Trim();
+                int id = ProductIdTbx.Text.Trim() != String.Empty ? int.Parse(ProductIdTbx.Text) : -1;
 
-            // if success
-                // populate the text fields
-            // else
-                // display error
+                Product foundPerson = apiRequest.getProductApi(id, name);
+
+                if (foundPerson != null)
+                {
+                    ProductIdTbx.Text = foundPerson.getId().ToString();
+                    ProductNameTbx.Text = foundPerson.getName();
+                    ProductAmountTbx.Text = foundPerson.getAmount().ToString();
+                    ProductPriceTbx.Text = foundPerson.getPrice().ToString();
+                }
+                else {
+                    MessageBox.Show("Couldn't find any elements");
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void UpdateProductBtn_Click(object sender, RoutedEventArgs e)

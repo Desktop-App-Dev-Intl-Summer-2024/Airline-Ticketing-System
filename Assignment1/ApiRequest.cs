@@ -59,6 +59,58 @@ namespace Assignment1_FarmersMarketApp
             return dt;
         }
 
+        public Product getProductApi(int id, string name) { 
+            Product product = null;
+
+            try {
+                Establish_Connection();
+
+                string query;
+
+                if (id > 0)
+                {
+                    query = "select * from A1Products where id=@id";
+                }
+                else if (name != String.Empty)
+                {
+                    query = "select * from A1Products where name like @name";
+                }
+                else {
+                    throw new Exception("Both Id and Name can't empty");
+                }
+
+
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+
+                if (id > 0)
+                {
+                    sqlCommand.Parameters.AddWithValue("@id", id);
+                }
+                else
+                {
+                    sqlCommand.Parameters.AddWithValue("@name", "%" + name + "%");
+                }
+
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int productId = (int)reader["id"];
+                    string productName = (string)reader["name"];
+                    double amount = Convert.ToDouble(reader["amount"]);
+                    double price = Convert.ToDouble(reader["price"]);
+
+                    product = new Product(productName, productId, amount, price);
+                }
+
+            } catch (Exception ex) { 
+                MessageBox.Show(ex.Message);
+            }
+
+            return product;
+        }
+
         public int postProductApi(Product product)
         {
             int status = 0;
