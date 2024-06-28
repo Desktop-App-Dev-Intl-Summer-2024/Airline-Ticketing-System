@@ -30,5 +30,17 @@ namespace Assignment1_FarmersMarketApp
         {
             this.amountSelected = amountSelected;
         }
+<<<<<<< Updated upstream
+=======
+
+        public double getSubTotal(int amountSelected, double price)
+        {
+            double subTotal = 0.0;
+
+            subTotal = amountSelected * price;
+
+            return subTotal;
+        }
+>>>>>>> Stashed changes
     }
 }
