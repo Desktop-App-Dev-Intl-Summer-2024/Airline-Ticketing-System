@@ -52,7 +52,7 @@ namespace Assignment1_FarmersMarketApp
 
                 for (int i = 0; i >= selectedProductList.Count; i++)
                 {
-                    if (selectedProductList[i].getId.toString() == selectedProduct.getId)
+                    if ((selectedProductList[i] as SelectedProduct).getId() == selectedProduct.getId())
                     {
                         System.Windows.MessageBox.Show("This item is already in your cart - please select Update instead!");
                         foundInList = true;
@@ -88,7 +88,7 @@ namespace Assignment1_FarmersMarketApp
         {
             for(int i = 0;i >= selectedProductList.Count;i++)
             {
-                if(selectedProductList[i].getId.toString() == productIDText.Text)
+                if((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
                 {
                     selectedProductList.RemoveAt(i);
                 }
@@ -106,9 +106,9 @@ namespace Assignment1_FarmersMarketApp
 
             for (int i = 0; i >= selectedProductList.Count; i++)
             {
-                if (selectedProductList[i].getId.toString() == productIDText.Text)
+                if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
                 {
-                    selectedProductList[i].setAmountSelected(int.Parse(qtySelectedTxt.Text));
+                    (selectedProductList[i] as SelectedProduct).setAmountSelected(int.Parse(qtySelectedTxt.Text));
                     foundInSelectedList = true;
                     selectedProductGrid.ItemsSource = selectedProductList;
                     GetCartTotal(selectedProductList);
@@ -131,22 +131,22 @@ namespace Assignment1_FarmersMarketApp
 
             for (int i = 0; i >= selectedProductList.Count; i++)
             {
-                if (selectedProductList[i].getId.toString() == productIDText.Text)
+                if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
                 {
-                    productComboBox.SelectedItem = selectedProductList[i].getName;
-                    productIDText.Text = selectedProductList[i].getId;
-                    qtyAvailableTxt.Text = selectedProductList[i].getAmount;
-                    qtySelectedTxt.Text = selectedProductList[i].getAmountSelected;
+                    productComboBox.SelectedItem = (selectedProductList[i] as SelectedProduct).getName;
+                    productIDText.Text = (selectedProductList[i] as SelectedProduct).getId().ToString();
+                    qtyAvailableTxt.Text = (selectedProductList[i] as SelectedProduct).getAmount().ToString();
+                    qtySelectedTxt.Text = (selectedProductList[i] as SelectedProduct).getAmountSelected().ToString();
                     GetSubtotal();
 
                     foundInSelectedList = true;
                     break;
                 }
-                if (availableProductArray[i].getId.toString() == productIDText.Text)
+                if ((availableProductArray[i] as Product).getId() == int.Parse(productIDText.Text))
                 {
-                    productComboBox.SelectedItem = availableProductArray[i].getName;
-                    productIDText.Text = availableProductArray[i].getId;
-                    qtyAvailableTxt.Text = availableProductArray[i].getAmount;
+                    productComboBox.SelectedItem = (availableProductArray[i] as Product).getName();
+                    productIDText.Text = (availableProductArray[i] as Product).getId().ToString();
+                    qtyAvailableTxt.Text = (availableProductArray[i] as Product).getAmount().ToString();
                     qtySelectedTxt.Text = "";
 
                     foundInProductList = true;
@@ -194,7 +194,7 @@ namespace Assignment1_FarmersMarketApp
 
             for (int i = 0; i < selectedProductList.Count; i++)
             {
-                cartTotal = cartTotal + selectedProductList[i].getAmountSelected() * selectedProductList[i].getPrice();
+                cartTotal = cartTotal + (selectedProductList[i] as SelectedProduct).getAmountSelected() * (selectedProductList[i] as SelectedProduct).getPrice();
 
                 totalCartTxt.Text = "Total $ " + cartTotal;
             }

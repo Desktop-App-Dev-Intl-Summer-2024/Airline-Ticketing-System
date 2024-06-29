@@ -284,8 +284,8 @@ namespace Assignment1_FarmersMarketApp
                 for (int i = 0; i < arrayList.Count; i++)
                 {
                     sqlCommand = new SqlCommand(query, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@id", arrayList[i].getId());
-                    sqlCommand.Parameters.AddWithValue("@amount", arrayList[i].getAmount());
+                    sqlCommand.Parameters.AddWithValue("@id", (arrayList[i] as Product).getId());
+                    sqlCommand.Parameters.AddWithValue("@amount", (arrayList[i] as Product).getAmount());
 
                     status = sqlCommand.ExecuteNonQuery();
 
