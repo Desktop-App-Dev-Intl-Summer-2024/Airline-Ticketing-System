@@ -47,10 +47,10 @@ namespace Assignment1_FarmersMarketApp
                     {
                         if ((selectedProductList[i] as SelectedProduct).getId() == selectedProduct.getId())
                         {
-                            productIDText.Text = (selectedProductList[i] as SelectedProduct).getId();
-                            priceTxt.Text = (selectedProductList[i] as SelectedProduct).getPrice();
-                            qtyAvailableTxt.Text = (selectedProductList[i] as SelectedProduct).getAmount();
-                            qtySelectedTxt.Text = (selectedProductList[i] as SelectedProduct).getAmountSelected();
+                            productIDText.Text = (selectedProductList[i] as SelectedProduct).getId().ToString();
+                            priceTxt.Text = (selectedProductList[i] as SelectedProduct).getPrice().ToString();
+                            qtyAvailableTxt.Text = (selectedProductList[i] as SelectedProduct).getAmount().ToString();
+                            qtySelectedTxt.Text = (selectedProductList[i] as SelectedProduct).getAmountSelected().ToString();
                             GetSubtotal();
                             foundInSelectedList = true;
                             break;
