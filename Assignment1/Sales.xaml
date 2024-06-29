@@ -32,28 +32,19 @@
                 <RowDefinition Height="330*"/>
             </Grid.RowDefinitions>
             <StackPanel Height="20" VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
-                <ComboBox x:Name="productComboBox" Width="206" RenderTransformOrigin="0.5,0.5" SelectionChanged="productComboBox_SelectionChanged">
-                    <ComboBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </ComboBox.RenderTransform>
-                </ComboBox>
+                <ComboBox x:Name="productComboBox" Width="206" RenderTransformOrigin="0.5,0.5" SelectionChanged="productComboBox_SelectionChanged" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBox x:Name="productIDText" TextWrapping="Wrap" Width="109" Margin="10,0,0,0"/>
                 <TextBox x:Name="priceTxt" TextWrapping="Wrap" Width="120" Margin="10,0,0,0" IsReadOnly="True"/>
                 <TextBox x:Name="qtyAvailableTxt" TextWrapping="Wrap" Width="92" Margin="10,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="qtySelectedTxt" TextWrapping="Wrap" Width="82" Margin="10,0,0,0"/>
-                <TextBox x:Name="subtotalTxt" TextWrapping="Wrap" Width="118" Margin="10,0,0,0"/>
+                <TextBox x:Name="qtySelectedTxt" TextWrapping="Wrap" Width="82" Margin="10,0,0,0" LostFocus="qtySelectedTxt_LostFocus" KeyUp="qtySelectedTxt_KeyUp"/>
+                <TextBox x:Name="subtotalTxt" TextWrapping="Wrap" Width="100" Margin="10,0,0,0" IsEnabled="False"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,29,0,0" Grid.RowSpan="2">
-                <Label Content="Select Product" Margin="10,0,0,0" Width="195" Padding="0,0,0,0" FontWeight="Bold"/>
-                <Label Content="Product ID" Width="114" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold"/>
+                <Label Content="Select Product" Margin="10,0,0,0" Width="207" Padding="0,0,0,0" FontWeight="Bold"/>
+                <Label Content="Product ID" Width="109" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold"/>
                 <Label Content="Price/kg" Width="120" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
-                <Label Content="Qty Available" Width="85" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
-                <Label Content="Enter Qty to Select" Width="113" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
+                <Label Content="Qty Available" Width="91" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
+                <Label Content="Quantiy" Width="82" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
                 <Label Content="Subtotal" Width="110" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Horizontal">

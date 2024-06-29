@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -24,13 +25,18 @@ namespace Assignment1_FarmersMarketApp
     public partial class Sales : Window
     {
         private ApiRequest apiRequest;
-        ArrayList selectedProductList = new ArrayList();
+        ArrayList selectedProductList;
+        ArrayList products;
+        DataTable selectedProductsTable;
 
         public Sales()
         {
             InitializeComponent();
             apiRequest = new ApiRequest();
             PopulateSelectionComboBox();
+            InitializeGridView();
+
+            selectedProductList = new ArrayList();
             
         }
 
@@ -41,29 +47,45 @@ namespace Assignment1_FarmersMarketApp
             {
                 Boolean foundInSelectedList = false;
 
-                if (productComboBox.SelectedItem is Product selectedProduct)
+                if (selectedProductList != null)
                 {
-                    for (int i = 0; i >= selectedProductList.Count; i++)
+                    for (int i = 0; i < selectedProductList.Count; i++)
                     {
-                        if ((selectedProductList[i] as SelectedProduct).getId() == selectedProduct.getId())
+                        SelectedProduct seletedProduct = (selectedProductList[i] as SelectedProduct);
+
+                        if (seletedProduct.getName() == (string)productComboBox.SelectedItem)
                         {
-                            productIDText.Text = (selectedProductList[i] as SelectedProduct).getId().ToString();
-                            priceTxt.Text = (selectedProductList[i] as SelectedProduct).getPrice().ToString();
-                            qtyAvailableTxt.Text = (selectedProductList[i] as SelectedProduct).getAmount().ToString();
-                            qtySelectedTxt.Text = (selectedProductList[i] as SelectedProduct).getAmountSelected().ToString();
+                            productIDText.Text = seletedProduct.getId().ToString();
+                            priceTxt.Text = seletedProduct.getPrice().ToString();
+                            qtyAvailableTxt.Text = seletedProduct.getAmount().ToString();
+                            qtySelectedTxt.Text = seletedProduct.getAmountSelected().ToString();
+
                             GetSubtotal();
                             foundInSelectedList = true;
                             break;
                         }
                     }
+                }
 
-                    if(foundInSelectedList = false)
+                if (foundInSelectedList == false)
+                {
+                    for (int i = 0; i < products.Count; i++)
                     {
-                        productIDText.Text = selectedProduct.getId().ToString();
-                        priceTxt.Text = selectedProduct.getPrice().ToString();
-                        qtyAvailableTxt.Text = selectedProduct.getAmount().ToString();
+
+                        Product product = products[i] as Product;
+
+                        if (product.getName() == (string)productComboBox.SelectedItem)
+                        {
+                            productIDText.Text = product.getId().ToString();
+                            priceTxt.Text = product.getPrice().ToString();
+                            qtyAvailableTxt.Text = product.getAmount().ToString();
+                            qtySelectedTxt.Text = "0.0";
+                            GetSubtotal();
+                            break;
+                        }
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -78,31 +100,40 @@ namespace Assignment1_FarmersMarketApp
             try
             {
                 string name = productComboBox.SelectedItem.ToString();
-                int id = int.Parse(productIDText.Text);
+                string id = productIDText.Text;
+                string amountSelected = qtySelectedTxt.Text;
+                string subtotal = subtotalTxt.Text;
+
                 double amount = double.Parse(qtyAvailableTxt.Text);
                 double price = double.Parse(priceTxt.Text);
-                int amountSelected = int.Parse(qtySelectedTxt.Text);
-                GetSubtotal();
-
-                SelectedProduct selectedProduct = new SelectedProduct(name, id, amount, price, amountSelected);
 
                 Boolean foundInList = false;
 
-                for (int i = 0; i >= selectedProductList.Count; i++)
-                {
-                    if ((selectedProductList[i] as SelectedProduct).getId() == selectedProduct.getId())
+                if (selectedProductList != null) {
+                    for (int i = 0; i < selectedProductList.Count; i++)
                     {
-                        System.Windows.MessageBox.Show("This item is already in your cart - please select Update instead!");
-                        foundInList = true;
-                        break;
+                        if (int.Parse(id) == (selectedProductList[i] as SelectedProduct).getId())
+                        {
+                            System.Windows.MessageBox.Show("This item is already in your cart - please select Update instead!");
+                            foundInList = true;
+                            break;
+                        }
                     }
                 }
 
-                if (foundInList = false)
+                if (foundInList == false)
                 {
+                    SelectedProduct selectedProduct = new SelectedProduct(name, int.Parse(id), amount, price, double.Parse(amountSelected));
                     selectedProductList.Add(selectedProduct);
-                    selectedProductGrid.ItemsSource = selectedProductList;
-                    GetCartTotal(selectedProductList);
+
+                    DataRow NewRow = selectedProductsTable.NewRow();
+
+                    NewRow["Name"] = name;
+                    NewRow["ID"] = id;
+                    NewRow["Selected Amount"] = amountSelected;
+                    NewRow["Sub Total"] = subtotal;
+
+                    selectedProductsTable.Rows.Add(NewRow);
                 }
 
             }
@@ -116,7 +147,7 @@ namespace Assignment1_FarmersMarketApp
         private void clearCartBtn_Click(object sender, RoutedEventArgs e)
         {
             selectedProductList.Clear();
-            selectedProductGrid.ItemsSource = null;
+            selectedProductsTable.Clear();
             ClearSelection();
             totalCartTxt.Text = "Total $ ";
         }
@@ -173,7 +204,7 @@ namespace Assignment1_FarmersMarketApp
                 System.Windows.MessageBox.Show(ex.Message);
             }
         }
-
+        
         //FIND PRODUCT BUTTON CLICK
         private void findProductBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -218,7 +249,7 @@ namespace Assignment1_FarmersMarketApp
                 System.Windows.MessageBox.Show(ex.Message);
             }
         }
-
+        
         //CONFIRM FOR PURCHASE BUTTON CLICK - UPDATE DB
         private void purchaseBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -242,9 +273,17 @@ namespace Assignment1_FarmersMarketApp
         //METHOD TO FILL COMBO BOX WITH AVAILABLE PRODUCT OBJECTS
         public void PopulateSelectionComboBox()
         {
-            ArrayList availableProductArray = apiRequest.getAvailableProductsAPI();
-            productComboBox.ItemsSource = availableProductArray;
-            productComboBox.DisplayMemberPath = "name";
+            products = apiRequest.getAvailableProductsAPI();
+
+            List<string> productNames = new List<string>();
+
+            foreach (Product product in products)
+            {
+                productNames.Add(product.getName());
+            }
+
+            productComboBox.ItemsSource = productNames;
+            
         }
 
         //METHOD TO DISPLAY CURRENT CART TOTAL
@@ -263,10 +302,27 @@ namespace Assignment1_FarmersMarketApp
         //METHOD TO DISPLAY SELECTED PRODUCT SUBTOTAL
         public void GetSubtotal()
         {
-            double amount = double.Parse(qtyAvailableTxt.Text);
-            double price = double.Parse(priceTxt.Text);
-            double subtotal = amount * price;
-            subtotalTxt.Text = subtotal.ToString();
+            try
+            {
+                if (qtySelectedTxt.Text != string.Empty)
+                {
+                    double amount = double.Parse(qtySelectedTxt.Text);
+                    double price = double.Parse(priceTxt.Text);
+
+                    double invAmount = double.Parse(qtyAvailableTxt.Text);
+
+                    if (amount > invAmount)
+                    {
+                        throw new Exception("Please chose an amount within inventory!");
+                    }
+
+                    double subtotal = amount * price;
+                    subtotalTxt.Text = subtotal.ToString();
+                }
+            }
+            catch(Exception ex) { 
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
 
         //METHOD TO CLEAR SELECTION
@@ -277,8 +333,38 @@ namespace Assignment1_FarmersMarketApp
             qtyAvailableTxt.Text = "";
             qtySelectedTxt.Text = "";
             subtotalTxt.Text = "";
+            productComboBox.SelectedIndex = -1;
         }
 
+        private void qtySelectedTxt_LostFocus(object sender, RoutedEventArgs e)
+        {
+            GetSubtotal();
+        }
 
+        private void qtySelectedTxt_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            GetSubtotal();
+
+        }
+
+        private void InitializeGridView() {
+            selectedProductsTable = new DataTable("table");
+
+            DataColumn colItem1 = new DataColumn("Name",
+                Type.GetType("System.String"));
+            DataColumn colItem2 = new DataColumn("ID",
+                Type.GetType("System.String"));
+            DataColumn colItem3 = new DataColumn("Selected Amount",
+                Type.GetType("System.String"));
+            DataColumn colItem4 = new DataColumn("Sub Total",
+                Type.GetType("System.String"));
+
+            selectedProductsTable.Columns.Add(colItem1);
+            selectedProductsTable.Columns.Add(colItem2);
+            selectedProductsTable.Columns.Add(colItem3);
+            selectedProductsTable.Columns.Add(colItem4);
+
+            selectedProductGrid.ItemsSource = new DataView(selectedProductsTable);
+        }
     }
 }

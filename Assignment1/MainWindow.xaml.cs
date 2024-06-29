@@ -19,6 +19,8 @@ namespace Assignment1_FarmersMarketApp
         public MainWindow()
         {
             InitializeComponent();
+            new Sales().Show();
+            this.Close();
 
         }
 

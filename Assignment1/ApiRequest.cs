@@ -244,12 +244,12 @@ namespace Assignment1_FarmersMarketApp
             {
                 Establish_Connection ();
 
-                string query = "SELECT id, name, amount, price FROM A1Products";
+                string query = "SELECT * FROM A1Products";
                 sqlCommand = new SqlCommand(query, sqlConnection);
 
                 SqlDataReader reader = sqlCommand.ExecuteReader();
 
-                if (reader.Read())
+                while(reader.Read())
                 {
                     int productId = (int)reader["id"];
                     string productName = (string)reader["name"];
@@ -266,7 +266,6 @@ namespace Assignment1_FarmersMarketApp
             }
 
             sqlConnection.Close();
-
             return availableProduct;
         }
 

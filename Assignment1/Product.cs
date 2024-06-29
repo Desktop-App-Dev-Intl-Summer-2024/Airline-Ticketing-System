@@ -8,7 +8,7 @@ namespace Assignment1_FarmersMarketApp
 {
     internal class Product
     {
-        private String name;
+        private string name;
         private int id;
         private double amount;
         private double price;

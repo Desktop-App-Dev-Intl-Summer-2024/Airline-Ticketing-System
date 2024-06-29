@@ -9,30 +9,30 @@ namespace Assignment1_FarmersMarketApp
 {
     internal class SelectedProduct: Product
     {
-        private int amountSelected;
+        private double amountSelected;
 
         public SelectedProduct() : base()
         {
             this.amountSelected = 0;
         }
 
-        public SelectedProduct(string name, int id, double amount, double price, int amountSelected) : base(name, id, amount, price)
+        public SelectedProduct(string name, int id, double amount, double price, double amountSelected) : base(name, id, amount, price)
         {
             this.amountSelected = amountSelected;
         }
 
-        public int getAmountSelected()
+        public double getAmountSelected()
         {
             return this.amountSelected;
         }
 
-        public void setAmountSelected(int amountSelected)
+        public void setAmountSelected(double amountSelected)
         {
             this.amountSelected = amountSelected;
         }
 
 
-        public double getSubTotal(int amountSelected, double price)
+        public double getSubTotal(double amountSelected, double price)
         {
             double subTotal = 0.0;
 
