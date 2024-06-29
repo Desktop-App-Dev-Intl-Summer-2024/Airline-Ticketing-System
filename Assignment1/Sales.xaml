@@ -32,7 +32,7 @@
                 <RowDefinition Height="330*"/>
             </Grid.RowDefinitions>
             <StackPanel Height="20" VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
-                <ComboBox x:Name="productComboBox" Width="206" RenderTransformOrigin="0.5,0.5">
+                <ComboBox x:Name="productComboBox" Width="206" RenderTransformOrigin="0.5,0.5" SelectionChanged="productComboBox_SelectionChanged">
                     <ComboBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="-1"/>

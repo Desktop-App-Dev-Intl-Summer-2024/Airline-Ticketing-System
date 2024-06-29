@@ -34,6 +34,44 @@ namespace Assignment1_FarmersMarketApp
             
         }
 
+        //COMBOBOX SELECTION OF ITEM: DISPLAY OBJECT ELEMENTS
+        private void productComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                Boolean foundInSelectedList = false;
+
+                if (productComboBox.SelectedItem is Product selectedProduct)
+                {
+                    for (int i = 0; i >= selectedProductList.Count; i++)
+                    {
+                        if ((selectedProductList[i] as SelectedProduct).getId() == selectedProduct.getId())
+                        {
+                            productIDText.Text = (selectedProductList[i] as SelectedProduct).getId();
+                            priceTxt.Text = (selectedProductList[i] as SelectedProduct).getPrice();
+                            qtyAvailableTxt.Text = (selectedProductList[i] as SelectedProduct).getAmount();
+                            qtySelectedTxt.Text = (selectedProductList[i] as SelectedProduct).getAmountSelected();
+                            GetSubtotal();
+                            foundInSelectedList = true;
+                            break;
+                        }
+                    }
+
+                    if(foundInSelectedList = false)
+                    {
+                        productIDText.Text = selectedProduct.getId().ToString();
+                        priceTxt.Text = selectedProduct.getPrice().ToString();
+                        qtyAvailableTxt.Text = selectedProduct.getAmount().ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+
+        }
+
         //ADD SELECTED PRODUCT TO CART BUTTON CLICK
         private void addSelectedProductBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -206,6 +244,7 @@ namespace Assignment1_FarmersMarketApp
         {
             ArrayList availableProductArray = apiRequest.getAvailableProductsAPI();
             productComboBox.ItemsSource = availableProductArray;
+            productComboBox.DisplayMemberPath = "name";
         }
 
         //METHOD TO DISPLAY CURRENT CART TOTAL
