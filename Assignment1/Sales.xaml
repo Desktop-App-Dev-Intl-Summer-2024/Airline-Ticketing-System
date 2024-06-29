@@ -82,7 +82,7 @@
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
                 </Button>
-                <Button x:Name="purchaseBtn" Content="Confirm for Purchase!" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FF6AC810" Cursor="Hand" Click="clearCartBtn_Click">
+                <Button x:Name="purchaseBtn" Content="Confirm for Purchase!" MinWidth="107" Height="20" Margin="10,0,0,0" Background="#FF6AC810" Cursor="Hand" Click="purchaseBtn_Click">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>

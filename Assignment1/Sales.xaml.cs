@@ -125,6 +125,7 @@ namespace Assignment1_FarmersMarketApp
         //FIND PRODUCT BUTTON CLICK
         private void findProductBtn_Click(object sender, RoutedEventArgs e)
         {
+            ArrayList availableProductArray = apiRequest.getAvailableProductsAPI();
             Boolean foundInSelectedList = false;
             Boolean foundInProductList = false;
 
@@ -141,11 +142,11 @@ namespace Assignment1_FarmersMarketApp
                     foundInSelectedList = true;
                     break;
                 }
-                if (availableProduct[i].getId.toString() == productIDText.Text)
+                if (availableProductArray[i].getId.toString() == productIDText.Text)
                 {
-                    productComboBox.SelectedItem = availableProduct[i].getName;
-                    productIDText.Text = availableProduct[i].getId;
-                    qtyAvailableTxt.Text = availableProduct[i].getAmount;
+                    productComboBox.SelectedItem = availableProductArray[i].getName;
+                    productIDText.Text = availableProductArray[i].getId;
+                    qtyAvailableTxt.Text = availableProductArray[i].getAmount;
                     qtySelectedTxt.Text = "";
 
                     foundInProductList = true;
@@ -155,7 +156,27 @@ namespace Assignment1_FarmersMarketApp
 
             if(!foundInSelectedList && !foundInProductList)
             {
-                System.Windows.MessageBox.Show("Item number not found. Try again.")
+                System.Windows.MessageBox.Show("Item number not found. Try again.");
+            }
+        }
+
+        //CONFIRM FOR PURCHASE BUTTON CLICK - UPDATE DB
+        private void purchaseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int status = apiRequest.UpdateDatabaseWithPurchaseAPI(selectedProductList);
+
+                if (status == 1)
+                {
+                    PopulateSelectionComboBox();
+                    ClearSelection();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
 
@@ -197,5 +218,7 @@ namespace Assignment1_FarmersMarketApp
             qtySelectedTxt.Text = "";
             subtotalTxt.Text = "";
         }
+
+
     }
 }

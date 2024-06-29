@@ -235,6 +235,7 @@ namespace Assignment1_FarmersMarketApp
             return status;
         }
 
+        //RETRIEVE AVAILABLE PRODUCTS FROM DB 
         public ArrayList getAvailableProductsAPI()
         {
             ArrayList availableProduct = new ArrayList();
@@ -267,6 +268,47 @@ namespace Assignment1_FarmersMarketApp
             sqlConnection.Close();
 
             return availableProduct;
+        }
+
+        //UPDATING DB AFTER CONFIRMATION OF PURCHASE
+        public int UpdateDatabaseWithPurchaseAPI(ArrayList arrayList)
+        {
+            int status = 0;
+
+            try
+            {
+                Establish_Connection();
+
+                string query = "update A1Products set amount=@amount where id=@id";
+
+                for (int i = 0; i < arrayList.Count; i++)
+                {
+                    sqlCommand = new SqlCommand(query, sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("@id", arrayList[i].getId());
+                    sqlCommand.Parameters.AddWithValue("@amount", arrayList[i].getAmount());
+
+                    status = sqlCommand.ExecuteNonQuery();
+
+                    if (status == 1)
+                    {
+                        MessageBox.Show("Purchase confirmed! See email for billing.");
+                        break;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Something went wrong!");
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            sqlConnection.Close();
+
+            return status;
         }
     }
 }
