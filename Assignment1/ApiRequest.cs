@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -232,6 +233,40 @@ namespace Assignment1_FarmersMarketApp
             sqlConnection.Close();
 
             return status;
+        }
+
+        public ArrayList getAvailableProductsAPI()
+        {
+            ArrayList availableProduct = new ArrayList();
+
+            try
+            {
+                Establish_Connection ();
+
+                string query = "SELECT id, name, amount, price FROM A1Products";
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int productId = (int)reader["id"];
+                    string productName = (string)reader["name"];
+                    double amount = Convert.ToDouble(reader["amount"]);
+                    double price = Convert.ToDouble(reader["price"]);
+
+                    Product product = new Product(productName, productId, amount, price);
+                    availableProduct.Add(product);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            sqlConnection.Close();
+
+            return availableProduct;
         }
     }
 }

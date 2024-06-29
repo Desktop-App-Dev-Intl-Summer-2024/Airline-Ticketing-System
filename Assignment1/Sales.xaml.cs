@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Identity.Client.NativeInterop;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,9 +41,10 @@ namespace Assignment1_FarmersMarketApp
             {
                 string name = productComboBox.SelectedItem.ToString();
                 int id = int.Parse(productIDText.Text);
-                double amount = double.Parse(qtySelectedTxt.Text);
+                double amount = double.Parse(qtyAvailableTxt.Text);
                 double price = double.Parse(priceTxt.Text);
                 int amountSelected = int.Parse(qtySelectedTxt.Text);
+                GetSubtotal();
 
                 SelectedProduct selectedProduct = new SelectedProduct(name, id, amount, price, amountSelected);
 
@@ -76,11 +79,7 @@ namespace Assignment1_FarmersMarketApp
         {
             selectedProductList.Clear();
             selectedProductGrid.ItemsSource = null;
-            productIDText.Text = "";
-            priceTxt.Text = "";
-            qtyAvailableTxt.Text = "";
-            qtySelectedTxt.Text = "";
-            subtotalTxt.Text = "";
+            ClearSelection();
             totalCartTxt.Text = "Total $ ";
         }
 
@@ -96,38 +95,75 @@ namespace Assignment1_FarmersMarketApp
 
                 selectedProductGrid.ItemsSource = selectedProductList;
                 GetCartTotal(selectedProductList);
+                ClearSelection();
             }
         }
 
         //UPDATE CART BUTTON CLICK
         private void updateCartBtn_Click(object sender, RoutedEventArgs e)
         {
-            Boolean foundInList = false;
+           Boolean foundInSelectedList = false;
 
             for (int i = 0; i >= selectedProductList.Count; i++)
             {
                 if (selectedProductList[i].getId.toString() == productIDText.Text)
                 {
                     selectedProductList[i].setAmountSelected(int.Parse(qtySelectedTxt.Text));
-                    foundInList = true;
+                    foundInSelectedList = true;
                     selectedProductGrid.ItemsSource = selectedProductList;
                     GetCartTotal(selectedProductList);
                     break;
                 }
 
-                if(foundInList = false)
+                if(foundInSelectedList = false)
                 {
                     System.Windows.MessageBox.Show("This item is not currently in your cart - please select Add instead!");
                 }
             }
         }
 
+        //FIND PRODUCT BUTTON CLICK
+        private void findProductBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Boolean foundInSelectedList = false;
+            Boolean foundInProductList = false;
+
+            for (int i = 0; i >= selectedProductList.Count; i++)
+            {
+                if (selectedProductList[i].getId.toString() == productIDText.Text)
+                {
+                    productComboBox.SelectedItem = selectedProductList[i].getName;
+                    productIDText.Text = selectedProductList[i].getId;
+                    qtyAvailableTxt.Text = selectedProductList[i].getAmount;
+                    qtySelectedTxt.Text = selectedProductList[i].getAmountSelected;
+                    GetSubtotal();
+
+                    foundInSelectedList = true;
+                    break;
+                }
+                if (availableProduct[i].getId.toString() == productIDText.Text)
+                {
+                    productComboBox.SelectedItem = availableProduct[i].getName;
+                    productIDText.Text = availableProduct[i].getId;
+                    qtyAvailableTxt.Text = availableProduct[i].getAmount;
+                    qtySelectedTxt.Text = "";
+
+                    foundInProductList = true;
+                    break;
+                }
+            }
+
+            if(!foundInSelectedList && !foundInProductList)
+            {
+                System.Windows.MessageBox.Show("Item number not found. Try again.")
+            }
+        }
+
         //METHOD TO FILL COMBO BOX WITH AVAILABLE PRODUCT OBJECTS
         public void PopulateSelectionComboBox()
         {
-            ArrayList availableProduct = new ArrayList();
-
-            productComboBox.ItemsSource = availableProduct;
+            ArrayList availableProductArray = apiRequest.getAvailableProductsAPI();
+            productComboBox.ItemsSource = availableProductArray;
         }
 
         //METHOD TO DISPLAY CURRENT CART TOTAL
@@ -143,6 +179,23 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
+        //METHOD TO DISPLAY SELECTED PRODUCT SUBTOTAL
+        public void GetSubtotal()
+        {
+            double amount = double.Parse(qtyAvailableTxt.Text);
+            double price = double.Parse(priceTxt.Text);
+            double subtotal = amount * price;
+            subtotalTxt.Text = subtotal.ToString();
+        }
 
+        //METHOD TO CLEAR SELECTION
+        public void ClearSelection()
+        {
+            productIDText.Text = "";
+            priceTxt.Text = "";
+            qtyAvailableTxt.Text = "";
+            qtySelectedTxt.Text = "";
+            subtotalTxt.Text = "";
+        }
     }
 }
