@@ -22,7 +22,7 @@ namespace Assignment1_FarmersMarketApp
     public partial class Sales : Window
     {
         private ApiRequest apiRequest;
-        List<SelectedProduct> selectedProductList = new ArrayList();
+        ArrayList selectedProductList = new ArrayList();
 
         public Sales()
         {
@@ -47,18 +47,24 @@ namespace Assignment1_FarmersMarketApp
 
                 SelectedProduct selectedProduct = new SelectedProduct(name, id, amount, price, amountSelected);
 
+                Boolean foundInList = false;
+
                 for (int i = 0; i >= selectedProductList.Count; i++)
                 {
                     if (selectedProductList[i].getId == selectedProduct.getId)
                     {
                         System.Windows.MessageBox.Show("This item is already in your cart - please select Update instead!");
+                        foundInList = true;
+                        break;
                     }
                 }
 
-                selectedProductList.Add(selectedProduct);
-
-                selectedProductGrid.ItemsSource = selectedProductList;
-                GetCartTotal(selectedProductList);
+                if (foundInList = false)
+                {
+                    selectedProductList.Add(selectedProduct);
+                    selectedProductGrid.ItemsSource = selectedProductList;
+                    GetCartTotal(selectedProductList);
+                }
 
             }
             catch (Exception ex)
@@ -94,18 +100,16 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
+        //METHOD TO FILL COMBO BOX WITH AVAILABLE PRODUCT OBJECTS
         public void PopulateSelectionComboBox()
         {
-            System.Object[] availableProduct = new System.Object[5];
+            ArrayList availableProduct = new ArrayList();
 
-            for (int i = 0; i <= 9; i++)
-            {
-                availableProduct[i] = "Item" + i;
-            }
-            productComboBox.Items.AddRange(availableProduct);
+            productComboBox.ItemsSource = availableProduct;
         }
 
-        public void GetCartTotal(List<SelectedProduct> selectedProductList)
+        //METHOD TO DISPLAY CURRENT CART TOTAL
+        public void GetCartTotal(ArrayList selectedProductList)
         {
             double cartTotal = 0.0;
 
