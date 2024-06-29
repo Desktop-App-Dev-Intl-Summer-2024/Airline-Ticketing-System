@@ -86,77 +86,98 @@ namespace Assignment1_FarmersMarketApp
         //DELETE SELECTED PRODUCT BUTTON CLICK
         private void deleteSelectedProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            for(int i = 0;i >= selectedProductList.Count;i++)
+            try
             {
-                if((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
+                for (int i = 0; i >= selectedProductList.Count; i++)
                 {
-                    selectedProductList.RemoveAt(i);
-                }
+                    if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
+                    {
+                        selectedProductList.RemoveAt(i);
+                    }
 
-                selectedProductGrid.ItemsSource = selectedProductList;
-                GetCartTotal(selectedProductList);
-                ClearSelection();
+                    selectedProductGrid.ItemsSource = selectedProductList;
+                    GetCartTotal(selectedProductList);
+                    ClearSelection();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
 
         //UPDATE CART BUTTON CLICK
         private void updateCartBtn_Click(object sender, RoutedEventArgs e)
         {
-           Boolean foundInSelectedList = false;
-
-            for (int i = 0; i >= selectedProductList.Count; i++)
+            try
             {
-                if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
-                {
-                    (selectedProductList[i] as SelectedProduct).setAmountSelected(int.Parse(qtySelectedTxt.Text));
-                    foundInSelectedList = true;
-                    selectedProductGrid.ItemsSource = selectedProductList;
-                    GetCartTotal(selectedProductList);
-                    break;
-                }
+                Boolean foundInSelectedList = false;
 
-                if(foundInSelectedList = false)
+                for (int i = 0; i >= selectedProductList.Count; i++)
                 {
-                    System.Windows.MessageBox.Show("This item is not currently in your cart - please select Add instead!");
+                    if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
+                    {
+                        (selectedProductList[i] as SelectedProduct).setAmountSelected(int.Parse(qtySelectedTxt.Text));
+                        foundInSelectedList = true;
+                        selectedProductGrid.ItemsSource = selectedProductList;
+                        GetCartTotal(selectedProductList);
+                        break;
+                    }
+
+                    if (foundInSelectedList = false)
+                    {
+                        System.Windows.MessageBox.Show("This item is not currently in your cart - please select Add instead!");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
 
         //FIND PRODUCT BUTTON CLICK
         private void findProductBtn_Click(object sender, RoutedEventArgs e)
         {
-            ArrayList availableProductArray = apiRequest.getAvailableProductsAPI();
-            Boolean foundInSelectedList = false;
-            Boolean foundInProductList = false;
-
-            for (int i = 0; i >= selectedProductList.Count; i++)
+            try
             {
-                if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
-                {
-                    productComboBox.SelectedItem = (selectedProductList[i] as SelectedProduct).getName;
-                    productIDText.Text = (selectedProductList[i] as SelectedProduct).getId().ToString();
-                    qtyAvailableTxt.Text = (selectedProductList[i] as SelectedProduct).getAmount().ToString();
-                    qtySelectedTxt.Text = (selectedProductList[i] as SelectedProduct).getAmountSelected().ToString();
-                    GetSubtotal();
+                ArrayList availableProductArray = apiRequest.getAvailableProductsAPI();
+                Boolean foundInSelectedList = false;
+                Boolean foundInProductList = false;
 
-                    foundInSelectedList = true;
-                    break;
+                for (int i = 0; i >= selectedProductList.Count; i++)
+                {
+                    if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
+                    {
+                        productComboBox.SelectedItem = (selectedProductList[i] as SelectedProduct).getName;
+                        productIDText.Text = (selectedProductList[i] as SelectedProduct).getId().ToString();
+                        qtyAvailableTxt.Text = (selectedProductList[i] as SelectedProduct).getAmount().ToString();
+                        qtySelectedTxt.Text = (selectedProductList[i] as SelectedProduct).getAmountSelected().ToString();
+                        GetSubtotal();
+
+                        foundInSelectedList = true;
+                        break;
+                    }
+                    if ((availableProductArray[i] as Product).getId() == int.Parse(productIDText.Text))
+                    {
+                        productComboBox.SelectedItem = (availableProductArray[i] as Product).getName();
+                        productIDText.Text = (availableProductArray[i] as Product).getId().ToString();
+                        qtyAvailableTxt.Text = (availableProductArray[i] as Product).getAmount().ToString();
+                        qtySelectedTxt.Text = "";
+
+                        foundInProductList = true;
+                        break;
+                    }
                 }
-                if ((availableProductArray[i] as Product).getId() == int.Parse(productIDText.Text))
-                {
-                    productComboBox.SelectedItem = (availableProductArray[i] as Product).getName();
-                    productIDText.Text = (availableProductArray[i] as Product).getId().ToString();
-                    qtyAvailableTxt.Text = (availableProductArray[i] as Product).getAmount().ToString();
-                    qtySelectedTxt.Text = "";
 
-                    foundInProductList = true;
-                    break;
+                if (!foundInSelectedList && !foundInProductList)
+                {
+                    System.Windows.MessageBox.Show("Item number not found. Try again.");
                 }
             }
-
-            if(!foundInSelectedList && !foundInProductList)
+            catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Item number not found. Try again.");
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
 
