@@ -37,8 +37,6 @@ namespace Assignment1_FarmersMarketApp
         {
             try
             {
-                double cartTotal = 0.0;
-
                 string name = productComboBox.SelectedItem.ToString();
                 int id = int.Parse(productIDText.Text);
                 double amount = double.Parse(qtySelectedTxt.Text);
@@ -51,7 +49,7 @@ namespace Assignment1_FarmersMarketApp
 
                 for (int i = 0; i >= selectedProductList.Count; i++)
                 {
-                    if (selectedProductList[i].getId == selectedProduct.getId)
+                    if (selectedProductList[i].getId.toString() == selectedProduct.getId)
                     {
                         System.Windows.MessageBox.Show("This item is already in your cart - please select Update instead!");
                         foundInList = true;
@@ -83,6 +81,7 @@ namespace Assignment1_FarmersMarketApp
             qtyAvailableTxt.Text = "";
             qtySelectedTxt.Text = "";
             subtotalTxt.Text = "";
+            totalCartTxt.Text = "Total $ ";
         }
 
         //DELETE SELECTED PRODUCT BUTTON CLICK
@@ -90,13 +89,36 @@ namespace Assignment1_FarmersMarketApp
         {
             for(int i = 0;i >= selectedProductList.Count;i++)
             {
-                if(productIDText.Text == selectedProductList[i].getId)
+                if(selectedProductList[i].getId.toString() == productIDText.Text)
                 {
                     selectedProductList.RemoveAt(i);
                 }
 
                 selectedProductGrid.ItemsSource = selectedProductList;
                 GetCartTotal(selectedProductList);
+            }
+        }
+
+        //UPDATE CART BUTTON CLICK
+        private void updateCartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Boolean foundInList = false;
+
+            for (int i = 0; i >= selectedProductList.Count; i++)
+            {
+                if (selectedProductList[i].getId.toString() == productIDText.Text)
+                {
+                    selectedProductList[i].setAmountSelected(int.Parse(qtySelectedTxt.Text));
+                    foundInList = true;
+                    selectedProductGrid.ItemsSource = selectedProductList;
+                    GetCartTotal(selectedProductList);
+                    break;
+                }
+
+                if(foundInList = false)
+                {
+                    System.Windows.MessageBox.Show("This item is not currently in your cart - please select Add instead!");
+                }
             }
         }
 
