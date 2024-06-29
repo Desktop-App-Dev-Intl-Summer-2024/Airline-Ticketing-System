@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Assignment1_FarmersMarketApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="FarmersMarketApp" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF5CE449"/>
+                <GradientStop Color="#FF5CE449" Offset="1"/>
+                <GradientStop Color="#FFA7F09C" Offset="0.465"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Button x:Name="customerEnterBtn" Content="Enter Here" HorizontalAlignment="Left" Margin="167,165,0,0" VerticalAlignment="Top" Height="52" Width="156" FontWeight="Bold" FontSize="20" Background="#FFCFE985" BorderBrush="#FFC5C80E" RenderTransformOrigin="2.23,0.37" Click="customerEnterBtn_Click"/>
+        <Button x:Name="adminEnterBtn" Content="Enter Here" HorizontalAlignment="Left" Margin="441,165,0,0" VerticalAlignment="Top" Height="52" Width="156" FontWeight="Bold" FontSize="20" Background="#FFCFE985" BorderBrush="#FFC5C80E" RenderTransformOrigin="2.23,0.37" Click="adminEnterBtn_Click"/>
+        <Label Content="Customers" HorizontalAlignment="Left" Margin="190,110,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Admin" HorizontalAlignment="Left" Margin="463,110,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
 
     </Grid>
 </Window>
