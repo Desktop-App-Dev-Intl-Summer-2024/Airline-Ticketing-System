@@ -62,6 +62,11 @@
                         <SolidColorBrush Color="#FF707070" Opacity="0"/>
                     </Button.BorderBrush>
                 </Button>
+                <Button Content="Refresh" Background="#FF3CA8D6" Margin="10,0,0,0" Height="20" Width="107" Click="Button_Click">
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                    </Button.BorderBrush>
+                </Button>
             </StackPanel>
             <DataGrid x:Name="DisplayProductsGrd" Grid.Row="4" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,10"/>
         </Grid>

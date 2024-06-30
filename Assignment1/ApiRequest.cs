@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -222,6 +223,82 @@ namespace Assignment1_FarmersMarketApp
                 else
                 {
                     MessageBox.Show("Product Not Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            sqlConnection.Close();
+
+            return status;
+        }
+
+        //RETRIEVE AVAILABLE PRODUCTS FROM DB 
+        public ArrayList getAvailableProductsAPI()
+        {
+            ArrayList availableProduct = new ArrayList();
+
+            try
+            {
+                Establish_Connection ();
+
+                string query = "SELECT * FROM A1Products";
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    int productId = (int)reader["id"];
+                    string productName = (string)reader["name"];
+                    double amount = Convert.ToDouble(reader["amount"]);
+                    double price = Convert.ToDouble(reader["price"]);
+
+                    Product product = new Product(productName, productId, amount, price);
+                    availableProduct.Add(product);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            sqlConnection.Close();
+            return availableProduct;
+        }
+
+        //UPDATING DB AFTER CONFIRMATION OF PURCHASE
+        public int UpdateDatabaseWithPurchaseAPI(ArrayList selectedProducts)
+        {
+            int status = 0;
+
+            try
+            {
+                Establish_Connection();
+
+                string query = "update A1Products set amount= (case ";
+
+                for (int i = 0; i < selectedProducts.Count; i++)
+                {
+                    SelectedProduct product = selectedProducts[i] as SelectedProduct;
+
+                    query += "when id="+ product.getId() +" then " + product.getRemaingAmount() + " ";
+                }
+
+                query += "else amount end);";
+
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                status = sqlCommand.ExecuteNonQuery();
+
+                if (status > 0)
+                {
+                    MessageBox.Show("Purchase confirmed! See email for billing.");
+                }
+                else
+                {
+                    MessageBox.Show("Purchase couldn't be complete please retry!");
                 }
             }
             catch (Exception ex)

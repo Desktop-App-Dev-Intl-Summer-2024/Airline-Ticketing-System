@@ -9,36 +9,36 @@ namespace Assignment1_FarmersMarketApp
 {
     internal class SelectedProduct: Product
     {
-        private int amountSelected;
+        private double amountSelected;
 
         public SelectedProduct() : base()
         {
             this.amountSelected = 0;
         }
 
-        public SelectedProduct(string name, int id, double amount, double price, int amountSelected) : base(name, id, amount, price)
+        public SelectedProduct(string name, int id, double amount, double price, double amountSelected) : base(name, id, amount, price)
         {
             this.amountSelected = amountSelected;
         }
 
-        public int getAmountSelected()
+        public double getAmountSelected()
         {
             return this.amountSelected;
         }
 
-        public void setAmountSelected(int amountSelected)
+        public void setAmountSelected(double amountSelected)
         {
             this.amountSelected = amountSelected;
         }
 
 
-        public double getSubTotal(int amountSelected, double price)
+        public double getSubTotal()
         {
             double subTotal = 0.0;
 
-            subTotal = amountSelected * price;
+            subTotal = amountSelected * getPrice();
 
-            return subTotal;
+            return Math.Round(subTotal * 100) / 100.0;
         }
 
         public double calculateTotalCart(List<SelectedProduct> products)
@@ -55,6 +55,8 @@ namespace Assignment1_FarmersMarketApp
             return totalCart;
         }
 
-
+        public double getRemaingAmount() { 
+            return Math.Round((getAmount() - amountSelected) * 10) / 10.0;
+        }
     }
 }

@@ -19,8 +19,16 @@ namespace Assignment1_FarmersMarketApp
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void customerEnterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new Sales().Show();
+        }
+
+        private void adminEnterBtn_Click(object sender, RoutedEventArgs e)
+        {
             new Admin().Show();
-            this.Close();
         }
     }
 }
