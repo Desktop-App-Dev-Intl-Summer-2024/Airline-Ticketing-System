@@ -154,5 +154,11 @@ namespace Assignment1_FarmersMarketApp
             ProductAmountTbx.Text = string.Empty;
             ProductPriceTbx.Text = string.Empty;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ClearInputs();
+            PopulateDisplayGrid();
+        }
     }
 }

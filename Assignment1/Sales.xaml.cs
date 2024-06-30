@@ -27,6 +27,7 @@ namespace Assignment1_FarmersMarketApp
         private ApiRequest apiRequest;
         ArrayList selectedProductList;
         ArrayList products;
+
         DataTable selectedProductsTable;
 
         public Sales()
@@ -126,14 +127,8 @@ namespace Assignment1_FarmersMarketApp
                     SelectedProduct selectedProduct = new SelectedProduct(name, int.Parse(id), amount, price, double.Parse(amountSelected));
                     selectedProductList.Add(selectedProduct);
 
-                    DataRow NewRow = selectedProductsTable.NewRow();
-
-                    NewRow["Name"] = name;
-                    NewRow["ID"] = id;
-                    NewRow["Selected Amount"] = amountSelected;
-                    NewRow["Sub Total"] = subtotal;
-
-                    selectedProductsTable.Rows.Add(NewRow);
+                    RefreshGridView();
+                    UpdateCartTotal();
                 }
 
             }
@@ -149,7 +144,7 @@ namespace Assignment1_FarmersMarketApp
             selectedProductList.Clear();
             selectedProductsTable.Clear();
             ClearSelection();
-            totalCartTxt.Text = "Total $ ";
+            UpdateCartTotal();
         }
 
         //DELETE SELECTED PRODUCT BUTTON CLICK
@@ -157,16 +152,19 @@ namespace Assignment1_FarmersMarketApp
         {
             try
             {
-                for (int i = 0; i >= selectedProductList.Count; i++)
+                for (int i = 0; i < selectedProductList.Count; i++)
                 {
                     if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
                     {
                         selectedProductList.RemoveAt(i);
+
+                        ClearSelection();
+                        RefreshGridView();
+                        UpdateCartTotal();
+
+                        break;
                     }
 
-                    selectedProductGrid.ItemsSource = selectedProductList;
-                    GetCartTotal(selectedProductList);
-                    ClearSelection();
                 }
             }
             catch (Exception ex)
@@ -182,21 +180,23 @@ namespace Assignment1_FarmersMarketApp
             {
                 Boolean foundInSelectedList = false;
 
-                for (int i = 0; i >= selectedProductList.Count; i++)
+                for (int i = 0; i < selectedProductList.Count; i++)
                 {
                     if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
                     {
-                        (selectedProductList[i] as SelectedProduct).setAmountSelected(int.Parse(qtySelectedTxt.Text));
+                        (selectedProductList[i] as SelectedProduct).setAmountSelected(double.Parse(qtySelectedTxt.Text));
                         foundInSelectedList = true;
-                        selectedProductGrid.ItemsSource = selectedProductList;
-                        GetCartTotal(selectedProductList);
+
+                        RefreshGridView();
+                        UpdateCartTotal();
+
                         break;
                     }
+                }
 
-                    if (foundInSelectedList = false)
-                    {
-                        System.Windows.MessageBox.Show("This item is not currently in your cart - please select Add instead!");
-                    }
+                if (foundInSelectedList == false)
+                {
+                    System.Windows.MessageBox.Show("This item is not currently in your cart - please select Add instead!");
                 }
             }
             catch (Exception ex)
@@ -210,32 +210,41 @@ namespace Assignment1_FarmersMarketApp
         {
             try
             {
-                ArrayList availableProductArray = apiRequest.getAvailableProductsAPI();
                 Boolean foundInSelectedList = false;
                 Boolean foundInProductList = false;
 
-                for (int i = 0; i >= selectedProductList.Count; i++)
+                for (int i = 0; i < selectedProductList.Count; i++)
                 {
                     if ((selectedProductList[i] as SelectedProduct).getId() == int.Parse(productIDText.Text))
                     {
-                        productComboBox.SelectedItem = (selectedProductList[i] as SelectedProduct).getName;
+                        productComboBox.SelectedItem = (selectedProductList[i] as SelectedProduct).getName();
                         productIDText.Text = (selectedProductList[i] as SelectedProduct).getId().ToString();
                         qtyAvailableTxt.Text = (selectedProductList[i] as SelectedProduct).getAmount().ToString();
                         qtySelectedTxt.Text = (selectedProductList[i] as SelectedProduct).getAmountSelected().ToString();
+                        priceTxt.Text = (selectedProductList[i] as SelectedProduct).getPrice().ToString();
+
                         GetSubtotal();
 
                         foundInSelectedList = true;
                         break;
                     }
-                    if ((availableProductArray[i] as Product).getId() == int.Parse(productIDText.Text))
-                    {
-                        productComboBox.SelectedItem = (availableProductArray[i] as Product).getName();
-                        productIDText.Text = (availableProductArray[i] as Product).getId().ToString();
-                        qtyAvailableTxt.Text = (availableProductArray[i] as Product).getAmount().ToString();
-                        qtySelectedTxt.Text = "";
+                }
 
-                        foundInProductList = true;
-                        break;
+                if(foundInSelectedList == false)
+                {
+                    for (int i = 0; i < products.Count; i++)
+                    {
+                        if ((products[i] as Product).getId() == int.Parse(productIDText.Text))
+                        {
+                            productComboBox.SelectedItem = (products[i] as Product).getName();
+                            productIDText.Text = (products[i] as Product).getId().ToString();
+                            qtyAvailableTxt.Text = (products[i] as Product).getAmount().ToString();
+                            qtySelectedTxt.Text = "0.0";
+                            priceTxt.Text = (products[i] as Product).getPrice().ToString();
+
+                            foundInProductList = true;
+                            break;
+                        }
                     }
                 }
 
@@ -257,11 +266,13 @@ namespace Assignment1_FarmersMarketApp
             {
                 int status = apiRequest.UpdateDatabaseWithPurchaseAPI(selectedProductList);
 
-                if (status == 1)
+                if (status > 0)
                 {
                     PopulateSelectionComboBox();
                     ClearSelection();
-
+                    selectedProductList.Clear();
+                    UpdateCartTotal();
+                    RefreshGridView();
                 }
             }
             catch (Exception ex)
@@ -287,16 +298,21 @@ namespace Assignment1_FarmersMarketApp
         }
 
         //METHOD TO DISPLAY CURRENT CART TOTAL
-        public void GetCartTotal(ArrayList selectedProductList)
+        public void UpdateCartTotal()
         {
             double cartTotal = 0.0;
 
-            for (int i = 0; i < selectedProductList.Count; i++)
-            {
-                cartTotal = cartTotal + (selectedProductList[i] as SelectedProduct).getAmountSelected() * (selectedProductList[i] as SelectedProduct).getPrice();
+            if (selectedProductList != null) {
 
-                totalCartTxt.Text = "Total $ " + cartTotal;
-            }
+                for (int i = 0; i < selectedProductList.Count; i++)
+                {
+                    cartTotal = cartTotal + (selectedProductList[i] as SelectedProduct).getSubTotal();
+                }
+
+            } 
+
+            totalCartTxt.Text = (Math.Round(cartTotal * 100) / 100.0).ToString();
+
         }
 
         //METHOD TO DISPLAY SELECTED PRODUCT SUBTOTAL
@@ -317,7 +333,7 @@ namespace Assignment1_FarmersMarketApp
                     }
 
                     double subtotal = amount * price;
-                    subtotalTxt.Text = subtotal.ToString();
+                    subtotalTxt.Text = (Math.Round(subtotal) * 100 / 100.0).ToString();
                 }
             }
             catch(Exception ex) { 
@@ -365,6 +381,25 @@ namespace Assignment1_FarmersMarketApp
             selectedProductsTable.Columns.Add(colItem4);
 
             selectedProductGrid.ItemsSource = new DataView(selectedProductsTable);
+        }
+
+        private void RefreshGridView() {
+            selectedProductsTable.Clear();
+
+            for(int i = 0; i < selectedProductList.Count; i++)
+            {
+                SelectedProduct product = selectedProductList[i] as SelectedProduct;
+
+                DataRow newRow;
+
+                newRow = selectedProductsTable.NewRow();
+                newRow["Name"] = product.getName();
+                newRow["ID"] = product.getId();
+                newRow["Selected Amount"] = product.getAmountSelected();
+                newRow["Sub Total"] = product.getSubTotal();
+
+                selectedProductsTable.Rows.Add(newRow);
+            }
         }
     }
 }

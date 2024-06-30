@@ -270,7 +270,7 @@ namespace Assignment1_FarmersMarketApp
         }
 
         //UPDATING DB AFTER CONFIRMATION OF PURCHASE
-        public int UpdateDatabaseWithPurchaseAPI(ArrayList arrayList)
+        public int UpdateDatabaseWithPurchaseAPI(ArrayList selectedProducts)
         {
             int status = 0;
 
@@ -278,26 +278,27 @@ namespace Assignment1_FarmersMarketApp
             {
                 Establish_Connection();
 
-                string query = "update A1Products set amount=@amount where id=@id";
+                string query = "update A1Products set amount= (case ";
 
-                for (int i = 0; i < arrayList.Count; i++)
+                for (int i = 0; i < selectedProducts.Count; i++)
                 {
-                    sqlCommand = new SqlCommand(query, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@id", (arrayList[i] as Product).getId());
-                    sqlCommand.Parameters.AddWithValue("@amount", (arrayList[i] as Product).getAmount());
+                    SelectedProduct product = selectedProducts[i] as SelectedProduct;
 
-                    status = sqlCommand.ExecuteNonQuery();
+                    query += "when id="+ product.getId() +" then " + product.getRemaingAmount() + " ";
+                }
 
-                    if (status == 1)
-                    {
-                        MessageBox.Show("Purchase confirmed! See email for billing.");
-                        break;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Something went wrong!");
-                        break;
-                    }
+                query += "else amount end);";
+
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                status = sqlCommand.ExecuteNonQuery();
+
+                if (status > 0)
+                {
+                    MessageBox.Show("Purchase confirmed! See email for billing.");
+                }
+                else
+                {
+                    MessageBox.Show("Purchase couldn't be complete please retry!");
                 }
             }
             catch (Exception ex)

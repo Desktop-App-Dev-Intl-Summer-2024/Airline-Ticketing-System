@@ -32,13 +32,13 @@ namespace Assignment1_FarmersMarketApp
         }
 
 
-        public double getSubTotal(double amountSelected, double price)
+        public double getSubTotal()
         {
             double subTotal = 0.0;
 
-            subTotal = amountSelected * price;
+            subTotal = amountSelected * getPrice();
 
-            return subTotal;
+            return Math.Round(subTotal * 100) / 100.0;
         }
 
         public double calculateTotalCart(List<SelectedProduct> products)
@@ -55,6 +55,8 @@ namespace Assignment1_FarmersMarketApp
             return totalCart;
         }
 
-
+        public double getRemaingAmount() { 
+            return Math.Round((getAmount() - amountSelected) * 10) / 10.0;
+        }
     }
 }

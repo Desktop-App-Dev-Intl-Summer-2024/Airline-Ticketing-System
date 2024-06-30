@@ -34,8 +34,8 @@
             <StackPanel Height="20" VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
                 <ComboBox x:Name="productComboBox" Width="206" RenderTransformOrigin="0.5,0.5" SelectionChanged="productComboBox_SelectionChanged" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBox x:Name="productIDText" TextWrapping="Wrap" Width="109" Margin="10,0,0,0"/>
-                <TextBox x:Name="priceTxt" TextWrapping="Wrap" Width="120" Margin="10,0,0,0" IsReadOnly="True"/>
-                <TextBox x:Name="qtyAvailableTxt" TextWrapping="Wrap" Width="92" Margin="10,0,0,0" IsReadOnly="True"/>
+                <TextBox x:Name="priceTxt" TextWrapping="Wrap" Width="120" Margin="10,0,0,0" IsReadOnly="True" IsEnabled="False"/>
+                <TextBox x:Name="qtyAvailableTxt" TextWrapping="Wrap" Width="92" Margin="10,0,0,0" IsReadOnly="True" IsEnabled="False"/>
                 <TextBox x:Name="qtySelectedTxt" TextWrapping="Wrap" Width="82" Margin="10,0,0,0" LostFocus="qtySelectedTxt_LostFocus" KeyUp="qtySelectedTxt_KeyUp"/>
                 <TextBox x:Name="subtotalTxt" TextWrapping="Wrap" Width="100" Margin="10,0,0,0" IsEnabled="False"/>
             </StackPanel>
@@ -44,7 +44,7 @@
                 <Label Content="Product ID" Width="109" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold"/>
                 <Label Content="Price/kg" Width="120" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
                 <Label Content="Qty Available" Width="91" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
-                <Label Content="Quantiy" Width="82" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
+                <Label Content="Quantity" Width="82" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
                 <Label Content="Subtotal" Width="110" Margin="10,0,0,0" Padding="0,0,0,0" FontWeight="Bold" ToolTip="max 999.9"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Horizontal">
@@ -80,8 +80,8 @@
                 </Button>
             </StackPanel>
             <DataGrid x:Name="selectedProductGrid" Grid.Row="4" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,36,10,10"/>
-            <Label Content="My Cart" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="4" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
-            <TextBox x:Name="totalCartTxt" HorizontalAlignment="Left" Margin="89,9,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Total $" VerticalAlignment="Top" Width="156" FontWeight="Bold" FontSize="14" BorderBrush="#FFA7F09C">
+            <Label Content="Cart Total $:" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="4" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+            <TextBox x:Name="totalCartTxt" HorizontalAlignment="Left" Margin="100,10,0,0" Grid.Row="4" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" Width="156" FontWeight="Bold" FontSize="14" BorderBrush="#FFA7F09C">
                 <TextBox.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FF5CE449" Offset="0"/>
