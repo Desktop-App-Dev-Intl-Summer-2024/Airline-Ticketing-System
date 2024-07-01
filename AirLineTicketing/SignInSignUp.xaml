@@ -57,6 +57,10 @@
             <Button x:Name="AgentSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,63,75,0" Grid.Row="2" FontWeight="Bold" Height="22" VerticalAlignment="Top" Click="AgentSignUpBtn_Click"/>
             <Label Content="New Users" HorizontalAlignment="Left" Margin="135,0,0,62" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom"/>
             <Label Content="New Agents" HorizontalAlignment="Left" Margin="135,0,0,142" Grid.Row="2" VerticalAlignment="Bottom" FontWeight="Bold"/>
+            <Button x:Name="userSignInBtn" Content="Sign In" HorizontalAlignment="Left" Margin="21,134,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Width="190" Grid.Column="1"/>
+            <Button x:Name="agentSignInBtn" Content="Sign In" HorizontalAlignment="Left" Margin="21,63,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Width="190" Grid.Column="1"/>
+            <Label Content="Current Agents" HorizontalAlignment="Left" Margin="21,0,0,142" Grid.Row="2" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
+            <Label Content="Current Users" HorizontalAlignment="Left" Margin="21,0,0,67" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Window>
