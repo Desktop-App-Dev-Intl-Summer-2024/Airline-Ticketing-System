@@ -40,7 +40,7 @@
                 </Rectangle.Fill>
             </Rectangle>
             <Label Content="Airline Ticketing App" VerticalAlignment="Center" FontSize="18" Foreground="White" FontFamily="Arial" FontWeight="SemiBold" Height="31"/>
-            <Button Grid.Column="1" Content="Back to Search" Margin="285,0,0,0" VerticalAlignment="Center" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27" HorizontalAlignment="Left" Width="105">
+            <Button Grid.Column="1" Content="Back to Search" Margin="285,0,0,6" VerticalAlignment="Bottom" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27" HorizontalAlignment="Left" Width="105" Click="Button_Click">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>
@@ -57,10 +57,10 @@
             <Button x:Name="AgentSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,63,75,0" Grid.Row="2" FontWeight="Bold" Height="22" VerticalAlignment="Top" Click="AgentSignUpBtn_Click"/>
             <Label Content="New Users" HorizontalAlignment="Left" Margin="135,0,0,62" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom"/>
             <Label Content="New Agents" HorizontalAlignment="Left" Margin="135,0,0,142" Grid.Row="2" VerticalAlignment="Bottom" FontWeight="Bold"/>
-            <Button x:Name="userSignInBtn" Content="Sign In" HorizontalAlignment="Left" Margin="21,134,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Width="190" Grid.Column="1"/>
-            <Button x:Name="agentSignInBtn" Content="Sign In" HorizontalAlignment="Left" Margin="21,63,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Width="190" Grid.Column="1"/>
-            <Label Content="Current Agents" HorizontalAlignment="Left" Margin="21,0,0,142" Grid.Row="2" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
-            <Label Content="Current Users" HorizontalAlignment="Left" Margin="21,0,0,67" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
+            <Button x:Name="userSignInBtn" Content="Sign In" HorizontalAlignment="Left" Margin="40,138,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Width="190" Grid.Column="1" Click="userSignInBtn_Click" Padding="1,2,1,2"/>
+            <Button x:Name="agentSignInBtn" Content="Sign In" HorizontalAlignment="Left" Margin="40,63,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Width="190" Grid.Column="1" Click="agentSignInBtn_Click" Padding="1,2,1,2"/>
+            <Label Content="Current Agents" HorizontalAlignment="Left" Margin="40,0,0,142" Grid.Row="2" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
+            <Label Content="Current Users" HorizontalAlignment="Left" Margin="40,0,0,62" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Window>
