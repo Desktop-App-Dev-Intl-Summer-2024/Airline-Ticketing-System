@@ -19,9 +19,47 @@ namespace AirLineTicketing
     /// </summary>
     public partial class UserSignIn : Window
     {
+        ApiRequest apiRequest;
         public UserSignIn()
         {
             InitializeComponent();
+            apiRequest = new ApiRequest();
+        }
+
+        private void signInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string userName = usernameTxtBx.Text;
+            string password = passwordTxtBx.Text;
+
+            int status = apiRequest.userSignInApi(userName, password);
+
+            if (status == 1)
+            {
+                MessageBox.Show("User log in success, redirecting to landing page!");
+                MainWindow.isloggedIn = true;
+
+                new MainWindow().Show();
+                this.Close();
+            }
+            else { 
+                MessageBox.Show("User log in failed, check username and password!");
+            }
+        }
+
+        private void usernameTxtBx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            usernameTxtBx.Text = "";
+        }
+
+        private void passwordTxtBx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            passwordTxtBx.Text = "";
+        }
+
+        private void logInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new SignInSignUp().Show();
+            this.Close();
         }
     }
 }

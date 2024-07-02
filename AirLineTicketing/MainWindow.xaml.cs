@@ -16,14 +16,36 @@ namespace AirLineTicketing
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static bool isloggedIn = false;
+
         public MainWindow()
         {
             InitializeComponent();
+            setLogButtonText();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void logBtn_Click(object sender, RoutedEventArgs e)
         {
-            new SignInSignUp().Show();
+            if (isloggedIn)
+            {
+                MessageBox.Show("Logout success!");
+                isloggedIn = false;
+                setLogButtonText();
+            }
+            else {
+                new SignInSignUp().Show();
+                this.Close();
+            }
+        }
+
+        private void setLogButtonText() {
+            if (isloggedIn)
+            {
+                logBtn.Content = "Log out";
+            }
+            else {
+                logBtn.Content = "Sign In/Sign Up";
+            }
         }
     }
 }

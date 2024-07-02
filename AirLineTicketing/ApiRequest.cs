@@ -74,5 +74,32 @@ namespace AirLineTicketing
             // step 7: Close the connection
             sqlConnection.Close();
         }
+
+        public int userSignInApi(string username, string password) { 
+            int status = 0;
+
+            try {
+                string query = "select * from Users where username=@username and password=@password";
+
+                Establish_Connection();
+
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                sqlCommand.Parameters.AddWithValue("@username", username);
+                sqlCommand.Parameters.AddWithValue("@password", password);
+
+                object result = sqlCommand.ExecuteScalar();
+
+                if (result != null)
+                {
+                    status = 1;
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return status;
+        }
     }
 }

@@ -36,12 +36,27 @@ namespace AirLineTicketing
 
         private void userSignInBtn_Click(object sender, RoutedEventArgs e)
         {
-            new UserSignIn().Show();
+            bool isLoggedIn = MainWindow.isloggedIn;
+
+            if (isLoggedIn)
+            {
+                MessageBox.Show("User Already Logged in!");
+            }
+            else { 
+                new UserSignIn().Show();
+                this.Close();
+            }
         }
 
         private void agentSignInBtn_Click(object sender, RoutedEventArgs e)
         {
             new AgentSignIn().Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }
