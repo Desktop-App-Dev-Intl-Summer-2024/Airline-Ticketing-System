@@ -29,7 +29,7 @@
             </Rectangle>
             <StackPanel Margin="0,39,0,10" Grid.RowSpan="2">
                 <Button x:Name="backBtn" Content="Back" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
-                <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White" Click="Button_Click"/>
+                <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
                 <Button Content="Search" Margin="10,10,10,10" Padding="1,2,1,2" Background="#FFA9E679" BorderBrush="#FFA9E679" FontWeight="Bold"/>
             </StackPanel>
             <Rectangle HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="800">
@@ -77,7 +77,6 @@
             <Label Grid.Column="1" Content="Date of Birth*" HorizontalAlignment="Left" Margin="190,256,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="95" FontWeight="Bold"/>
             <Label Grid.Column="1" Content="License No*" HorizontalAlignment="Left" Margin="190,297,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="84" FontWeight="Bold"/>
             <Button x:Name="submitAgentRegBtn" Grid.Column="1" Content="Save &amp; Submit" HorizontalAlignment="Left" Margin="42,166,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Background="#FFECDC49" Height="30" Width="99" BorderBrush="#FFECDC49" Click="submitAgentRegBtn_Click"/>
-            <DataGrid x:Name="testGrid" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,144,0,0"/>
         </Grid>
 
     </Grid>

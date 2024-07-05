@@ -101,5 +101,48 @@ namespace AirLineTicketing
 
             return status;
         }
+
+        public void postAgentApi(Agent agent)
+        {
+            try
+            {
+                //Call EstablishConnection method (to create and open connection)
+                Establish_Connection();
+
+                //Step 3: generate the database query
+                string query = "insert into AgentRegistration values (@username, @password, @firstname, @lastname, @email, @dob, @license)";
+
+                //Step 4: initialize the sql command
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                //Step 5: initialize the variables of the query
+                sqlCommand.Parameters.AddWithValue("@username", agent.getUsername());
+                sqlCommand.Parameters.AddWithValue("@password", agent.getPassword());
+                sqlCommand.Parameters.AddWithValue("@firstname", agent.getFirstname());
+                sqlCommand.Parameters.AddWithValue("@lastname", agent.getLastname());
+                sqlCommand.Parameters.AddWithValue("@email", agent.getEmail());
+                sqlCommand.Parameters.AddWithValue("@dob", agent.getDob());
+                sqlCommand.Parameters.AddWithValue("@license", agent.getLicense());
+
+                //Step 6: execute the query with values
+                //ExecuteNonQuery returns 1 if no error occurs
+                int status = sqlCommand.ExecuteNonQuery();
+                if (status == 1)
+                {
+                    System.Windows.MessageBox.Show("Agent registered successfully!");
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Something went wrong - please try again!");
+                }
+
+                //Step 7: Close the connection
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
