@@ -49,6 +49,7 @@ namespace AirLineTicketing
             }
         }
 
+        //CLEAR TEXT BOXES WHEN FOCUS
         private void usernameTxtBx_GotFocus(object sender, RoutedEventArgs e)
         {
             usernameTxtBx.Text = "";
@@ -64,6 +65,7 @@ namespace AirLineTicketing
             licenseTxtBx.Text = "";
         }
 
+        //BACK BUTTON
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             new SignInSignUp().Show();

@@ -102,6 +102,7 @@ namespace AirLineTicketing
             return status;
         }
 
+        //AGENT REGISTRATION 
         public void postAgentApi(Agent agent)
         {
             try
@@ -145,6 +146,7 @@ namespace AirLineTicketing
             }
         }
 
+        //AGENT SIGN IN
         public int agentSignInApi(string username, string password, string agentLicense)
         {
             int status = 0;
