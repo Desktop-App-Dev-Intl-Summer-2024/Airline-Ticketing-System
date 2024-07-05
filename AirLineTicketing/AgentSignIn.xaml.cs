@@ -31,9 +31,9 @@ namespace AirLineTicketing
         {
             string userName = usernameTxtBx.Text;
             string password = passwordTxtBx.Text;
-            string license = licenseTxtBx.Text;
+            string agentLicense = licenseTxtBx.Text;
 
-            int status = apiRequest.agentSignInApi(userName, password, license);
+            int status = apiRequest.agentSignInApi(userName, password, agentLicense);
 
             if (status == 1)
             {

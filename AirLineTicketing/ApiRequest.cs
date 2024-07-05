@@ -145,13 +145,13 @@ namespace AirLineTicketing
             }
         }
 
-        public int agentSignInApi(string username, string password, string license)
+        public int agentSignInApi(string username, string password, string agentLicense)
         {
             int status = 0;
 
             try
             {
-                string query = "select * from Agents where username=@username and password=@password and @license=license";
+                string query = "select * from Agents where username=@username and password=@password and agentLicense=@agentLicense";
 
                 Establish_Connection();
 
@@ -159,7 +159,7 @@ namespace AirLineTicketing
 
                 sqlCommand.Parameters.AddWithValue("@username", username);
                 sqlCommand.Parameters.AddWithValue("@password", password);
-                sqlCommand.Parameters.AddWithValue("@license", license);
+                sqlCommand.Parameters.AddWithValue("@agentLicense", agentLicense);
 
                 object result = sqlCommand.ExecuteScalar();
 
