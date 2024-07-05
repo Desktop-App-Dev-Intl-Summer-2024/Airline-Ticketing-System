@@ -19,9 +19,55 @@ namespace AirLineTicketing
     /// </summary>
     public partial class AgentSignIn : Window
     {
+        ApiRequest apiRequest;
         public AgentSignIn()
         {
             InitializeComponent();
+            apiRequest = new ApiRequest();
+        }
+
+        //AGENT SIGN IN BUTTON 
+        private void signInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string userName = usernameTxtBx.Text;
+            string password = passwordTxtBx.Text;
+            string license = licenseTxtBx.Text;
+
+            int status = apiRequest.agentSignInApi(userName, password, license);
+
+            if (status == 1)
+            {
+                MessageBox.Show("Agent log in success, redirecting to landing page!");
+                MainWindow.isloggedIn = true;
+
+                new MainWindow().Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Agent log in failed, check username and password and verify license!");
+            }
+        }
+
+        private void usernameTxtBx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            usernameTxtBx.Text = "";
+        }
+
+        private void passwordTxtBx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            passwordTxtBx.Text = "";
+        }
+
+        private void licenseTxtBx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            licenseTxtBx.Text = "";
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new SignInSignUp().Show();
+            this.Close();
         }
     }
 }

@@ -50,7 +50,17 @@ namespace AirLineTicketing
 
         private void agentSignInBtn_Click(object sender, RoutedEventArgs e)
         {
-            new AgentSignIn().Show();
+            bool isLoggedIn = MainWindow.isloggedIn;
+
+            if (isLoggedIn)
+            {
+                MessageBox.Show("User Already Logged in!");
+            }
+            else
+            {
+                new AgentSignIn().Show();
+                this.Close();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

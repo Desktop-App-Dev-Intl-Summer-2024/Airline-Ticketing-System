@@ -110,7 +110,7 @@ namespace AirLineTicketing
                 Establish_Connection();
 
                 //Step 3: generate the database query
-                string query = "insert into AgentRegistration values (@username, @password, @firstname, @lastname, @email, @dob, @license)";
+                string query = "insert into Agents values (@username, @password, @firstname, @lastname, @email, @dob, @license)";
 
                 //Step 4: initialize the sql command
                 sqlCommand = new SqlCommand(query, sqlConnection);
@@ -143,6 +143,37 @@ namespace AirLineTicketing
             {
                 System.Windows.MessageBox.Show(ex.Message);
             }
+        }
+
+        public int agentSignInApi(string username, string password, string license)
+        {
+            int status = 0;
+
+            try
+            {
+                string query = "select * from Agents where username=@username and password=@password and @license=license";
+
+                Establish_Connection();
+
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                sqlCommand.Parameters.AddWithValue("@username", username);
+                sqlCommand.Parameters.AddWithValue("@password", password);
+                sqlCommand.Parameters.AddWithValue("@license", license);
+
+                object result = sqlCommand.ExecuteScalar();
+
+                if (result != null)
+                {
+                    status = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return status;
         }
     }
 }

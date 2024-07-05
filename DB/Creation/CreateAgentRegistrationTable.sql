@@ -1,4 +1,4 @@
-CREATE TABLE AgentRegistration (
+CREATE TABLE Agents (
 id INT IDENTITY (1000, 1) NOT NULL,
 username varchar(20) not null,
 password varchar(10) not null,
