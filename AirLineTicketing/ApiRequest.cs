@@ -177,5 +177,48 @@ namespace AirLineTicketing
 
             return status;
         }
+
+        //NEW FLIGHT RECORD REGISTRATION
+        public void postFlightApi(Flight flight)
+        {
+            try
+            {
+                //Call EstablishConnection method (to create and open connection)
+                Establish_Connection();
+
+                //Step 3: generate the database query
+                string query = "insert into Flights values (@flightNo, @airline, @departureDate, @departureTime, @pilotCode, @crewCode)";
+
+                //Step 4: initialize the sql command
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                //Step 5: initialize the variables of the query
+                sqlCommand.Parameters.AddWithValue("@flightNo", flight.getFlightNo());
+                sqlCommand.Parameters.AddWithValue("@airline", flight.getAirline());
+                sqlCommand.Parameters.AddWithValue("@departureDate", flight.getDepartureDate());
+                sqlCommand.Parameters.AddWithValue("@departureTime", flight.getDepartureTime());
+                sqlCommand.Parameters.AddWithValue("@pilotCode", flight.getPilotCode());
+                sqlCommand.Parameters.AddWithValue("@crewCode", flight.getCrewCode());
+
+                //Step 6: execute the query with values
+                //ExecuteNonQuery returns 1 if no error occurs
+                int status = sqlCommand.ExecuteNonQuery();
+                if (status == 1)
+                {
+                    System.Windows.MessageBox.Show("New flight record saved successfully!");
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Something went wrong - please try again!");
+                }
+
+                //Step 7: Close the connection
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

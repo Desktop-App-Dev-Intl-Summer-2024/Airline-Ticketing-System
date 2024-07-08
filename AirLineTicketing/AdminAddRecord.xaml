@@ -76,7 +76,7 @@
                 <TextBox x:Name="pilotTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
                 <TextBox x:Name="crewTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
             </StackPanel>
-            <Button Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="58,152,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Background="#FFECDC49" FontWeight="Bold" Width="68" Height="26">
+            <Button x:Name="saveNewRecordBtn" Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="58,152,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Background="#FFECDC49" FontWeight="Bold" Width="68" Height="26">
                 <Button.BorderBrush>
                     <ImageBrush/>
                 </Button.BorderBrush>
