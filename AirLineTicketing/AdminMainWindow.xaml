@@ -33,7 +33,7 @@
                     <SolidColorBrush Color="Black" Opacity="0"/>
                 </Rectangle.Stroke>
                 <Rectangle.Fill>
-                    <SolidColorBrush Color="#FFA9E679" Opacity="0.6"/>
+                    <SolidColorBrush Color="#FFED9564" Opacity="0.6"/>
                 </Rectangle.Fill>
             </Rectangle>
             <StackPanel Margin="0,39,0,10" Grid.RowSpan="3">
@@ -98,8 +98,9 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF8AB644" Offset="1"/>
-                        <GradientStop Color="#FF3D501E" Offset="0"/>
+                        <GradientStop Color="#FFED9564" Offset="1"/>
+                        <GradientStop Color="#FFE96319" Offset="0"/>
+                        <GradientStop Color="#FFED9564" Offset="0.489"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>

@@ -28,7 +28,7 @@
                 </Rectangle.Fill>
             </Rectangle>
             <StackPanel Margin="0,39,0,10" Grid.RowSpan="2">
-                <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
+                <Button x:Name="profileBtn" Content="Profile" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
             </StackPanel>
             <Rectangle x:Name="top" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="800">
                 <Rectangle.Stroke>
@@ -44,13 +44,14 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF8AB644" Offset="1"/>
-                        <GradientStop Color="#FF9E400D" Offset="0"/>
+                        <GradientStop Color="#FFED9564" Offset="0.994"/>
+                        <GradientStop Color="#FFE96319" Offset="0"/>
+                        <GradientStop Color="#FFED9564" Offset="0.514"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
             <Label Content="Airline Ticketing App" VerticalAlignment="Center" FontSize="18" Foreground="White" FontFamily="Arial" FontWeight="SemiBold" Height="31"/>
-            <Button x:Name="backBtn" Grid.Column="1" Content="Back" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Center" Width="135" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27" Click="backBtn_Click">
+            <Button x:Name="logBtn" Grid.Column="1" Content="Log Out" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Center" Width="135" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27" Click="backBtn_Click">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>
@@ -70,7 +71,11 @@
             </StackPanel>
             <StackPanel x:Name="mainPanel2" Grid.Column="1" Grid.Row="1" Margin="391,23,25,44">
                 <TextBox x:Name="flightNoTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
-                <ComboBox x:Name="airlineCombo" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
+                <ComboBox x:Name="airlineCombo" Width="120" Margin="10,10,10,10" Padding="1,2,1,2">
+                    <ComboBoxItem Content="AirCanada" FontWeight="Bold"/>
+                    <ComboBoxItem Content="Delta" FontWeight="Bold"/>
+                    <ComboBoxItem Content="Emirates" FontWeight="Bold"/>
+                </ComboBox>
                 <DatePicker x:Name="flightDate" RenderTransformOrigin="0.491,2.17" Margin="10,10,10,10" Padding="1,2,1,2"/>
                 <TextBox x:Name="departureTimeTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
                 <TextBox x:Name="pilotTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
