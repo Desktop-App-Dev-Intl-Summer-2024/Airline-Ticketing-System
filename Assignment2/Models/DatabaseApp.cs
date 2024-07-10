@@ -43,6 +43,7 @@ namespace Assignment2.Models
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                response.statusMessage = ex.Message;
             }
 
             return response;
@@ -77,7 +78,7 @@ namespace Assignment2.Models
                 else
                 {
                     response.statusCode = 100;
-                    response.statusMessage = "Student couldn't be updated";
+                    response.statusMessage = "Product couldn't be updated";
                     response.product = null;
                     response.products = null;
                 }
@@ -85,6 +86,7 @@ namespace Assignment2.Models
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                response.statusMessage = ex.Message;
             }
 
             con.Close();

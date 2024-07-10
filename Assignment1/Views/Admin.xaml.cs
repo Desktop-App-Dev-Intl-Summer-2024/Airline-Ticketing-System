@@ -23,11 +23,13 @@ namespace Assignment1_FarmersMarketApp
     public partial class Admin : Window
     {
         private ApiRequest apiRequest;
+        private RestApiRequest restApiRequest;
 
         public Admin()
         {
             InitializeComponent();
             apiRequest = new ApiRequest();
+            restApiRequest = new RestApiRequest();
             PopulateDisplayGrid();
         }
 
@@ -51,7 +53,7 @@ namespace Assignment1_FarmersMarketApp
             ProductPriceTbx.Text = "";
         }
 
-        private void AddProductBtn_Click(object sender, RoutedEventArgs e)
+        private async void AddProductBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -63,7 +65,7 @@ namespace Assignment1_FarmersMarketApp
                 Product product = new Product(name, id, amount, price);
 
                 // post to DB
-                int status = apiRequest.postProductApi(product);
+                int status = await restApiRequest.postProductApi(product);
                 // if success clear the input fields, success message
                 // refresh/reload DisplayGrid
                 if (status == 1)
@@ -102,7 +104,7 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
-        private void UpdateProductBtn_Click(object sender, RoutedEventArgs e)
+        private async void UpdateProductBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -113,7 +115,7 @@ namespace Assignment1_FarmersMarketApp
 
                 Product product = new Product(name, id, amount, price);
 
-                int status = apiRequest.putProductApi(product);
+                int status = await restApiRequest.putProductApi(product);
 
                 if (status == 1)
                 {

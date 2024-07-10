@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Assignment1_FarmersMarketApp.Models
 {
-    internal class Product
+    public class Product
     {
-        private string name;
-        private int id;
-        private double amount;
-        private double price;
+        public string name;
+        public int id;
+        public double amount;
+        public double price;
 
         public Product()
         {
