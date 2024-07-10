@@ -24,13 +24,15 @@ namespace Assignment1_FarmersMarketApp
     {
         private ApiRequest apiRequest;
         private RestApiRequest restApiRequest;
+        private DataTable productsTable;
 
         public Admin()
         {
             InitializeComponent();
             apiRequest = new ApiRequest();
             restApiRequest = new RestApiRequest();
-            PopulateDisplayGrid();
+            InitializeGridView();
+            RefreshGridView();
         }
 
         private void ProductIdTbx_GotFocus(object sender, RoutedEventArgs e)
@@ -71,7 +73,7 @@ namespace Assignment1_FarmersMarketApp
                 if (status == 1)
                 {
                     ClearInputs();
-                    PopulateDisplayGrid();
+                    RefreshGridView();
                 }
             }
             catch (Exception ex) { 
@@ -86,14 +88,14 @@ namespace Assignment1_FarmersMarketApp
                 string name = ProductNameTbx.Text.Trim();
                 int id = ProductIdTbx.Text.Trim() != String.Empty ? int.Parse(ProductIdTbx.Text) : -1;
 
-                Product foundPerson = apiRequest.getProductApi(id, name);
+                Product foundProduct = apiRequest.getProductApi(id, name);
 
-                if (foundPerson != null)
+                if (foundProduct != null)
                 {
-                    ProductIdTbx.Text = foundPerson.getId().ToString();
-                    ProductNameTbx.Text = foundPerson.getName();
-                    ProductAmountTbx.Text = foundPerson.getAmount().ToString();
-                    ProductPriceTbx.Text = foundPerson.getPrice().ToString();
+                    ProductIdTbx.Text = foundProduct.getId().ToString();
+                    ProductNameTbx.Text = foundProduct.getName();
+                    ProductAmountTbx.Text = foundProduct.getAmount().ToString();
+                    ProductPriceTbx.Text = foundProduct.getPrice().ToString();
                 }
                 else {
                     MessageBox.Show("Couldn't find any elements");
@@ -119,7 +121,7 @@ namespace Assignment1_FarmersMarketApp
 
                 if (status == 1)
                 {
-                    PopulateDisplayGrid();
+                    RefreshGridView();
                 }
             }
             catch (Exception ex)
@@ -139,7 +141,7 @@ namespace Assignment1_FarmersMarketApp
                 if (status == 1)
                 {
                     ClearInputs();
-                    PopulateDisplayGrid();
+                    RefreshGridView();
                 }
             }
             catch (Exception ex)
@@ -148,8 +150,43 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
-        private void PopulateDisplayGrid() {
-            DisplayProductsGrd.ItemsSource = apiRequest.getAllProducts().AsDataView();
+        private void InitializeGridView() {
+            productsTable = new DataTable("table");
+
+            DataColumn colItem1 = new DataColumn("Name",
+                Type.GetType("System.String"));
+            DataColumn colItem2 = new DataColumn("ID",
+                Type.GetType("System.String"));
+            DataColumn colItem3 = new DataColumn("Amount",
+                Type.GetType("System.String"));
+            DataColumn colItem4 = new DataColumn("Price",
+                Type.GetType("System.String"));
+
+            productsTable.Columns.Add(colItem1);
+            productsTable.Columns.Add(colItem2);
+            productsTable.Columns.Add(colItem3);
+            productsTable.Columns.Add(colItem4);
+
+            DisplayProductsGrd.ItemsSource = productsTable.AsDataView();
+        }
+
+        private async void RefreshGridView() {
+            productsTable.Clear();
+
+            List<Product> productList = await restApiRequest.getAllProducts();
+
+            foreach (Product product in productList)
+            {
+                DataRow newRow;
+
+                newRow = productsTable.NewRow();
+                newRow["Name"] = product.getName();
+                newRow["ID"] = product.getId();
+                newRow["Amount"] = product.getAmount();
+                newRow["Price"] = product.getPrice();
+
+                productsTable.Rows.Add(newRow);
+            }
         }
 
         private void ClearInputs() { 
@@ -162,7 +199,7 @@ namespace Assignment1_FarmersMarketApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ClearInputs();
-            PopulateDisplayGrid();
+            RefreshGridView();
         }
     }
 }

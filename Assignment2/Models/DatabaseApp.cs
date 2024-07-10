@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Collections;
 
 namespace Assignment2.Models
 {
@@ -86,6 +87,60 @@ namespace Assignment2.Models
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                response.statusMessage = ex.Message;
+            }
+
+            con.Close();
+
+            return response;
+        }
+
+        public Response GetAllProducts(SqlConnection con) {
+            Response response = new Response();
+            List<Product> products = new List<Product>();
+
+            try
+            {
+                con.Open();
+
+                string query = "SELECT * FROM A1Products";
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int id = (int)reader["id"];
+                    string name = (string)reader["name"];
+                    double amount = Convert.ToDouble(reader["amount"]);
+                    double price = Convert.ToDouble(reader["price"]);
+
+                    Product product = new Product();
+
+                    product.id = id;
+                    product.name = name;
+                    product.amount = amount;
+                    product.price = price;
+
+                    products.Add(product);
+                }
+
+                if (products.Count > 0) {
+                    response.statusCode = 200;
+                    response.statusMessage = "Products retrieved successfully!";
+                    response.products = products;
+                    response.product = null;
+                } else {
+                    response.statusCode = 100;
+                    response.statusMessage = "No products found!";
+                    response.products = products;
+                    response.product = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                response.statusCode = 100;
                 response.statusMessage = ex.Message;
             }
 
