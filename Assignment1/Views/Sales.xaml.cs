@@ -1,4 +1,6 @@
-﻿using Microsoft.Identity.Client.NativeInterop;
+﻿using Assignment1_FarmersMarketApp.API;
+using Assignment1_FarmersMarketApp.Models;
+using Microsoft.Identity.Client.NativeInterop;
 using System;
 using System.Collections;
 using System.Collections.Generic;

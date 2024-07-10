@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Assignment1_FarmersMarketApp
+namespace Assignment1_FarmersMarketApp.Models
 {
-    internal class SelectedProduct: Product
+    internal class SelectedProduct : Product
     {
         private double amountSelected;
 
         public SelectedProduct() : base()
         {
-            this.amountSelected = 0;
+            amountSelected = 0;
         }
 
         public SelectedProduct(string name, int id, double amount, double price, double amountSelected) : base(name, id, amount, price)
@@ -23,7 +23,7 @@ namespace Assignment1_FarmersMarketApp
 
         public double getAmountSelected()
         {
-            return this.amountSelected;
+            return amountSelected;
         }
 
         public void setAmountSelected(double amountSelected)
@@ -49,13 +49,14 @@ namespace Assignment1_FarmersMarketApp
             {
                 double qty = products[i].getAmountSelected();
                 double price = products[i].getPrice();
-                totalCart += qty * price;   
+                totalCart += qty * price;
             }
 
             return totalCart;
         }
 
-        public double getRemaingAmount() { 
+        public double getRemaingAmount()
+        {
             return Math.Round((getAmount() - amountSelected) * 10) / 10.0;
         }
     }

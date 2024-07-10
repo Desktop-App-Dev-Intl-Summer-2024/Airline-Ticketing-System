@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Assignment1_FarmersMarketApp.API;
+using Assignment1_FarmersMarketApp.Models;
 
 namespace Assignment1_FarmersMarketApp
 {

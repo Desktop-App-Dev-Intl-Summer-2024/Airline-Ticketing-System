@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Assignment1_FarmersMarketApp.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,12 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Assignment1_FarmersMarketApp
+namespace Assignment1_FarmersMarketApp.API
 {
     internal class ApiRequest
     {
-        private static String server_env_var_name = "DEV_AIRLINE_TICKETING_APP_SERVER";
-        private static String local_server_name = Environment.GetEnvironmentVariable(server_env_var_name);
+        private static string server_env_var_name = "DEV_AIRLINE_TICKETING_APP_SERVER";
+        private static string local_server_name = Environment.GetEnvironmentVariable(server_env_var_name);
 
 
         // install sqlclient
@@ -24,7 +25,7 @@ namespace Assignment1_FarmersMarketApp
 
         private void Establish_Connection()
         {
-            if (String.IsNullOrEmpty(local_server_name))
+            if (string.IsNullOrEmpty(local_server_name))
             {
                 throw new Exception("Please set environment variable: " + server_env_var_name);
             }
@@ -37,7 +38,8 @@ namespace Assignment1_FarmersMarketApp
             sqlConnection.Open();
         }
 
-        public DataTable getAllProducts() {
+        public DataTable getAllProducts()
+        {
             DataTable dt = new DataTable();
 
             try
@@ -56,14 +58,16 @@ namespace Assignment1_FarmersMarketApp
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
             return dt;
         }
 
-        public Product getProductApi(int id, string name) { 
+        public Product getProductApi(int id, string name)
+        {
             Product product = null;
 
-            try {
+            try
+            {
                 Establish_Connection();
 
                 string query;
@@ -72,11 +76,12 @@ namespace Assignment1_FarmersMarketApp
                 {
                     query = "select * from A1Products where id=@id";
                 }
-                else if (name != String.Empty)
+                else if (name != string.Empty)
                 {
                     query = "select * from A1Products where name like @name";
                 }
-                else {
+                else
+                {
                     throw new Exception("Both Id and Name can't empty");
                 }
 
@@ -105,7 +110,9 @@ namespace Assignment1_FarmersMarketApp
                     product = new Product(productName, productId, amount, price);
                 }
 
-            } catch (Exception ex) { 
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
 
@@ -200,7 +207,8 @@ namespace Assignment1_FarmersMarketApp
             return status;
         }
 
-        public int deleteProductApi(int id) {
+        public int deleteProductApi(int id)
+        {
             int status = 0;
 
             try
@@ -242,14 +250,14 @@ namespace Assignment1_FarmersMarketApp
 
             try
             {
-                Establish_Connection ();
+                Establish_Connection();
 
                 string query = "SELECT * FROM A1Products";
                 sqlCommand = new SqlCommand(query, sqlConnection);
 
                 SqlDataReader reader = sqlCommand.ExecuteReader();
 
-                while(reader.Read())
+                while (reader.Read())
                 {
                     int productId = (int)reader["id"];
                     string productName = (string)reader["name"];
@@ -284,7 +292,7 @@ namespace Assignment1_FarmersMarketApp
                 {
                     SelectedProduct product = selectedProducts[i] as SelectedProduct;
 
-                    query += "when id="+ product.getId() +" then " + product.getRemaingAmount() + " ";
+                    query += "when id=" + product.getId() + " then " + product.getRemaingAmount() + " ";
                 }
 
                 query += "else amount end);";

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment1_FarmersMarketApp
+namespace Assignment1_FarmersMarketApp.Models
 {
     internal class Product
     {
@@ -13,14 +13,15 @@ namespace Assignment1_FarmersMarketApp
         private double amount;
         private double price;
 
-        public Product() {
-            this.name = "";
-            this.id = 0;
-            this.amount = 0.0;
-            this.price = 0.0;
+        public Product()
+        {
+            name = "";
+            id = 0;
+            amount = 0.0;
+            price = 0.0;
         }
 
-        public Product(String name, int id, double amount, double price)
+        public Product(string name, int id, double amount, double price)
         {
             this.name = name;
             this.id = id;
@@ -28,25 +29,27 @@ namespace Assignment1_FarmersMarketApp
             this.price = price;
         }
 
-        public String getName() {
-            return this.name;
+        public string getName()
+        {
+            return name;
         }
 
         public int getId()
         {
-            return this.id;
+            return id;
         }
 
-        public double getAmount() {
-            return this.amount;
+        public double getAmount()
+        {
+            return amount;
         }
 
         public double getPrice()
         {
-            return this.price;
+            return price;
         }
 
-        public void setName(String name)
+        public void setName(string name)
         {
             this.name = name;
         }
@@ -61,7 +64,8 @@ namespace Assignment1_FarmersMarketApp
             this.amount = amount;
         }
 
-        public void setPrice(double price) {
+        public void setPrice(double price)
+        {
             this.price = price;
         }
     }
