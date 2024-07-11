@@ -21,7 +21,7 @@ namespace Assignment1_FarmersMarketApp
             InitializeComponent();
         }
 
-        private void customerEnterBtn_Click(object sender, RoutedEventArgs e)
+        private async void customerEnterBtn_Click(object sender, RoutedEventArgs e)
         {
             new Sales().Show();
         }

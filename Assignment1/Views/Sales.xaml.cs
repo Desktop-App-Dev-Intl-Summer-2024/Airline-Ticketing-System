@@ -1,21 +1,10 @@
-﻿using Microsoft.Identity.Client.NativeInterop;
-using System;
+﻿using Assignment1_FarmersMarketApp.API;
+using Assignment1_FarmersMarketApp.Models;
+using Newtonsoft.Json;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Assignment1_FarmersMarketApp
 {
@@ -25,6 +14,8 @@ namespace Assignment1_FarmersMarketApp
     public partial class Sales : Window
     {
         private ApiRequest apiRequest;
+        private RestApiRequest restApiRequest;
+
         ArrayList selectedProductList;
         ArrayList products;
 
@@ -32,13 +23,14 @@ namespace Assignment1_FarmersMarketApp
 
         public Sales()
         {
+            selectedProductList = new ArrayList();
+            products = new ArrayList();
+
             InitializeComponent();
             apiRequest = new ApiRequest();
-            PopulateSelectionComboBox();
+            restApiRequest = new RestApiRequest();
             InitializeGridView();
-
-            selectedProductList = new ArrayList();
-            
+            PopulateSelectionComboBox();
         }
 
         //COMBOBOX SELECTION OF ITEM: DISPLAY OBJECT ELEMENTS
@@ -282,19 +274,25 @@ namespace Assignment1_FarmersMarketApp
         }
 
         //METHOD TO FILL COMBO BOX WITH AVAILABLE PRODUCT OBJECTS
-        public void PopulateSelectionComboBox()
+        public async void PopulateSelectionComboBox()
         {
-            products = apiRequest.getAvailableProductsAPI();
-
-            List<string> productNames = new List<string>();
-
-            foreach (Product product in products)
+            try
             {
-                productNames.Add(product.getName());
-            }
+                List<Product> productList = await restApiRequest.getAllProducts();
 
-            productComboBox.ItemsSource = productNames;
-            
+                List<string> productNames = new List<string>();
+
+                foreach (Product product in productList)
+                {
+                    products.Add(product);
+                    productNames.Add(product.getName());
+                }
+
+                productComboBox.ItemsSource = productNames;
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //METHOD TO DISPLAY CURRENT CART TOTAL
