@@ -29,6 +29,8 @@
             </Rectangle>
             <StackPanel Margin="0,39,0,10" Grid.RowSpan="2">
                 <Button x:Name="profileBtn" Content="Profile" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
+                <Button x:Name="addRecordBtn" Content="Add New Record" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White" Height="22" Width="190" Click="addRecordBtn_Click"/>
+                <Button x:Name="editRecordBtn" Content="Edit Record" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White" Height="22" Width="190" Click="editRecordBtn_Click"/>
             </StackPanel>
             <Rectangle x:Name="top" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="800">
                 <Rectangle.Stroke>

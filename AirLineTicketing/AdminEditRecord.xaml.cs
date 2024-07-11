@@ -23,5 +23,12 @@ namespace AirLineTicketing
         {
             InitializeComponent();
         }
+
+        //NAVIGATE TO ADD RECORD WINDOW
+        private void addRecordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AdminAddRecord().Show();
+            this.Close();
+        }
     }
 }

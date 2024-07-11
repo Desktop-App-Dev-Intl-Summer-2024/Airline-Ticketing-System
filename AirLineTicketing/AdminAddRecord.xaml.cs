@@ -39,5 +39,22 @@ namespace AirLineTicketing
 
             request.postFlightApi(newFlight);
         }
+
+        //ADD ADDITIONAL NEW RECORD - CLEAR ALL CURRENT VALUES
+        private void addRecordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            airlineCombo.Items.Clear();
+            flightDate.DisplayDate = DateTime.Now;
+            departureTimeTxt.Text = "";
+            pilotTxt.Text = "";
+            crewTxt.Text = "";
+        }
+
+        //NAVIGATE TO EDIT RECORD WINDOW
+        private void editRecordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AdminEditRecord().Show();
+            this.Close();
+        }
     }
 }
