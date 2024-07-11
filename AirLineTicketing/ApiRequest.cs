@@ -187,13 +187,12 @@ namespace AirLineTicketing
                 Establish_Connection();
 
                 //Step 3: generate the database query
-                string query = "insert into Flights values (@flightNo, @airline, @departureDate, @departureTime, @pilotCode, @crewCode)";
+                string query = "insert into Flights values (@airline, @departureDate, @departureTime, @pilotCode, @crewCode)";
 
                 //Step 4: initialize the sql command
                 sqlCommand = new SqlCommand(query, sqlConnection);
 
                 //Step 5: initialize the variables of the query
-                sqlCommand.Parameters.AddWithValue("@flightNo", flight.getFlightNo());
                 sqlCommand.Parameters.AddWithValue("@airline", flight.getAirline());
                 sqlCommand.Parameters.AddWithValue("@departureDate", flight.getDepartureDate());
                 sqlCommand.Parameters.AddWithValue("@departureTime", flight.getDepartureTime());

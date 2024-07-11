@@ -27,14 +27,13 @@ namespace AirLineTicketing
         //SAVE NEW RECORD BUTTON CLICK
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            String flightNo = flightNoTxt.Text;
-            String airline = "";
-            String departureDate = "";
+            String airline = airlineCombo.Text;
+            String departureDate = flightDate.SelectedDate.ToString();
             String departureTime = departureTimeTxt.Text;
             String pilotCode = pilotTxt.Text;
             String crewCode = crewTxt.Text;
 
-            Flight newFlight = new Flight(flightNo, airline, departureDate, departureTime, pilotCode, crewCode);
+            Flight newFlight = new Flight(airline, departureDate, departureTime, pilotCode, crewCode);
 
             ApiRequest request = new ApiRequest();
 

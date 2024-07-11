@@ -105,7 +105,7 @@
                 </Rectangle.Fill>
             </Rectangle>
             <Label Content="Airline Ticketing App" VerticalAlignment="Center" FontSize="18" Foreground="White" FontFamily="Arial" FontWeight="SemiBold"/>
-            <Button x:Name="logBtn" Grid.Column="1" Content="Log Out" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Center" Width="135" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Click="logBtn_Click">
+            <Button x:Name="logBtn" Grid.Column="1" Content="Log Out" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Center" Width="135" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>

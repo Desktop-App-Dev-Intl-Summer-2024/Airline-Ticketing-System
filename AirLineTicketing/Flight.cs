@@ -8,16 +8,14 @@ namespace AirLineTicketing
 {
     internal class Flight
     {
-        private string flightNo;
         private string airline;
         private string departureDate;
         private string departureTime;
         private string pilotCode;
         private string crewCode;
 
-        public Flight(string flightNo, string airline, string departureDate, string departureTime, string pilotCode, string crewCode)
+        public Flight(string airline, string departureDate, string departureTime, string pilotCode, string crewCode)
         {
-            this.flightNo = flightNo;
             this.airline = airline;
             this.departureDate = departureDate;
             this.departureTime = departureTime;
@@ -25,13 +23,11 @@ namespace AirLineTicketing
             this.crewCode = crewCode;
         }
 
-        public String getFlightNo() { return flightNo; }
         public String getAirline() { return airline; }
         public String getDepartureDate() { return departureDate; }
         public String getDepartureTime() { return departureTime; }
         public string getPilotCode() { return pilotCode; }
         public string getCrewCode() { return crewCode; }
-        public void setFlightNo(String flightNo) { this.flightNo = flightNo; }
         public void setAirline(String airline) { this.airline = airline; }
         public void setDepartureDate(String departureDate) { this.departureDate = departureDate; }
         public void setDepartureTime(String departureTime) { this.departureTime = departureTime; }

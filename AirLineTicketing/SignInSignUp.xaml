@@ -61,6 +61,7 @@
             <Button x:Name="agentSignInBtn" Content="Sign In" HorizontalAlignment="Left" Margin="40,63,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Width="190" Grid.Column="1" Click="agentSignInBtn_Click" Padding="1,2,1,2"/>
             <Label Content="Current Agents" HorizontalAlignment="Left" Margin="40,0,0,142" Grid.Row="2" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
             <Label Content="Current Users" HorizontalAlignment="Left" Margin="40,0,0,62" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
+            <Button x:Name="adminBtn" Grid.Column="1" Content="AdminEntrance" HorizontalAlignment="Left" Margin="295,10,0,0" Grid.Row="1" VerticalAlignment="Top" Click="adminBtn_Click"/>
         </Grid>
     </Grid>
 </Window>

@@ -51,7 +51,7 @@
                 </Rectangle.Fill>
             </Rectangle>
             <Label Content="Airline Ticketing App" VerticalAlignment="Center" FontSize="18" Foreground="White" FontFamily="Arial" FontWeight="SemiBold" Height="31"/>
-            <Button x:Name="logBtn" Grid.Column="1" Content="Log Out" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Center" Width="135" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27" Click="backBtn_Click">
+            <Button x:Name="logBtn" Grid.Column="1" Content="Log Out" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Center" Width="135" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>
@@ -61,27 +61,25 @@
                     <SolidColorBrush Color="#FFA9E679" Opacity="0.6"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <StackPanel x:Name="mainPanel" Grid.Column="1" Grid.Row="1" Margin="205,23,212,36">
-                <Label Content="Enter flight number" Margin="10,10,10,10" Padding="1,2,1,2" FontWeight="Bold" Width="113"/>
-                <Label Content="Select airline" Margin="10,10,10,10" Padding="1,2,1,2" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <Label Content="Select departure date" Margin="10,10,10,10" Padding="1,2,1,2" HorizontalAlignment="Center" FontWeight="Bold"/>
-                <Label Content="Enter departure time" Margin="10,10,10,10" Padding="1,2,1,2" HorizontalAlignment="Center" FontWeight="Bold"/>
-                <Label Content="Pilot code" Margin="10,10,10,10" Padding="1,2,1,2" HorizontalAlignment="Center" FontWeight="Bold"/>
-                <Label Content="Crew code" Margin="10,10,10,10" Padding="1,2,1,2" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <StackPanel x:Name="mainPanel" Grid.Column="1" Grid.Row="1" Margin="42,23,327,132">
+                <Label Content="Select airline" Margin="10,10,10,10" Padding="8,4,8,4" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label Content="Select departure date" Margin="10,10,10,10" Padding="2,4,2,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Enter departure time" Margin="10,10,10,10" Padding="2,4,2,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Pilot code" Margin="10,10,10,10" Padding="2,4,2,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Crew code" Margin="10,10,10,10" Padding="2,4,2,4" HorizontalAlignment="Center" FontWeight="Bold"/>
             </StackPanel>
-            <StackPanel x:Name="mainPanel2" Grid.Column="1" Grid.Row="1" Margin="391,23,25,44">
-                <TextBox x:Name="flightNoTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
+            <StackPanel x:Name="mainPanel2" Grid.Column="1" Grid.Row="1" Margin="306,23,25,132">
                 <ComboBox x:Name="airlineCombo" Width="120" Margin="10,10,10,10" Padding="1,2,1,2">
                     <ComboBoxItem Content="AirCanada" FontWeight="Bold"/>
                     <ComboBoxItem Content="Delta" FontWeight="Bold"/>
                     <ComboBoxItem Content="Emirates" FontWeight="Bold"/>
                 </ComboBox>
-                <DatePicker x:Name="flightDate" RenderTransformOrigin="0.491,2.17" Margin="10,10,10,10" Padding="1,2,1,2"/>
-                <TextBox x:Name="departureTimeTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
-                <TextBox x:Name="pilotTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
-                <TextBox x:Name="crewTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="1,2,1,2"/>
+                <DatePicker x:Name="flightDate" RenderTransformOrigin="0.491,2.17" Margin="10,10,10,10" Padding="2,4,2,4"/>
+                <TextBox x:Name="departureTimeTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="2,4,2,4"/>
+                <TextBox x:Name="pilotTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="2,4,2,4"/>
+                <TextBox x:Name="crewTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="2,4,2,4"/>
             </StackPanel>
-            <Button x:Name="saveNewRecordBtn" Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="58,152,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Background="#FFECDC49" FontWeight="Bold" Width="68" Height="26">
+            <Button x:Name="saveNewRecordBtn" Grid.Column="1" Content="Save" HorizontalAlignment="Center" Margin="0,294,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Background="#FFECDC49" FontWeight="Bold" Width="102" Height="36">
                 <Button.BorderBrush>
                     <ImageBrush/>
                 </Button.BorderBrush>

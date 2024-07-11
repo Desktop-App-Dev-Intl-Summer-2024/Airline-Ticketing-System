@@ -68,5 +68,11 @@ namespace AirLineTicketing
             new MainWindow().Show();
             this.Close();
         }
+
+        private void adminBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AdminMainWindow().Show();
+            this.Close();
+        }
     }
 }
