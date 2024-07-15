@@ -1,6 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Windows;
+using Microsoft.Data.SqlClient;
 using System.Collections;
-
 namespace Assignment2.Models
 {
     public class DatabaseApp
@@ -49,6 +49,83 @@ namespace Assignment2.Models
 
             return response;
         }
+
+        //GET PRODUCT (INDIVIDUAL)
+        public Response GetProduct(SqlConnection con, int id, string name)
+        {
+            Response response = new Response();
+            Product product = new Product();
+
+            try
+            {
+                con.Open();
+
+                string query;
+
+                if (id > 0)
+                {
+                    query = "select * from A1Products where id=@id";
+                }
+                else if (name != string.Empty)
+                {
+                    query = "select * from A1Products where name like @name";
+                }
+                else
+                {
+                    throw new Exception("Both Id and Name can't be empty");
+                }
+
+                SqlCommand command = new SqlCommand(query, con);
+
+                if (id > 0)
+                {
+                   command.Parameters.AddWithValue("@id", id);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@name", "%" + name + "%");
+                }
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int productId = (int)reader["id"];
+                    string productName = (string)reader["name"];
+                    double amount = Convert.ToDouble(reader["amount"]);
+                    double price = Convert.ToDouble(reader["price"]);
+
+                    product.id = id;
+                    product.name = name;
+                    product.amount = amount;
+                    product.price = price;
+                }
+
+                if (product != null)
+                {
+                    response.statusCode = 200;
+                    response.statusMessage = "Product retrieved successfully!";
+                    response.product = product;
+
+                }
+                else
+                {
+                    response.statusCode = 100;
+                    response.statusMessage = "No product found!";
+                    response.product = null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                response.statusMessage = ex.Message;
+            }
+
+            return response;
+        }
+    
+        
 
         public Response UpdateProductById(SqlConnection con, int id, Product product)
         {

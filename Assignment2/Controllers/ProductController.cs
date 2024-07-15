@@ -53,5 +53,13 @@ namespace Assignment2.Controllers
         public Response GetAllProducts() {
             return app.GetAllProducts(con);
         }
+
+        [HttpGet]
+        [Route("GetProduct")]
+
+        public Response GetProduct(int id, string name)
+        {
+            return app.GetProduct(con, id, name);
+        }
     }
 }

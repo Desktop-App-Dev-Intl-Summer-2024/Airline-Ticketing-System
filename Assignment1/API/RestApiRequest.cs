@@ -42,6 +42,26 @@ namespace Assignment1_FarmersMarketApp.API
             return products;
         }
 
+        //GET INDIVIDUAL PRODUCT
+        public async Task<Product> getProduct()
+        {
+            Product product = null;
+
+            try
+            {
+                HttpResponseMessage rawResponse = await httpClient.GetAsync("GetProduct");
+                Response response = await getResponse(rawResponse);
+
+                product = response.product;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return product;
+        }
+
         public async Task<int> postProductApi(Product product) {
             int status = 0;
 

@@ -81,14 +81,15 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
-        private void FindProductBtn_Click(object sender, RoutedEventArgs e)
+        //FIND SINGLE PRODUCT BUTTON CLICK
+        private async void FindProductBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 string name = ProductNameTbx.Text.Trim();
                 int id = ProductIdTbx.Text.Trim() != String.Empty ? int.Parse(ProductIdTbx.Text) : -1;
 
-                Product foundProduct = apiRequest.getProductApi(id, name);
+                Product foundProduct = await restApiRequest.getProduct();
 
                 if (foundProduct != null)
                 {
