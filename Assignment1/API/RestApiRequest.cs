@@ -26,6 +26,7 @@ namespace Assignment1_FarmersMarketApp.API
                 );
         }
 
+        //GET ALL PRODUCTS
         public async Task<List<Product>> getAllProducts() {
             List<Product> products = null;
 
@@ -62,6 +63,7 @@ namespace Assignment1_FarmersMarketApp.API
             return product;
         }
 
+        //ADD PRODUCT
         public async Task<int> postProductApi(Product product) {
             int status = 0;
 
@@ -84,6 +86,7 @@ namespace Assignment1_FarmersMarketApp.API
             return status;
         }
 
+        //UPDATE PRODUCT BY ID
         public async Task<int> putProductApi(Product product) {
             int status = 0;
 
@@ -98,6 +101,34 @@ namespace Assignment1_FarmersMarketApp.API
                 MessageBox.Show(response.statusMessage);
 
                 if(response.statusCode == 200)
+                {
+                    status = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return status;
+        }
+
+        //DELETE PRODUCT
+        public async Task<int> deleteProductApi(Product product)
+        {
+            int status = 0;
+
+            try
+            {
+                StringContent jsonContent = getJsonContent(product);
+
+                HttpResponseMessage rawResponse = await httpClient.PutAsync(
+                    "DeleteProduct/" + product.id, jsonContent);
+                Response response = await getResponse(rawResponse);
+
+                MessageBox.Show(response.statusMessage);
+
+                if (response.statusCode == 200)
                 {
                     status = 1;
                 }

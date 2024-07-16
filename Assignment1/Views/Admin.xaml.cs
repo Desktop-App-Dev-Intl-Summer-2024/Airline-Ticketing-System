@@ -131,13 +131,18 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
-        private void DeleteProductBtn_Click(object sender, RoutedEventArgs e)
+        private async void DeleteProductBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                string name = ProductNameTbx.Text;
                 int id = int.Parse(ProductIdTbx.Text);
+                double amount = double.Parse(ProductAmountTbx.Text);
+                double price = double.Parse(ProductPriceTbx.Text);
 
-                int status = apiRequest.deleteProductApi(id);
+                Product product = new Product(name, id, amount, price);
+
+                int status = await restApiRequest.deleteProductApi(product);
 
                 if (status == 1)
                 {

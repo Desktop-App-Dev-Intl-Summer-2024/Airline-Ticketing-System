@@ -5,6 +5,7 @@ namespace Assignment2.Models
 {
     public class DatabaseApp
     {
+        //ADD PRODUCT
         public Response AddProduct(SqlConnection sqlCon, Product product)
         {
             Response response = new Response();
@@ -126,7 +127,7 @@ namespace Assignment2.Models
         }
     
         
-
+        //UPDATE PRODUCT BY ID
         public Response UpdateProductById(SqlConnection con, int id, Product product)
         {
             Response response = new Response();
@@ -172,6 +173,7 @@ namespace Assignment2.Models
             return response;
         }
 
+        //GET ALL PRODUCTS
         public Response GetAllProducts(SqlConnection con) {
             Response response = new Response();
             List<Product> products = new List<Product>();
@@ -218,6 +220,49 @@ namespace Assignment2.Models
                 Console.WriteLine(ex.Message);
 
                 response.statusCode = 100;
+                response.statusMessage = ex.Message;
+            }
+
+            con.Close();
+
+            return response;
+        }
+
+        //DELETE PRODUCT
+        public Response DeleteProduct(SqlConnection con, int id)
+        {
+            Response response = new Response();
+
+            try
+            {
+                con.Open();
+
+                string query = "delete from A1Products where id=@id";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                int i = cmd.ExecuteNonQuery();
+
+                if (i > 0)
+                {
+                    response.statusCode = 200;
+                    response.statusMessage = "Product deleted successfully!";
+                    response.product = null;
+                    response.products = null;
+                }
+                else
+                {
+                    response.statusCode = 100;
+                    response.statusMessage = "Product couldn't be deleted.";
+                    response.product = null;
+                    response.products = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
                 response.statusMessage = ex.Message;
             }
 

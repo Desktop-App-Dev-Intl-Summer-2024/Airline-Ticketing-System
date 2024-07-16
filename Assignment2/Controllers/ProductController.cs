@@ -31,6 +31,7 @@ namespace Assignment2.Controllers
             con = new SqlConnection(connectionString);
         }
 
+        //ADD PRODUCT
         [HttpPost]
         [Route("AddProduct")]
 
@@ -39,6 +40,7 @@ namespace Assignment2.Controllers
             return app.AddProduct(con, product);
         }
 
+        //UPDATE PRODUCT BY ID
         [HttpPut]
         [Route("UpdateProductById/{id}")]
 
@@ -47,6 +49,7 @@ namespace Assignment2.Controllers
             return app.UpdateProductById(con, id, product);
         }
 
+        //GET ALL PRODUCTS
         [HttpGet]
         [Route("GetAllProducts")]
 
@@ -54,12 +57,22 @@ namespace Assignment2.Controllers
             return app.GetAllProducts(con);
         }
 
+        //GET INDIVIDUAL PRODUCT
         [HttpGet]
         [Route("GetProduct")]
 
         public Response GetProduct(int id, string name)
         {
             return app.GetProduct(con, id, name);
+        }
+
+        //DELETE PRODUCT
+        [HttpDelete]
+        [Route("DeleteProduct")]
+
+        public Response DeleteProduct(int id)
+        {
+            return app.DeleteProduct(con, id);
         }
     }
 }
