@@ -23,6 +23,7 @@ namespace Assignment1_FarmersMarketApp.API
         // create command adaptor
         SqlCommand sqlCommand;
 
+        //CONNECTION
         private void Establish_Connection()
         {
             if (string.IsNullOrEmpty(local_server_name))
@@ -38,6 +39,7 @@ namespace Assignment1_FarmersMarketApp.API
             sqlConnection.Open();
         }
 
+        //GET ALL PRODUCTS
         public DataTable getAllProducts()
         {
             DataTable dt = new DataTable();
@@ -62,6 +64,7 @@ namespace Assignment1_FarmersMarketApp.API
             return dt;
         }
 
+        //GET INDIVIDUAL PRODUCT
         public Product getProductApi(int id, string name)
         {
             Product product = null;
@@ -119,6 +122,7 @@ namespace Assignment1_FarmersMarketApp.API
             return product;
         }
 
+        //POST NEW PRODUCT: INSERT INTO DB
         public int postProductApi(Product product)
         {
             int status = 0;
@@ -163,6 +167,7 @@ namespace Assignment1_FarmersMarketApp.API
             return status;
         }
 
+        //PUT PRODUCT: UPDATE DB
         public int putProductApi(Product product)
         {
             int status = 0;
@@ -207,6 +212,7 @@ namespace Assignment1_FarmersMarketApp.API
             return status;
         }
 
+        //DELETE PRODUCT
         public int deleteProductApi(int id)
         {
             int status = 0;
