@@ -250,9 +250,9 @@ namespace Assignment1_FarmersMarketApp.API
         }
 
         //RETRIEVE AVAILABLE PRODUCTS FROM DB 
-        public List<Product> getAvailableProductsAPI()
+        public ArrayList getAvailableProductsAPI()
         {
-            List<Product> availableProduct = new List<Product>();
+            ArrayList availableProduct = new ArrayList();
 
             try
             {

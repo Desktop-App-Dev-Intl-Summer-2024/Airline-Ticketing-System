@@ -14,6 +14,7 @@ namespace Assignment1_FarmersMarketApp
     public partial class Sales : Window
     {
         private ApiRequest apiRequest;
+        private RestApiRequest restApiRequest;
 
         ArrayList selectedProductList;
         ArrayList products;
@@ -27,6 +28,7 @@ namespace Assignment1_FarmersMarketApp
 
             InitializeComponent();
             apiRequest = new ApiRequest();
+            restApiRequest = new RestApiRequest();
             InitializeGridView();
             PopulateSelectionComboBox();
         }
@@ -276,7 +278,7 @@ namespace Assignment1_FarmersMarketApp
         {
             try
             {
-                List<Product> productList = apiRequest.getAvailableProductsAPI();
+                List<Product> productList = await restApiRequest.getAllProducts();
 
                 List<string> productNames = new List<string>();
 
