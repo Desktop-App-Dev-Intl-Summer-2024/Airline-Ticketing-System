@@ -270,5 +270,56 @@ namespace Assignment2.Models
 
             return response;
         }
+
+        //UPDATE DB WITH PURCHASE CONFIRMATION
+        public Response UpdateDbWithPurchase(SqlConnection con, ArrayList selectedProducts)
+        {
+            Response response = new Response();
+
+            try
+            {
+                con.Open();
+
+                string query = "update A1Products set amount= (case ";
+
+                for (int index = 0; index < selectedProducts.Count; index++)
+                {
+                    SelectedProduct product = selectedProducts[index] as SelectedProduct;
+
+                    query += "when id=" + product.getId() + " then " + product.getRemaingAmount() + " ";
+                }
+
+                query += "else amount end);";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                int i = cmd.ExecuteNonQuery();
+
+                if (i > 0)
+                {
+                    response.statusCode = 200;
+                    response.statusMessage = "Product deleted successfully!";
+                    response.product = null;
+                    response.products = null;
+                }
+                else
+                {
+                    response.statusCode = 100;
+                    response.statusMessage = "Product couldn't be deleted.";
+                    response.product = null;
+                    response.products = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                response.statusMessage = ex.Message;
+            }
+
+            con.Close();
+
+            return response;
+
+        }
     }
 }
