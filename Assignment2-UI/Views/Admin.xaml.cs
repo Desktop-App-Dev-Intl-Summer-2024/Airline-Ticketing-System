@@ -23,12 +23,14 @@ namespace Assignment1_FarmersMarketApp
     public partial class Admin : Window
     {
         private ApiRequest apiRequest;
+        private RestApiRequest restApiRequest;
         private DataTable productsTable;
 
         public Admin()
         {
             InitializeComponent();
             apiRequest = new ApiRequest();
+            restApiRequest = new RestApiRequest();
             InitializeGridView();
             RefreshGridView();
         }
@@ -65,7 +67,7 @@ namespace Assignment1_FarmersMarketApp
                 Product product = new Product(name, id, amount, price);
 
                 // post to DB
-                int status = apiRequest.postProductApi(product);
+                int status = await restApiRequest.postProductApi(product);
                 // if success clear the input fields, success message
                 // refresh/reload DisplayGrid
                 if (status == 1)
@@ -87,7 +89,7 @@ namespace Assignment1_FarmersMarketApp
                 string name = ProductNameTbx.Text.Trim();
                 int id = ProductIdTbx.Text.Trim() != String.Empty ? int.Parse(ProductIdTbx.Text) : -1;
 
-                Product foundProduct = apiRequest.getProductApi(id, name);
+                Product foundProduct = await restApiRequest.getProduct(id);
 
                 if (foundProduct != null)
                 {
@@ -116,7 +118,7 @@ namespace Assignment1_FarmersMarketApp
 
                 Product product = new Product(name, id, amount, price);
 
-                int status = apiRequest.putProductApi(product);
+                int status = await restApiRequest.putProductApi(product);
 
                 if (status == 1)
                 {
@@ -135,7 +137,7 @@ namespace Assignment1_FarmersMarketApp
             {
                 int id = int.Parse(ProductIdTbx.Text);
 
-                int status = apiRequest.deleteProductApi(id);
+                int status = await restApiRequest.deleteProductApi(id);
 
                 if (status == 1)
                 {
@@ -172,7 +174,7 @@ namespace Assignment1_FarmersMarketApp
         private async void RefreshGridView() {
             productsTable.Clear();
 
-            List<Product> productList = apiRequest.getAvailableProductsAPI();
+            List<Product> productList = await restApiRequest.getAllProducts();
 
             foreach (Product product in productList)
             {
