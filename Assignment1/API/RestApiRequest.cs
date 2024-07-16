@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Windows;
+using System.Collections;
 
 namespace Assignment1_FarmersMarketApp.API
 {
@@ -44,13 +45,13 @@ namespace Assignment1_FarmersMarketApp.API
         }
 
         //GET INDIVIDUAL PRODUCT
-        public async Task<Product> getProduct()
+        public async Task<Product> getProduct(int id)
         {
             Product product = null;
 
             try
             {
-                HttpResponseMessage rawResponse = await httpClient.GetAsync("GetProduct");
+                HttpResponseMessage rawResponse = await httpClient.GetAsync("GetProduct/" + id);
                 Response response = await getResponse(rawResponse);
 
                 product = response.product;
@@ -114,16 +115,14 @@ namespace Assignment1_FarmersMarketApp.API
         }
 
         //DELETE PRODUCT
-        public async Task<int> deleteProductApi(Product product)
+        public async Task<int> deleteProductApi(int id)
         {
             int status = 0;
 
             try
             {
-                StringContent jsonContent = getJsonContent(product);
-
-                HttpResponseMessage rawResponse = await httpClient.PutAsync(
-                    "DeleteProduct/" + product.id, jsonContent);
+                HttpResponseMessage rawResponse = await httpClient.DeleteAsync(
+                    "DeleteProduct/" + id);
                 Response response = await getResponse(rawResponse);
 
                 MessageBox.Show(response.statusMessage);
@@ -140,6 +139,12 @@ namespace Assignment1_FarmersMarketApp.API
 
             return status;
         }
+
+        //UPDATE DB WITH PURCHASE
+        /*public async Task<int> updateDbWithPurchase(ArrayList selectedProducts)
+        {
+
+        }*/
 
         private StringContent getJsonContent(Product product)
         {

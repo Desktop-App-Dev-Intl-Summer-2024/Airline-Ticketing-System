@@ -59,16 +59,16 @@ namespace Assignment2.Controllers
 
         //GET INDIVIDUAL PRODUCT
         [HttpGet]
-        [Route("GetProduct")]
+        [Route("GetProduct/{id}")]
 
-        public Response GetProduct(int id, string name)
+        public Response GetProduct(int id)
         {
-            return app.GetProduct(con, id, name);
+            return app.GetProduct(con, id);
         }
 
         //DELETE PRODUCT
         [HttpDelete]
-        [Route("DeleteProduct")]
+        [Route("DeleteProduct/{id}")]
 
         public Response DeleteProduct(int id)
         {

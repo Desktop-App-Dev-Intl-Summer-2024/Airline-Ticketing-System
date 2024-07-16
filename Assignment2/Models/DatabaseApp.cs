@@ -52,10 +52,10 @@ namespace Assignment2.Models
         }
 
         //GET PRODUCT (INDIVIDUAL)
-        public Response GetProduct(SqlConnection con, int id, string name)
+        public Response GetProduct(SqlConnection con, int id)
         {
             Response response = new Response();
-            Product product = new Product();
+            Product product = null;
 
             try
             {
@@ -66,10 +66,6 @@ namespace Assignment2.Models
                 if (id > 0)
                 {
                     query = "select * from A1Products where id=@id";
-                }
-                else if (name != string.Empty)
-                {
-                    query = "select * from A1Products where name like @name";
                 }
                 else
                 {
@@ -82,22 +78,20 @@ namespace Assignment2.Models
                 {
                    command.Parameters.AddWithValue("@id", id);
                 }
-                else
-                {
-                    command.Parameters.AddWithValue("@name", "%" + name + "%");
-                }
 
                 SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read())
+                if (reader.Read())
                 {
                     int productId = (int)reader["id"];
                     string productName = (string)reader["name"];
                     double amount = Convert.ToDouble(reader["amount"]);
                     double price = Convert.ToDouble(reader["price"]);
 
-                    product.id = id;
-                    product.name = name;
+                    product = new Product();
+
+                    product.id = productId;
+                    product.name = productName;
                     product.amount = amount;
                     product.price = price;
                 }
@@ -272,7 +266,7 @@ namespace Assignment2.Models
         }
 
         //UPDATE DB WITH PURCHASE CONFIRMATION
-        public Response UpdateDbWithPurchase(SqlConnection con, ArrayList selectedProducts)
+        /*public Response UpdateDbWithPurchase(SqlConnection con, ArrayList selectedProducts)
         {
             Response response = new Response();
 
@@ -320,6 +314,6 @@ namespace Assignment2.Models
 
             return response;
 
-        }
+        }*/
     }
 }

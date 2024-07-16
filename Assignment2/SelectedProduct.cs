@@ -8,7 +8,7 @@ using System.Transactions;
 
 namespace Assignment1_FarmersMarketApp.Models
 {
-    internal class SelectedProduct : Product
+    public class SelectedProduct : Product
     {
         private double amountSelected;
 
@@ -32,7 +32,7 @@ namespace Assignment1_FarmersMarketApp.Models
         {
             double subTotal = 0.0;
 
-            subTotal = amountSelected * getPrice();
+            subTotal = amountSelected * price;
 
             return Math.Round(subTotal * 100) / 100.0;
         }
@@ -41,10 +41,10 @@ namespace Assignment1_FarmersMarketApp.Models
         {
             double totalCart = 0.0;
 
-            for (int i = 0; i >= products.Count; i++)
+            for (int i = 0; i < products.Count; i++)
             {
                 double qty = products[i].getAmountSelected();
-                double price = products[i].getPrice();
+                double price = products[i].price;
                 totalCart += qty * price;
             }
 
@@ -53,7 +53,7 @@ namespace Assignment1_FarmersMarketApp.Models
 
         public double getRemaingAmount()
         {
-            return Math.Round((getAmount() - amountSelected) * 10) / 10.0;
+            return Math.Round((amount - amountSelected) * 10) / 10.0;
         }
     }
 }

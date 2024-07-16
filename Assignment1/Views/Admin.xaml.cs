@@ -89,7 +89,7 @@ namespace Assignment1_FarmersMarketApp
                 string name = ProductNameTbx.Text.Trim();
                 int id = ProductIdTbx.Text.Trim() != String.Empty ? int.Parse(ProductIdTbx.Text) : -1;
 
-                Product foundProduct = await restApiRequest.getProduct();
+                Product foundProduct = await restApiRequest.getProduct(id);
 
                 if (foundProduct != null)
                 {
@@ -135,14 +135,9 @@ namespace Assignment1_FarmersMarketApp
         {
             try
             {
-                string name = ProductNameTbx.Text;
                 int id = int.Parse(ProductIdTbx.Text);
-                double amount = double.Parse(ProductAmountTbx.Text);
-                double price = double.Parse(ProductPriceTbx.Text);
 
-                Product product = new Product(name, id, amount, price);
-
-                int status = await restApiRequest.deleteProductApi(product);
+                int status = await restApiRequest.deleteProductApi(id);
 
                 if (status == 1)
                 {
