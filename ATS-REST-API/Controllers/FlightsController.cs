@@ -44,5 +44,13 @@ namespace ATS_REST_API.Controllers
         public Response GetFlightsByFilter(FlightsFilter filter) {
             return db.GetFlightsByFilter(con, filter);
         }
+
+        [HttpGet]
+        [Route("GetOriginAndDestination")]
+
+        public Response GetOriginAndDestination()
+        {
+            return db.GetOriginAndDestination(con);
+        }
     }
 }

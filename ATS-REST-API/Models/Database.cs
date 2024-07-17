@@ -22,7 +22,7 @@ namespace ATS_REST_API.Models
                 {
                     int flightNo = (int)reader["flightNo"];
                     string airline = (string)reader["airline"];
-                    string departureDate = Convert.ToString(reader["departureDate"]);
+                    string departureDate = Convert.ToDateTime(reader["departureDate"]).ToString("yyyy-MM-dd");
                     string departureTime = Convert.ToString(reader["departureTime"]);
                     int pilotCode = (int)reader["pilotCode"];
                     int crewCode = (int)reader["crewCode"];
@@ -136,7 +136,7 @@ namespace ATS_REST_API.Models
                 {
                     int flightNo = (int)reader["flightNo"];
                     string airline = (string)reader["airline"];
-                    string departureDate = Convert.ToString(reader["departureDate"]);
+                    string departureDate = Convert.ToDateTime(reader["departureDate"]).ToString("yyyy-MM-dd");
                     string departureTime = Convert.ToString(reader["departureTime"]);
                     int pilotCode = (int)reader["pilotCode"];
                     int crewCode = (int)reader["crewCode"];
@@ -182,6 +182,67 @@ namespace ATS_REST_API.Models
                     response.statusMessage = "No flights found!";
                     response.flights = flights;
                     response.flight = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                response.statusCode = 100;
+                response.statusMessage = ex.Message;
+            }
+
+            con.Close();
+
+            return response;
+        }
+
+        public Response GetOriginAndDestination(SqlConnection con)
+        {
+            Response response = new Response();
+            Places places = new Places();
+
+            try
+            {
+                con.Open();
+
+                string queryOrigin = "SELECT DISTINCT origin FROM Flights";
+                SqlCommand sqlCommand = new SqlCommand(queryOrigin, con);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string origin = (string)reader["origin"];
+
+                    places.origins.Add(origin);
+                }
+
+                reader.Close();
+
+                string queryDestination = "SELECT DISTINCT destination FROM Flights";
+                sqlCommand = new SqlCommand(queryDestination, con);
+                reader = sqlCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string destination = (string)reader["destination"];
+
+                    places.destinations.Add(destination);
+                }
+
+                
+
+                if (places.origins.Count + places.destinations.Count > 0)
+                {
+                    response.statusCode = 200;
+                    response.statusMessage = "Places retrieved successfully!";
+                    response.places = places;
+                }
+                else
+                {
+                    response.statusCode = 100;
+                    response.statusMessage = "No Places found!";
+                    response.places = null;
                 }
             }
             catch (Exception ex)

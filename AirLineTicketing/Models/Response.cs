@@ -1,4 +1,4 @@
-﻿namespace ATS_REST_API.Models
+﻿namespace AirLineTicketing.Models
 {
     public class Response
     {

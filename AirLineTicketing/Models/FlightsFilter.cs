@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirLineTicketing.Models
 {
-    public class FlightsQuery
+    public class FlightsFilter
     {
         public string trip {  get; set; }
         public List<string> passenger { get; set; }

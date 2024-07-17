@@ -1,4 +1,5 @@
 ﻿using AirLineTicketing.Models;
+using AirLineTicketing.Network;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,19 +19,23 @@ namespace AirLineTicketing
     public partial class MainWindow : Window
     {
         public static bool isloggedIn = false;
-        public FlightsQuery flightsQuery;
+        public FlightsFilter flightsFilter;
         public List<CheckboxItem> passangerComboBoxItems;
         public List<CheckboxItem> baggageComboBoxtems;
         public Places places;
 
+        private Request request;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            flightsFilter = new FlightsFilter();
+            request = new Request();
+
             InitializeBaggageComboBox();
             InitializePassangerComboBox();
             InitializeOriginDestinationComboBox();
-
-            flightsQuery = new FlightsQuery();
 
             setLogButtonText();
         }
@@ -59,7 +64,7 @@ namespace AirLineTicketing
             }
         }
 
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        private async void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             string trip = tripCmbx.Text.ToLower();
             List<string> passenger = GetSelectedItemsList(passangerComboBoxItems);
@@ -69,18 +74,18 @@ namespace AirLineTicketing
             string destination = destinationCmbx.Text.ToLower();
             string date = flightDatePckr.Text;
 
-            FlightsQuery queryObject = new FlightsQuery();
+            FlightsFilter filter = new FlightsFilter();
 
-            queryObject.trip = trip;
-            queryObject.passenger = passenger;
-            queryObject.seatClass = seatClass;
-            queryObject.baggage = baggage;
-            queryObject.origin = origin;
-            queryObject.destination = destination;
-            queryObject.date = date;
+            filter.trip = trip;
+            filter.passenger = passenger;
+            filter.seatClass = seatClass;
+            filter.baggage = baggage;
+            filter.origin = origin;
+            filter.destination = destination;
+            filter.date = date;
 
-            // query the database for eligible flights
-            // Display flights from DB after quering
+            List<Flight> availableFlights = await request.getFlightsByFilter(filter);
+            DisplayGrid.ItemsSource = availableFlights;
         }
 
         private void InitializeBaggageComboBox()
@@ -88,8 +93,8 @@ namespace AirLineTicketing
             baggageComboBoxtems = new List<CheckboxItem>
             {
                 new CheckboxItem { Name = "Baggage", IsSelected = true },
-                new CheckboxItem { Name = "Carry-on bag", IsSelected = true },
-                new CheckboxItem { Name = "Check-in bag", IsSelected = false },
+                new CheckboxItem { Name = "Carry-on", IsSelected = true },
+                new CheckboxItem { Name = "Check-in", IsSelected = false },
             };
 
             baggageCmbx.ItemsSource = baggageComboBoxtems;
@@ -113,23 +118,21 @@ namespace AirLineTicketing
             {
                 new CheckboxItem { Name = "Passengers", IsSelected = true },
                 new CheckboxItem { Name = "Adults", IsSelected = true },
-                new CheckboxItem { Name = "Students(18+)", IsSelected = false },
-                new CheckboxItem { Name = "Youths(12-17)", IsSelected = false },
+                new CheckboxItem { Name = "Students", IsSelected = false },
+                new CheckboxItem { Name = "Youths", IsSelected = false },
                 new CheckboxItem { Name = "Children", IsSelected = false },
-                new CheckboxItem { Name = "Toddler with own seat", IsSelected = false },
-                new CheckboxItem { Name = "Infants on lap", IsSelected = false },
+                new CheckboxItem { Name = "Toddler", IsSelected = false },
+                new CheckboxItem { Name = "Infants", IsSelected = false },
             };
 
             passengerTypeCmbx.ItemsSource = passangerComboBoxItems;
         }
 
-        private void InitializeOriginDestinationComboBox() { 
-            // to be done through API calls
-            List<string> origins = new List<string> { "Montreal", "Trivandrum", "Interlaken"};
-            List<string> destinations = new List<string> { "California", "New Delhi", "Paris", "Stockholm", "Trivandrum", "Montreal" };
+        private async void InitializeOriginDestinationComboBox() {
+            Places places = await request.getAllPlaces();
 
-            originCmbx.ItemsSource = origins;
-            destinationCmbx.ItemsSource = destinations;
+            originCmbx.ItemsSource = places.origins;
+            destinationCmbx.ItemsSource = places.destinations;
         }
 
         private void passengerTypeCmbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -140,6 +143,12 @@ namespace AirLineTicketing
         private void baggageCmbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             baggageCmbx.SelectedIndex = 0;
+        }
+
+        private async void ShowAllFlightsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            List<Flight> allFlights = await request.getAllFlights();
+            DisplayGrid.ItemsSource = allFlights;
         }
     }
 }
