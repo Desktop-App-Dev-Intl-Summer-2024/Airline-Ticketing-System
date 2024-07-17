@@ -37,5 +37,12 @@ namespace ATS_REST_API.Controllers
         {
             return db.GetAllFlights(con);
         }
+
+        [HttpPost]
+        [Route("GetFlightsByFilter")]
+
+        public Response GetFlightsByFilter(FlightsFilter filter) {
+            return db.GetFlightsByFilter(con, filter);
+        }
     }
 }
