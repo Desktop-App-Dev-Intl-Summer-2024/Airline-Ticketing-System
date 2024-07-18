@@ -18,6 +18,7 @@ namespace Assignment1_FarmersMarketApp.API
     {
         HttpClient httpClient;
 
+        //CONSTRUCTOR
         public RestApiRequest() {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:7238/api/Product/");
@@ -146,12 +147,14 @@ namespace Assignment1_FarmersMarketApp.API
 
         }*/
 
+        //JSONCONTENT GETTER
         private StringContent getJsonContent(Product product)
         {
             string json = JsonConvert.SerializeObject(product);
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
 
+        //RESPONSE GETTER
         private async Task<Response> getResponse(HttpResponseMessage httpResponseMessage) {
             string jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Response>(jsonResponse);

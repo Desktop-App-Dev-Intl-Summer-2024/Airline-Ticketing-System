@@ -26,6 +26,7 @@ namespace Assignment1_FarmersMarketApp
         private RestApiRequest restApiRequest;
         private DataTable productsTable;
 
+        //CONSTRUCTOR
         public Admin()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace Assignment1_FarmersMarketApp
             RefreshGridView();
         }
 
+        //CLEAR TEXT BOXES ON CLICK INTO BOX
         private void ProductIdTbx_GotFocus(object sender, RoutedEventArgs e)
         {
             ProductIdTbx.Text = "";
@@ -55,6 +57,7 @@ namespace Assignment1_FarmersMarketApp
             ProductPriceTbx.Text = "";
         }
 
+        //ADD PRODUCT TO DB BUTTON CLICK
         private async void AddProductBtn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -107,6 +110,7 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
+        //UPDATE PRODUCT IN DB BUTTON CLICK
         private async void UpdateProductBtn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -131,6 +135,7 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
+        //DELETE PRODUCT FROM DB BUTTON CLICK
         private async void DeleteProductBtn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -151,6 +156,7 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
+        //SET UP GRID VIEW
         private void InitializeGridView() {
             productsTable = new DataTable("table");
 
@@ -171,6 +177,7 @@ namespace Assignment1_FarmersMarketApp
             DisplayProductsGrd.ItemsSource = productsTable.AsDataView();
         }
 
+        //UPDATE GRID VIEW
         private async void RefreshGridView() {
             productsTable.Clear();
 
@@ -190,6 +197,7 @@ namespace Assignment1_FarmersMarketApp
             }
         }
 
+        //CLEAR TEXT BOXES
         private void ClearInputs() { 
             ProductIdTbx.Text = string.Empty;
             ProductNameTbx.Text = string.Empty;
@@ -197,6 +205,7 @@ namespace Assignment1_FarmersMarketApp
             ProductPriceTbx.Text = string.Empty;
         }
 
+        //REFRESH GRID VIEW BUTTON CLICK
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ClearInputs();

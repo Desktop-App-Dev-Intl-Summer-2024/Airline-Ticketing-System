@@ -21,11 +21,13 @@ namespace Assignment1_FarmersMarketApp
             InitializeComponent();
         }
 
+        //CUSTOMER BUTTON: ENTER SALES MODULE
         private async void customerEnterBtn_Click(object sender, RoutedEventArgs e)
         {
             new Sales().Show();
         }
 
+        //ADMIN BUTTON: ENTER ADMIN MODULE
         private void adminEnterBtn_Click(object sender, RoutedEventArgs e)
         {
             new Admin().Show();

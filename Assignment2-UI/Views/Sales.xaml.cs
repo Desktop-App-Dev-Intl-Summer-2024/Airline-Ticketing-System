@@ -21,6 +21,7 @@ namespace Assignment1_FarmersMarketApp
 
         DataTable selectedProductsTable;
 
+        //CONSTRUCTOR
         public Sales()
         {
             selectedProductList = new ArrayList();
@@ -350,17 +351,20 @@ namespace Assignment1_FarmersMarketApp
             productComboBox.SelectedIndex = -1;
         }
 
+        //UPDATE SUBTOTAL ON QTY UPDATE
         private void qtySelectedTxt_LostFocus(object sender, RoutedEventArgs e)
         {
             GetSubtotal();
         }
 
+        //UPDATE SUBTOTAL ON KEY RELEASE
         private void qtySelectedTxt_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             GetSubtotal();
 
         }
 
+        //SET UP GRID VIEW
         private void InitializeGridView() {
             selectedProductsTable = new DataTable("table");
 
@@ -381,6 +385,7 @@ namespace Assignment1_FarmersMarketApp
             selectedProductGrid.ItemsSource = new DataView(selectedProductsTable);
         }
 
+        //UPDATE GRID VIEW
         private void RefreshGridView() {
             selectedProductsTable.Clear();
 

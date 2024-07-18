@@ -13,6 +13,7 @@ namespace Assignment1_FarmersMarketApp.Models
         public double amount;
         public double price;
 
+        //DEFAULT CONSTRUCTOR
         public Product()
         {
             name = "";
@@ -21,6 +22,7 @@ namespace Assignment1_FarmersMarketApp.Models
             price = 0.0;
         }
 
+        //CONSTRUCTOR WITH PARAMETERS
         public Product(string name, int id, double amount, double price)
         {
             this.name = name;
@@ -29,6 +31,7 @@ namespace Assignment1_FarmersMarketApp.Models
             this.price = price;
         }
 
+        //GETTERS AND SETTERS
         public string getName()
         {
             return name;

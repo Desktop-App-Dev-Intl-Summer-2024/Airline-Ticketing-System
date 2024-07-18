@@ -8,7 +8,7 @@ namespace Assignment2.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-
+        //SET UP
         private static String server_env_var_name = "DEV_AIRLINE_TICKETING_APP_SERVER";
         private static String local_server_name = Environment.GetEnvironmentVariable(server_env_var_name);
 
@@ -16,6 +16,7 @@ namespace Assignment2.Controllers
         private SqlConnection con;
         private DatabaseApp app;
 
+        //CONSTRUCTOR
         public ProductController(IConfiguration configuration)
         {
             this._configuration = configuration;
