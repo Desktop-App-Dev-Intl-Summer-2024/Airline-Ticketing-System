@@ -142,10 +142,36 @@ namespace Assignment1_FarmersMarketApp.API
         }
 
         //UPDATE DB WITH PURCHASE
-        /*public async Task<int> updateDbWithPurchase(ArrayList selectedProducts)
+        public async Task<int> updateDbWithPurchase(ArrayList selectedProducts)
         {
+            int status = 0;
 
-        }*/
+            try
+            {
+                for (int index = 0; index < selectedProducts.Count; index++)
+                {
+                    SelectedProduct product = selectedProducts[index] as SelectedProduct;
+                    StringContent jsonContent = getJsonContent(product);
+
+                    HttpResponseMessage rawResponse = await httpClient.PutAsync(
+                        "UpdateDbWithPurchase/", jsonContent);
+                    Response response = await getResponse(rawResponse);
+
+                    MessageBox.Show(response.statusMessage);
+
+                    if (response.statusCode == 200)
+                    {
+                        status = 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return status;
+        }
 
         //JSONCONTENT GETTER
         private StringContent getJsonContent(Product product)

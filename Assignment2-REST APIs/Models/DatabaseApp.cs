@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Microsoft.Data.SqlClient;
 using System.Collections;
+using Assignment1_FarmersMarketApp.Models;
 namespace Assignment2.Models
 {
     public class DatabaseApp
@@ -120,7 +121,6 @@ namespace Assignment2.Models
             return response;
         }
     
-        
         //UPDATE PRODUCT BY ID
         public Response UpdateProductById(SqlConnection con, int id, Product product)
         {
@@ -266,9 +266,10 @@ namespace Assignment2.Models
         }
 
         //UPDATE DB WITH PURCHASE CONFIRMATION
-        /*public Response UpdateDbWithPurchase(SqlConnection con, ArrayList selectedProducts)
+        public Response UpdateDbWithPurchase(SqlConnection con, ArrayList selectedProducts)
         {
             Response response = new Response();
+            //SelectedProduct selectedProduct = null;
 
             try
             {
@@ -278,9 +279,9 @@ namespace Assignment2.Models
 
                 for (int index = 0; index < selectedProducts.Count; index++)
                 {
-                    SelectedProduct product = selectedProducts[index] as SelectedProduct;
+                    SelectedProduct selectedProduct = selectedProducts[index] as SelectedProduct;
 
-                    query += "when id=" + product.getId() + " then " + product.getRemaingAmount() + " ";
+                    query += "when id=" + selectedProduct.id + " then " + selectedProduct.getRemaingAmount() + " ";
                 }
 
                 query += "else amount end);";
@@ -292,14 +293,14 @@ namespace Assignment2.Models
                 if (i > 0)
                 {
                     response.statusCode = 200;
-                    response.statusMessage = "Product deleted successfully!";
+                    response.statusMessage = "Purchase confirmed! See email for billing.";
                     response.product = null;
                     response.products = null;
                 }
                 else
                 {
                     response.statusCode = 100;
-                    response.statusMessage = "Product couldn't be deleted.";
+                    response.statusMessage = "Error with purchase confirmation.";
                     response.product = null;
                     response.products = null;
                 }
@@ -314,6 +315,6 @@ namespace Assignment2.Models
 
             return response;
 
-        }*/
+        }
     }
 }

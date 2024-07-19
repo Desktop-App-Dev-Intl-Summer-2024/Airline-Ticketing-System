@@ -1,6 +1,7 @@
 ﻿using Assignment2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using System.Collections;
 
 namespace Assignment2.Controllers
 {
@@ -75,5 +76,16 @@ namespace Assignment2.Controllers
         {
             return app.DeleteProduct(con, id);
         }
+
+        //CONFIRM PURCHASE: UPDATE DB
+        [HttpPut]
+        [Route("UpdateDbWithPurchase")]
+
+        public Response UpdateDbWithPurchase(ArrayList selectedProducts)
+        {
+            return app.UpdateDbWithPurchase(con, selectedProducts);
+        }
     }
+
+
 }

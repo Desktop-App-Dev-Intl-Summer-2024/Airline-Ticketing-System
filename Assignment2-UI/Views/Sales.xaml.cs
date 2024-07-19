@@ -253,11 +253,11 @@ namespace Assignment1_FarmersMarketApp
         }
         
         //CONFIRM FOR PURCHASE BUTTON CLICK - UPDATE DB
-        private void purchaseBtn_Click(object sender, RoutedEventArgs e)
+        private async void purchaseBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int status = apiRequest.UpdateDatabaseWithPurchaseAPI(selectedProductList);
+                int status = await restApiRequest.updateDbWithPurchase(selectedProductList);
 
                 if (status > 0)
                 {
