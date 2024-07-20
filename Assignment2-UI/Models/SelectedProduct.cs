@@ -8,9 +8,9 @@ using System.Transactions;
 
 namespace Assignment1_FarmersMarketApp.Models
 {
-    internal class SelectedProduct : Product
+    public class SelectedProduct : Product
     {
-        private double amountSelected;
+        public double amountSelected { get; set; }
 
         //DEFAULT CONSTRUCTOR
         public SelectedProduct() : base()

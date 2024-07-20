@@ -1,14 +1,9 @@
 ﻿using Assignment1_FarmersMarketApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Windows;
 using System.Collections;
 
@@ -148,21 +143,17 @@ namespace Assignment1_FarmersMarketApp.API
 
             try
             {
-                for (int index = 0; index < selectedProducts.Count; index++)
+                StringContent jsonContent = getJsonContent(selectedProducts);
+
+                HttpResponseMessage rawResponse = await httpClient.PutAsync(
+                    "UpdateDbWithPurchase/", jsonContent);
+                Response response = await getResponse(rawResponse);
+
+                MessageBox.Show(response.statusMessage);
+
+                if (response.statusCode == 200)
                 {
-                    SelectedProduct product = selectedProducts[index] as SelectedProduct;
-                    StringContent jsonContent = getJsonContent(product);
-
-                    HttpResponseMessage rawResponse = await httpClient.PutAsync(
-                        "UpdateDbWithPurchase/", jsonContent);
-                    Response response = await getResponse(rawResponse);
-
-                    MessageBox.Show(response.statusMessage);
-
-                    if (response.statusCode == 200)
-                    {
-                        status = 1;
-                    }
+                    status = 1;
                 }
             }
             catch (Exception ex)
@@ -174,9 +165,9 @@ namespace Assignment1_FarmersMarketApp.API
         }
 
         //JSONCONTENT GETTER
-        private StringContent getJsonContent(Product product)
+        private StringContent getJsonContent(object body)
         {
-            string json = JsonConvert.SerializeObject(product);
+            string json = JsonConvert.SerializeObject(body);
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
 

@@ -261,21 +261,23 @@ namespace Assignment1_FarmersMarketApp
 
                 if (status > 0)
                 {
-                    PopulateSelectionComboBox();
-                    ClearSelection();
+
                     selectedProductList.Clear();
+                    products.Clear();
+                    await PopulateSelectionComboBox();
+                    ClearSelection();
                     UpdateCartTotal();
                     RefreshGridView();
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
         //METHOD TO FILL COMBO BOX WITH AVAILABLE PRODUCT OBJECTS
-        public async void PopulateSelectionComboBox()
+        public async Task PopulateSelectionComboBox()
         {
             try
             {

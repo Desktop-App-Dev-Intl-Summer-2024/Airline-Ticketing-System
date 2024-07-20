@@ -276,7 +276,7 @@ namespace Assignment2.Models
 
                 for (int index = 0; index < selectedProducts.Count; index++)
                 {
-                    SelectedProduct selectedProduct = selectedProducts[index] as SelectedProduct;
+                    SelectedProduct selectedProduct = selectedProducts[index];
 
                     query += "when id=" + selectedProduct.id + " then " + selectedProduct.getRemaingAmount() + " ";
                 }
