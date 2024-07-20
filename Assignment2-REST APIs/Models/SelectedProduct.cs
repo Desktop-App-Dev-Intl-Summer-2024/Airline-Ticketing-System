@@ -1,22 +1,23 @@
-﻿using Assignment2.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Assignment1_FarmersMarketApp.Models
+namespace Assignment2.Models
 {
     public class SelectedProduct : Product
     {
-        private double amountSelected;
+        public double amountSelected { get; set; }
 
+        //CONSTRUCTOR
         public SelectedProduct(string name, int id, double amount, double price, double amountSelected) : base(name, id, amount, price)
         {
             this.amountSelected = amountSelected;
         }
 
+        //GETTER/SETTER
         public double getAmountSelected()
         {
             return amountSelected;
@@ -27,7 +28,7 @@ namespace Assignment1_FarmersMarketApp.Models
             this.amountSelected = amountSelected;
         }
 
-
+        //RETURN ITEM SUBTOTAL
         public double getSubTotal()
         {
             double subTotal = 0.0;
@@ -37,6 +38,7 @@ namespace Assignment1_FarmersMarketApp.Models
             return Math.Round(subTotal * 100) / 100.0;
         }
 
+        //RETURN CART TOTAL
         public double calculateTotalCart(List<SelectedProduct> products)
         {
             double totalCart = 0.0;
@@ -51,6 +53,7 @@ namespace Assignment1_FarmersMarketApp.Models
             return totalCart;
         }
 
+        //RETURN REMAINING AMOUNT OF ITEM
         public double getRemaingAmount()
         {
             return Math.Round((amount - amountSelected) * 10) / 10.0;

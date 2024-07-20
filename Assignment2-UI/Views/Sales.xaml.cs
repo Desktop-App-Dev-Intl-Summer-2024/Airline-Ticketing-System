@@ -21,6 +21,7 @@ namespace Assignment1_FarmersMarketApp
 
         DataTable selectedProductsTable;
 
+        //CONSTRUCTOR
         public Sales()
         {
             selectedProductList = new ArrayList();
@@ -252,29 +253,31 @@ namespace Assignment1_FarmersMarketApp
         }
         
         //CONFIRM FOR PURCHASE BUTTON CLICK - UPDATE DB
-        private void purchaseBtn_Click(object sender, RoutedEventArgs e)
+        private async void purchaseBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int status = apiRequest.UpdateDatabaseWithPurchaseAPI(selectedProductList);
+                int status = await restApiRequest.updateDbWithPurchase(selectedProductList);
 
                 if (status > 0)
                 {
-                    PopulateSelectionComboBox();
-                    ClearSelection();
+
                     selectedProductList.Clear();
+                    products.Clear();
+                    await PopulateSelectionComboBox();
+                    ClearSelection();
                     UpdateCartTotal();
                     RefreshGridView();
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
         //METHOD TO FILL COMBO BOX WITH AVAILABLE PRODUCT OBJECTS
-        public async void PopulateSelectionComboBox()
+        public async Task PopulateSelectionComboBox()
         {
             try
             {
@@ -350,17 +353,20 @@ namespace Assignment1_FarmersMarketApp
             productComboBox.SelectedIndex = -1;
         }
 
+        //UPDATE SUBTOTAL ON QTY UPDATE
         private void qtySelectedTxt_LostFocus(object sender, RoutedEventArgs e)
         {
             GetSubtotal();
         }
 
+        //UPDATE SUBTOTAL ON KEY RELEASE
         private void qtySelectedTxt_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             GetSubtotal();
 
         }
 
+        //SET UP GRID VIEW
         private void InitializeGridView() {
             selectedProductsTable = new DataTable("table");
 
@@ -381,6 +387,7 @@ namespace Assignment1_FarmersMarketApp
             selectedProductGrid.ItemsSource = new DataView(selectedProductsTable);
         }
 
+        //UPDATE GRID VIEW
         private void RefreshGridView() {
             selectedProductsTable.Clear();
 

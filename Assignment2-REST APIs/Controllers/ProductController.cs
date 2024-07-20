@@ -1,6 +1,7 @@
 ﻿using Assignment2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using System.Collections;
 
 namespace Assignment2.Controllers
 {
@@ -8,7 +9,7 @@ namespace Assignment2.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-
+        //SET UP
         private static String server_env_var_name = "DEV_AIRLINE_TICKETING_APP_SERVER";
         private static String local_server_name = Environment.GetEnvironmentVariable(server_env_var_name);
 
@@ -16,6 +17,7 @@ namespace Assignment2.Controllers
         private SqlConnection con;
         private DatabaseApp app;
 
+        //CONSTRUCTOR
         public ProductController(IConfiguration configuration)
         {
             this._configuration = configuration;
@@ -74,5 +76,16 @@ namespace Assignment2.Controllers
         {
             return app.DeleteProduct(con, id);
         }
+
+        //CONFIRM PURCHASE: UPDATE DB
+        [HttpPut]
+        [Route("UpdateDbWithPurchase")]
+
+        public Response UpdateDbWithPurchase(List<SelectedProduct> selectedProducts)
+        {
+            return app.UpdateDbWithPurchase(con, selectedProducts);
+        }
     }
+
+
 }

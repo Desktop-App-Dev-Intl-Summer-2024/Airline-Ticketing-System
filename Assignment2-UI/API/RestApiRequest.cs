@@ -1,14 +1,9 @@
 ﻿using Assignment1_FarmersMarketApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Windows;
 using System.Collections;
 
@@ -18,6 +13,7 @@ namespace Assignment1_FarmersMarketApp.API
     {
         HttpClient httpClient;
 
+        //CONSTRUCTOR
         public RestApiRequest() {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:7238/api/Product/");
@@ -141,17 +137,41 @@ namespace Assignment1_FarmersMarketApp.API
         }
 
         //UPDATE DB WITH PURCHASE
-        /*public async Task<int> updateDbWithPurchase(ArrayList selectedProducts)
+        public async Task<int> updateDbWithPurchase(ArrayList selectedProducts)
         {
+            int status = 0;
 
-        }*/
+            try
+            {
+                StringContent jsonContent = getJsonContent(selectedProducts);
 
-        private StringContent getJsonContent(Product product)
+                HttpResponseMessage rawResponse = await httpClient.PutAsync(
+                    "UpdateDbWithPurchase/", jsonContent);
+                Response response = await getResponse(rawResponse);
+
+                MessageBox.Show(response.statusMessage);
+
+                if (response.statusCode == 200)
+                {
+                    status = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return status;
+        }
+
+        //JSONCONTENT GETTER
+        private StringContent getJsonContent(object body)
         {
-            string json = JsonConvert.SerializeObject(product);
+            string json = JsonConvert.SerializeObject(body);
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
 
+        //RESPONSE GETTER
         private async Task<Response> getResponse(HttpResponseMessage httpResponseMessage) {
             string jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Response>(jsonResponse);
