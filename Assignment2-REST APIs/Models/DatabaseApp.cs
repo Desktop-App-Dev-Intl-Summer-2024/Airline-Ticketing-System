@@ -1,7 +1,5 @@
-﻿using System.Windows;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Collections;
-using Assignment1_FarmersMarketApp.Models;
 namespace Assignment2.Models
 {
     public class DatabaseApp
@@ -266,10 +264,9 @@ namespace Assignment2.Models
         }
 
         //UPDATE DB WITH PURCHASE CONFIRMATION
-        public Response UpdateDbWithPurchase(SqlConnection con, ArrayList selectedProducts)
+        public Response UpdateDbWithPurchase(SqlConnection con, List<SelectedProduct> selectedProducts)
         {
             Response response = new Response();
-            //SelectedProduct selectedProduct = null;
 
             try
             {

@@ -81,7 +81,7 @@ namespace Assignment2.Controllers
         [HttpPut]
         [Route("UpdateDbWithPurchase")]
 
-        public Response UpdateDbWithPurchase(ArrayList selectedProducts)
+        public Response UpdateDbWithPurchase(List<SelectedProduct> selectedProducts)
         {
             return app.UpdateDbWithPurchase(con, selectedProducts);
         }

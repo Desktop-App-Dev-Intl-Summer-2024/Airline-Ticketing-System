@@ -1,16 +1,15 @@
-﻿using Assignment2.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Assignment1_FarmersMarketApp.Models
+namespace Assignment2.Models
 {
     public class SelectedProduct : Product
     {
-        private double amountSelected;
+        public double amountSelected { get; set; }
 
         //CONSTRUCTOR
         public SelectedProduct(string name, int id, double amount, double price, double amountSelected) : base(name, id, amount, price)
