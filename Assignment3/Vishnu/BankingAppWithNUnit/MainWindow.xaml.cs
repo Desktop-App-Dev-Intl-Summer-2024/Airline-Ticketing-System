@@ -16,44 +16,12 @@ namespace BankingAppWithNUnit
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double endingBalance;
-        private int numberOfChecks;
+        Account account;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            this.endingBalance = 0.0;
-            this.numberOfChecks = 0;
-        }
-
-        private double getServiceCharges()
-        {
-            double serviceCharges = 10.0;
-
-            if (this.numberOfChecks < 20)
-            {
-                serviceCharges += 0.1 * this.numberOfChecks;
-            }
-            else if (this.numberOfChecks < 40)
-            {
-                serviceCharges += 0.08 * this.numberOfChecks;
-            }
-            else if (this.numberOfChecks < 60)
-            {
-                serviceCharges += 0.06 * this.numberOfChecks;
-            }
-            else
-            {
-                serviceCharges += 0.04 * this.numberOfChecks;
-            }
-
-            if (this.endingBalance < 400)
-            {
-                serviceCharges += 15;
-            }
-
-            return serviceCharges;
+            account = new Account();
         }
 
         private void CurrentBalanceTB_GotFocus(object sender, RoutedEventArgs e)
@@ -68,11 +36,11 @@ namespace BankingAppWithNUnit
 
         private void CalculateBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.endingBalance = double.Parse(CurrentBalanceTB.Text);
-            this.numberOfChecks = int.Parse(NumberOfChecksTB.Text);
+            account.endingBalance = double.Parse(CurrentBalanceTB.Text);
+            account.numberOfChecks = int.Parse(NumberOfChecksTB.Text);
 
-            ServiceChargesTB.Text = this.getServiceCharges().ToString();
-            EndingBalanceTB.Text = (this.endingBalance - this.getServiceCharges()).ToString();
+            ServiceChargesTB.Text = account.getServiceCharges().ToString();
+            EndingBalanceTB.Text = (account.endingBalance - account.getServiceCharges()).ToString();
         }
     }
 }
