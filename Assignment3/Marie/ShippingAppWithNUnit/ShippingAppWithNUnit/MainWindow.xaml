@@ -1,0 +1,32 @@
+﻿<Window x:Class="ShippingAppWithNUnit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShippingAppWithNUnit"
+        mc:Ignorable="d"
+        Title="ShippingCharges" Height="450" Width="800">
+    <Grid x:Name="shippingGrid" Background="#FFACF0F3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="251*"/>
+            <RowDefinition Height="183*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="163*"/>
+            <ColumnDefinition Width="637*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="shippingWelcomeLabel" Grid.Column="1" Content="Please enter your info to get your shipping total!" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="16" FontWeight="Bold" Height="28" Width="433"/>
+        <Label x:Name="weightLabel" Grid.Column="1" Content="Package Weight" HorizontalAlignment="Left" Margin="143,87,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="14" FontWeight="Bold" Height="26" Width="133"/>
+        <Label x:Name="distanceLabel" Grid.Column="1" Content="Distance to Destination" HorizontalAlignment="Left" Margin="86,134,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="14" FontWeight="Bold" Height="26" Width="190"/>
+        <TextBox x:Name="weightTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="339,87,0,0" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="120" BorderBrush="#FF02113C" Height="18" GotFocus="weightTxt_GotFocus" Background="#FFACF0F3"/>
+        <TextBox x:Name="distanceTxt" Grid.Column="1" HorizontalAlignment="Left" Margin="339,142,0,0" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="120" BorderBrush="#FF02113C" Height="18" GotFocus="distanceTxt_GotFocus" Background="#FFACF0F3"/>
+        <Button x:Name="resultsButton" Grid.Column="1" Content="Submit" HorizontalAlignment="Center" Margin="0,198,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="14" FontWeight="Bold" Width="113" Height="32" Click="resultsButton_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FF4854A4" Opacity="0.5"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="shippingResults" Grid.Column="1" HorizontalAlignment="Left" Margin="163,45,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="267" Height="79" BorderBrush="#FFACF0F3" FontFamily="Arial Black" FontSize="16" FontWeight="Bold" Background="#FFACF0F3"/>
+
+
+    </Grid>
+</Window>
