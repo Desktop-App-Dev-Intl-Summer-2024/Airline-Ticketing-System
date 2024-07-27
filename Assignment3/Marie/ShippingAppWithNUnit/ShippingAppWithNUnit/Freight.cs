@@ -36,7 +36,7 @@ namespace ShippingAppWithNUnit
             {
                 shippingRate = 2.20;
             }
-            else if (weight > 6.0 && weight <= 610.0)
+            else if (weight > 6.0 && weight <= 10.0)
             {
                 shippingRate = 3.70;
             }
