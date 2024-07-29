@@ -1,10 +1,12 @@
 ﻿using AirLineTicketing.Models;
 using AirLineTicketing.Network;
+using System.Data;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -44,7 +46,7 @@ namespace AirLineTicketing
         {
             if (isloggedIn)
             {
-                MessageBox.Show("Logout success!");
+                System.Windows.MessageBox.Show("Logout success!");
                 isloggedIn = false;
                 setLogButtonText();
             }
@@ -149,6 +151,33 @@ namespace AirLineTicketing
         {
             List<Flight> allFlights = await request.getAllFlights();
             DisplayGrid.ItemsSource = allFlights;
+        }
+
+        private void DisplayGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                Flight? selectedFlight = DisplayGrid.SelectedItem as Flight;
+
+                if (selectedFlight == null) return;
+
+                DialogResult result = System.Windows.Forms.MessageBox.Show(
+                    "Do you want to proceed with Flight Number:" + selectedFlight.flightNo,
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+
+                }
+                
+                DisplayGrid.SelectedItem = null;
+            }
+            catch (Exception ex) {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
     }
 }
