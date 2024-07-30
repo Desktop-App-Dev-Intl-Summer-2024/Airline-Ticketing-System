@@ -29,7 +29,7 @@
             </Rectangle>
             <StackPanel Margin="0,39,0,10" Grid.RowSpan="2">
                 <Button x:Name="backBtn" Content="Back" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
-                <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
+                <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White" Click="Button_Click"/>
                 <Button Content="Search" Margin="10,10,10,10" Padding="1,2,1,2" Background="#FFA9E679" BorderBrush="#FFA9E679" FontWeight="Bold"/>
             </StackPanel>
             <Rectangle HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="800">

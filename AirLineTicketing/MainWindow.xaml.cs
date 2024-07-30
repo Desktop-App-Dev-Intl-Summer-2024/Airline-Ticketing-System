@@ -150,5 +150,10 @@ namespace AirLineTicketing
             List<Flight> allFlights = await request.getAllFlights();
             DisplayGrid.ItemsSource = allFlights;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new FAQ().Show();
+        }
     }
 }

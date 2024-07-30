@@ -64,5 +64,10 @@ namespace AirLineTicketing
 
             request.postUserApi(newUser);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new FAQ().Show();
+        }
     }
 }

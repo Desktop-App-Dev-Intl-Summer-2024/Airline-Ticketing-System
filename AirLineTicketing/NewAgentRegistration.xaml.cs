@@ -101,5 +101,9 @@ namespace AirLineTicketing
             request.postAgentApi(newAgent);
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new FAQ().Show();
+        }
     }
 }
