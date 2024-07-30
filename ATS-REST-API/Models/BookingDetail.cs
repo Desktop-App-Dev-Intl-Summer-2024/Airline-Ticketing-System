@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AirLineTicketing.Models
+namespace ATS_REST_API.Models
 {
-    public class BookingDetails
+    public class BookingDetail
     {
+        public int bookingId {  get; set; }
+        public int bookingUserId { get; set; }
         public string firstName { get; set; }
         public string lastName {  get; set; }
         public string classType { get; set; }
@@ -20,5 +22,6 @@ namespace AirLineTicketing.Models
         public string bookingDateTime { get; set; }
         public double ticketCost { get; set; }
         public int flightNo { get; set; }
+        public int seatNo { get; set; }
     }
 }

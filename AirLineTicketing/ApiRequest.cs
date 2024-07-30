@@ -90,12 +90,17 @@ namespace AirLineTicketing
 
                 if (reader.Read())
                 {
+                    int id = (int)reader["id"];
                     string firstname = (string)reader["firstname"];
                     string lastname = (string)reader["lastname"];
                     string email = (string)reader["email"];
                     string dob = Convert.ToString(reader["dob"]);
 
-                    return new User(username, "", firstname, lastname, email, dob);
+                    User user = new User(username, "", firstname, lastname, email, dob);
+
+                    user.setId(id);
+
+                    return user;
                 }
             } catch (Exception ex)
             {

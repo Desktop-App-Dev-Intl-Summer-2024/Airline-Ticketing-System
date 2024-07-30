@@ -1,4 +1,5 @@
 ﻿using AirLineTicketing.Models;
+using AirLineTicketing.Network;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,12 +23,14 @@ namespace AirLineTicketing.Views
     public partial class Booking : Window
     {
         Flight selectedFlight;
+        Request request;
 
         public Booking()
         {
             InitializeComponent();
 
             selectedFlight = MainWindow.selectedFlight;
+            request = new Request();
 
             setHeading();
             initializeGrid();
@@ -112,7 +115,7 @@ namespace AirLineTicketing.Views
             this.Close();
         }
 
-        private void ConfirmBtn_Click(object sender, RoutedEventArgs e)
+        private async void ConfirmBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -131,20 +134,31 @@ namespace AirLineTicketing.Views
 
                 int flightNo = selectedFlight.flightNo;
 
-                BookingDetails details = new BookingDetails();
+                BookingDetail detail = new BookingDetail();
 
-                details.firstName = firstName;
-                details.lastName = lastName;
-                details.classType = classType;
-                details.nationality = nationality;
-                details.passportNumber = passportNumber;
-                details.address = address;
-                details.cardNumber = cardNumber;
-                details.expiryDate = expiryDate;
-                details.cardCvv = cardCvv;
-                details.bookingDateTime = bookingDateTime;
-                details.ticketCost = ticketCost;
-                details.flightNo = flightNo;
+                detail.bookingUserId = MainWindow.user.getId();
+                detail.firstName = firstName;
+                detail.lastName = lastName;
+                detail.classType = classType;
+                detail.nationality = nationality;
+                detail.passportNumber = passportNumber;
+                detail.address = address;
+                detail.cardNumber = cardNumber;
+                detail.expiryDate = expiryDate;
+                detail.cardCvv = cardCvv;
+                detail.bookingDateTime = bookingDateTime;
+                detail.ticketCost = ticketCost;
+                detail.flightNo = flightNo;
+
+                BookingDetail confirmedDetail = await request.postTicketBooking(detail);
+
+                if(confirmedDetail != null)
+                {
+                    MessageBox.Show($"Booking confirmed! " +
+                        $"\nID: {confirmedDetail.bookingId} and " +
+                        $"\nSeat No: {confirmedDetail.seatNo}" +
+                        $"\n\nPlease Check Booking History for more information");
+                }
             } catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
