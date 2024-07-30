@@ -27,16 +27,21 @@ namespace AirLineTicketing.Views
 
             setHeading();
             initializeGrid();
+            initializeComboBoxes();
             initializePrice();
+        }
+
+        private void initializeComboBoxes() {
+            ClassCmbBx.ItemsSource = MainWindow.selectedFlight.availableClasses.Split(' ');
         }
 
         private void initializePrice() { 
             // Using Pseudo random numbers to price for the purpose of this Demo Project
 
             Random random = new Random();
-            double price = random.NextDouble() * (10) + 130;
+            double price = random.NextDouble() * (10.0) + 130;
 
-            TicketPriceDisplayLbl.Content = Math.Round(price, 2).ToString();
+            TicketPriceDisplayLbl.Content = "$" + Math.Round(price, 2).ToString();
         }
 
         private void initializeGrid() {

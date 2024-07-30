@@ -61,18 +61,6 @@
             <Label x:Name="PassengersDisplayLabel" HorizontalAlignment="Left" Margin="155,88,0,0" Grid.Row="2"  VerticalAlignment="Top" Content="test" Height="26" />
             <Label x:Name="BaggagesDisplayLabel" HorizontalAlignment="Left" Margin="155,110,0,0" Grid.Row="2"  VerticalAlignment="Top" Content="test" Height="26" />
             <Label Content="Enter Passenger Details:" HorizontalAlignment="Left" Margin="458,39,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Height="29" Width="167"/>
-            <Label Content="First Name:" HorizontalAlignment="Left" Margin="461,80,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="70"/>
-            <Label Content="Last Name:" HorizontalAlignment="Left" Margin="461,105,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="69"/>
-            <Label Content="Gender:" HorizontalAlignment="Left" Margin="461,130,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="51"/>
-            <Label Content="Nationality:" HorizontalAlignment="Left" Margin="461,155,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.038" Height="26" Width="70"/>
-            <Label Content="Passport No:" HorizontalAlignment="Left" Margin="461,180,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.038" Height="26" Width="77"/>
-            <Label Content="Address:" HorizontalAlignment="Left" Margin="461,205,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.038" Height="26" Width="55"/>
-            <TextBox x:Name="FirstnameTxtBx" HorizontalAlignment="Left" Margin="555,85,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
-            <TextBox x:Name="PassportNoTxtBx" HorizontalAlignment="Left" Margin="555,185,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
-            <TextBox x:Name="NationalityTxtBx" HorizontalAlignment="Left" Margin="555,160,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
-            <TextBox x:Name="GenderTxtBx" HorizontalAlignment="Left" Margin="555,135,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
-            <TextBox x:Name="LastNameTxtBx" HorizontalAlignment="Left" Margin="555,110,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
-            <TextBox x:Name="AddressTxtBx" HorizontalAlignment="Left" Margin="555,210,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="40" MinWidth="200" MinHeight="40"/>
             <Button Content="For Myself?" HorizontalAlignment="Left" Margin="655,44,0,0" Grid.Row="2" VerticalAlignment="Top" Padding="10,1,10,1" Background="#FF73DE1F" Height="20" Width="82">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
@@ -81,6 +69,18 @@
                     <SolidColorBrush Color="#FF2D2424" Opacity="1"/>
                 </Button.Foreground>
             </Button>
+            <Label Content="First Name:" HorizontalAlignment="Left" Margin="461,80,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="70"/>
+            <Label Content="Last Name:" HorizontalAlignment="Left" Margin="461,105,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="69"/>
+            <Label Content="Class:" HorizontalAlignment="Left" Margin="461,130,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="51"/>
+            <Label Content="Nationality:" HorizontalAlignment="Left" Margin="461,155,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.038" Height="26" Width="70"/>
+            <Label Content="Passport No:" HorizontalAlignment="Left" Margin="461,180,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.038" Height="26" Width="77"/>
+            <Label Content="Address:" HorizontalAlignment="Left" Margin="461,205,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.038" Height="26" Width="55"/>
+                <TextBox x:Name="FirstnameTxtBx" HorizontalAlignment="Left" Margin="555,85,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
+                <TextBox x:Name="LastNameTxtBx" HorizontalAlignment="Left" Margin="555,110,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
+                <ComboBox x:Name="ClassCmbBx" HorizontalAlignment="Left" Margin="555,135,0,0" Grid.Row="2" VerticalAlignment="Top" Width="200" Height="18" Padding="2,0,2,0"/>
+                <TextBox x:Name="NationalityTxtBx" HorizontalAlignment="Left" Margin="555,160,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
+                <TextBox x:Name="PassportNoTxtBx" HorizontalAlignment="Left" Margin="555,185,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
+            <TextBox x:Name="AddressTxtBx" HorizontalAlignment="Left" Margin="555,210,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="40" MinWidth="200" MinHeight="40"/>
             <Label Content="Credit/Debit Card:" HorizontalAlignment="Left" Margin="60,153,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="106"/>
             <Label Content="CVV:" HorizontalAlignment="Left" Margin="280,180,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="35"/>
             <Label Content="Expiry Date:" HorizontalAlignment="Left" Margin="60,180,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="72"/>
@@ -100,6 +100,5 @@
             <Label Content="Ticket Charges(CAD):" HorizontalAlignment="Left" Margin="36,21,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
             <Label x:Name="TicketPriceDisplayLbl" Content="0.00" HorizontalAlignment="Left" Margin="202,23,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
         </Grid>
-
     </Grid>
 </Window>
