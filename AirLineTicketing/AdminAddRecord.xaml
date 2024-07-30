@@ -58,30 +58,58 @@
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>
             </Button>
-            <Rectangle x:Name="main" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" Stroke="Black" Width="570" Margin="0,10,0,25">
+            <Rectangle x:Name="main" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" Stroke="Black" Width="570" Margin="0,10,0,10">
                 <Rectangle.Fill>
                     <SolidColorBrush Color="#FFA9E679" Opacity="0.6"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <StackPanel x:Name="mainPanel" Grid.Column="1" Grid.Row="1" Margin="42,23,327,132">
-                <Label Content="Select airline" Margin="10,10,10,10" Padding="8,4,8,4" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <Label Content="Select departure date" Margin="10,10,10,10" Padding="2,4,2,4" HorizontalAlignment="Center" FontWeight="Bold"/>
-                <Label Content="Enter departure time" Margin="10,10,10,10" Padding="2,4,2,4" HorizontalAlignment="Center" FontWeight="Bold"/>
-                <Label Content="Pilot code" Margin="10,10,10,10" Padding="2,4,2,4" HorizontalAlignment="Center" FontWeight="Bold"/>
-                <Label Content="Crew code" Margin="10,10,10,10" Padding="2,4,2,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <StackPanel x:Name="mainPanel" Grid.Column="1" Grid.Row="1" Margin="22,23,416,37">
+                <Label Content="Select airline" Margin="4, 4, 4, 4" Padding="8,4,8,4" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label Content="Select departure date" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Enter departure time" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Pilot code" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Crew code" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Origin" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Destination" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Available Seats" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Total Seats" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Layover" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
             </StackPanel>
-            <StackPanel x:Name="mainPanel2" Grid.Column="1" Grid.Row="1" Margin="306,23,25,132">
-                <ComboBox x:Name="airlineCombo" Width="120" Margin="10,10,10,10" Padding="1,2,1,2">
+            <StackPanel x:Name="mainPanel2" Grid.Column="1" Grid.Row="1" Margin="190,23,213,37">
+                <ComboBox x:Name="airlineCombo" Width="120" Margin="4, 4, 4, 4" Padding="1,2,1,2">
                     <ComboBoxItem Content="AirCanada" FontWeight="Bold"/>
                     <ComboBoxItem Content="Delta" FontWeight="Bold"/>
                     <ComboBoxItem Content="Emirates" FontWeight="Bold"/>
                 </ComboBox>
-                <DatePicker x:Name="flightDate" RenderTransformOrigin="0.491,2.17" Margin="10,10,10,10" Padding="2,4,2,4"/>
-                <TextBox x:Name="departureTimeTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="2,4,2,4"/>
-                <TextBox x:Name="pilotTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="2,4,2,4"/>
-                <TextBox x:Name="crewTxt" TextWrapping="Wrap" Width="120" Margin="10,10,10,10" Padding="2,4,2,4"/>
+                <DatePicker x:Name="flightDate" RenderTransformOrigin="0.491,2.17" Margin="4, 4, 4, 4" Padding="2,4,2,4"/>
+                <TextBox x:Name="departureTimeTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4" Height="25"/>
+                <TextBox x:Name="pilotTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4" Height="25"/>
+                <TextBox x:Name="crewTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4" Height="25"/>
+                <TextBox x:Name="originTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4" Height="25"/>
+                <TextBox x:Name="destinationTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4"/>
+                <TextBox x:Name="availSeatsTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4" Height="25"/>
+                <TextBox x:Name="totalSeatsTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4" Height="25"/>
+                <TextBox x:Name="layoverTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4" Height="25"/>
             </StackPanel>
-            <Button x:Name="saveNewRecordBtn" Grid.Column="1" Content="Save" HorizontalAlignment="Center" Margin="0,294,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Background="#FFECDC49" FontWeight="Bold" Width="102" Height="36">
+            <StackPanel x:Name="mainPanel3" Grid.Column="1" Grid.Row="1" Margin="382,23,25,99">
+                <Label Content="Available Classes" FontWeight="Bold"/>
+                <CheckBox x:Name="businessCheck" Content="Business" FontWeight="Bold"/>
+                <CheckBox x:Name="economyCheck" Content="Economy" FontWeight="Bold"/>
+                <CheckBox x:Name="premiumCheck" Content="Premium" FontWeight="Bold"/>
+                <CheckBox x:Name="firstCheck" Content="First" FontWeight="Bold"/>
+                <Label Content="Allowed Passenger Types" FontWeight="Bold"/>
+                <CheckBox x:Name="adultsCheck" Content="Adults" FontWeight="Bold"/>
+                <CheckBox x:Name="studentsCheck" Content="Students" FontWeight="Bold"/>
+                <CheckBox x:Name="youthCheck" Content="Youth" FontWeight="Bold"/>
+                <CheckBox x:Name="childrenCheck" Content="Children" FontWeight="Bold"/>
+                <CheckBox x:Name="toddlerCheck" Content="Toddlers" FontWeight="Bold"/>
+                <CheckBox x:Name="infantCheck" Content="Infants" FontWeight="Bold"/>
+                <Label Content="Allowed Baggage Types" FontWeight="Bold"/>
+                <CheckBox x:Name="checkInCheck" Content="Check-in" FontWeight="Bold"/>
+                <CheckBox x:Name="carryOnCheck" Content="Carry-on" FontWeight="Bold"/>
+
+            </StackPanel>
+            <Button x:Name="saveNewRecordBtn" Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="422,313,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Background="#FFECDC49" FontWeight="Bold" Width="102" Height="36">
                 <Button.BorderBrush>
                     <ImageBrush/>
                 </Button.BorderBrush>
