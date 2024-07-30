@@ -32,8 +32,22 @@ namespace AirLineTicketing
             String departureTime = departureTimeTxt.Text;
             String pilotCode = pilotTxt.Text;
             String crewCode = crewTxt.Text;
+            String origin = originTxt.Text;
+            String destination = destinationTxt.Text;
+            String availableSeats = availSeatsTxt.Text;
+            String totalSeats = totalSeatsTxt.Text;
+            String layover = layoverTxt.Text;
 
-            Flight newFlight = new Flight(airline, departureDate, departureTime, pilotCode, crewCode);
+            //availClasses checkboxes
+            String availableClasses = "";
+            //passengerTypes checkboxes
+            String allowedPassengerTypes = "";
+            //baggageTypes checkboxes
+            String allowedBaggageTypes = "";
+
+            Flight newFlight = new Flight(airline, departureDate, departureTime, pilotCode, crewCode,
+                                            origin, destination, availableClasses, availableSeats, 
+                                            totalSeats, layover, allowedPassengerTypes, allowedBaggageTypes);
 
             ApiRequest request = new ApiRequest();
 
@@ -48,12 +62,25 @@ namespace AirLineTicketing
             departureTimeTxt.Text = "";
             pilotTxt.Text = "";
             crewTxt.Text = "";
+            originTxt.Text = "";
+            destinationTxt.Text = "";
+            availSeatsTxt.Text = "";
+            totalSeatsTxt.Text = "";
+            layoverTxt.Text = "";
+            //clear all checkboxes
         }
 
         //NAVIGATE TO EDIT RECORD WINDOW
         private void editRecordBtn_Click(object sender, RoutedEventArgs e)
         {
             new AdminEditRecord().Show();
+            this.Close();
+        }
+
+        //LOG OUT BUTTON - BACK TO SIGN IN WINDOW
+        private void logBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new SignInSignUp().Show();
             this.Close();
         }
     }

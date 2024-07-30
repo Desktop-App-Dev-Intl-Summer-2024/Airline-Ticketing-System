@@ -34,6 +34,7 @@ namespace AirLineTicketing
             sqlConnection.Open();
         }
 
+        //NEW USER REGISTRATION
         public void postUserApi(User user) {
             try
             {
@@ -75,6 +76,7 @@ namespace AirLineTicketing
             sqlConnection.Close();
         }
 
+        //USER SIGN IN
         public int userSignInApi(string username, string password) { 
             int status = 0;
 
@@ -102,7 +104,7 @@ namespace AirLineTicketing
             return status;
         }
 
-        //AGENT REGISTRATION 
+        // NEW AGENT REGISTRATION 
         public void postAgentApi(Agent agent)
         {
             try
@@ -178,7 +180,7 @@ namespace AirLineTicketing
             return status;
         }
 
-        //NEW FLIGHT RECORD REGISTRATION
+        //NEW FLIGHT RECORD
         public void postFlightApi(Flight flight)
         {
             try
@@ -187,7 +189,9 @@ namespace AirLineTicketing
                 Establish_Connection();
 
                 //Step 3: generate the database query
-                string query = "insert into Flights values (@airline, @departureDate, @departureTime, @pilotCode, @crewCode)";
+                string query = "insert into Flights values (@airline, @departureDate, @departureTime, @pilotCode, @crewCode," +
+                    "                                       @origin, @destination, @availableClasses, @availableSeats, @totalSeats," +
+                    "                                       @layover, @allowedPassengerTypes, @allowedBaggageTypes)";
 
                 //Step 4: initialize the sql command
                 sqlCommand = new SqlCommand(query, sqlConnection);
@@ -198,6 +202,14 @@ namespace AirLineTicketing
                 sqlCommand.Parameters.AddWithValue("@departureTime", flight.getDepartureTime());
                 sqlCommand.Parameters.AddWithValue("@pilotCode", flight.getPilotCode());
                 sqlCommand.Parameters.AddWithValue("@crewCode", flight.getCrewCode());
+                sqlCommand.Parameters.AddWithValue("@origin", flight.getOrigin());
+                sqlCommand.Parameters.AddWithValue("@destination", flight.getDestination());
+                sqlCommand.Parameters.AddWithValue("@availableClasses", flight.getAvailableClasses());
+                sqlCommand.Parameters.AddWithValue("@availableSeats", flight.getAvailableSeats());
+                sqlCommand.Parameters.AddWithValue("@totalSeats", flight.getTotalSeats());
+                sqlCommand.Parameters.AddWithValue("@layover", flight.getLayover());
+                sqlCommand.Parameters.AddWithValue("@allowedPassengerTypes", flight.getAllowedPassengerTypes());
+                sqlCommand.Parameters.AddWithValue("@allowedBaggageTypes", flight.getAllowedBaggageTypes);
 
                 //Step 6: execute the query with values
                 //ExecuteNonQuery returns 1 if no error occurs

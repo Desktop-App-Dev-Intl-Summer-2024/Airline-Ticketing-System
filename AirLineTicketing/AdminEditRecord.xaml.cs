@@ -30,5 +30,12 @@ namespace AirLineTicketing
             new AdminAddRecord().Show();
             this.Close();
         }
+
+        //LOG OUT BUTTON - BACK TO SIGN IN WINDOW
+        private void logBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new SignInSignUp().Show();
+            this.Close();
+        }
     }
 }
