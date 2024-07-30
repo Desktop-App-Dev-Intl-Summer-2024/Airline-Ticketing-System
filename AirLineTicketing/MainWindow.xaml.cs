@@ -1,5 +1,6 @@
 ﻿using AirLineTicketing.Models;
 using AirLineTicketing.Network;
+using AirLineTicketing.Views;
 using System.Data;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,9 @@ namespace AirLineTicketing
     public partial class MainWindow : Window
     {
         public static bool isloggedIn = false;
+        public static User? user = null;
+        public static Flight? selectedFlight = null;
+
         public FlightsFilter flightsFilter;
         public List<CheckboxItem> passangerComboBoxItems;
         public List<CheckboxItem> baggageComboBoxtems;
@@ -47,7 +51,10 @@ namespace AirLineTicketing
             if (isloggedIn)
             {
                 System.Windows.MessageBox.Show("Logout success!");
+
                 isloggedIn = false;
+                user = null;
+
                 setLogButtonText();
             }
             else {
@@ -157,12 +164,20 @@ namespace AirLineTicketing
         {
             try
             {
-                Flight? selectedFlight = DisplayGrid.SelectedItem as Flight;
+                selectedFlight = DisplayGrid.SelectedItem as Flight;
 
                 if (selectedFlight == null) return;
 
+                string message = "Do you want to proceed with: "
+                    + "\n 1. Flight No: " + selectedFlight.flightNo
+                    + "\n 2. Airlines: " + selectedFlight.airline
+                    + "\n 3. Date: " + selectedFlight.departureDate
+                    + "\n 4. Time: " + selectedFlight.departureTime
+                    + "\n 5. Origin: " + selectedFlight.origin
+                    + "\n 6. Destination: " + selectedFlight.destination;
+
                 DialogResult result = System.Windows.Forms.MessageBox.Show(
-                    "Do you want to proceed with Flight Number:" + selectedFlight.flightNo,
+                    message,
                     "Confirmation",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
@@ -170,7 +185,12 @@ namespace AirLineTicketing
 
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
+                    if (!isloggedIn) {
+                        System.Windows.MessageBox.Show("Please log in to continue...");
+                        return;
+                    }
 
+                    new Booking().Show();
                 }
                 
                 DisplayGrid.SelectedItem = null;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirLineTicketing
 {
-    class User
+    public class User
     {
         private String username;
         private String password;
