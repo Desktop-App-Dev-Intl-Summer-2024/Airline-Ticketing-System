@@ -61,7 +61,7 @@
             <Label x:Name="PassengersDisplayLabel" HorizontalAlignment="Left" Margin="155,88,0,0" Grid.Row="2"  VerticalAlignment="Top" Content="test" Height="26" />
             <Label x:Name="BaggagesDisplayLabel" HorizontalAlignment="Left" Margin="155,110,0,0" Grid.Row="2"  VerticalAlignment="Top" Content="test" Height="26" />
             <Label Content="Enter Passenger Details:" HorizontalAlignment="Left" Margin="458,39,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Height="29" Width="167"/>
-            <Button Content="For Myself?" HorizontalAlignment="Left" Margin="655,44,0,0" Grid.Row="2" VerticalAlignment="Top" Padding="10,1,10,1" Background="#FF73DE1F" Height="20" Width="82">
+            <Button Content="For Myself?" HorizontalAlignment="Left" Margin="655,44,0,0" Grid.Row="2" VerticalAlignment="Top" Padding="10,1,10,1" Background="#FF73DE1F" Height="20" Width="82" Click="Button_Click">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>
@@ -75,24 +75,24 @@
             <Label Content="Nationality:" HorizontalAlignment="Left" Margin="461,155,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.038" Height="26" Width="70"/>
             <Label Content="Passport No:" HorizontalAlignment="Left" Margin="461,180,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.038" Height="26" Width="77"/>
             <Label Content="Address:" HorizontalAlignment="Left" Margin="461,205,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.038" Height="26" Width="55"/>
-                <TextBox x:Name="FirstnameTxtBx" HorizontalAlignment="Left" Margin="555,85,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
-                <TextBox x:Name="LastNameTxtBx" HorizontalAlignment="Left" Margin="555,110,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
-                <ComboBox x:Name="ClassCmbBx" HorizontalAlignment="Left" Margin="555,135,0,0" Grid.Row="2" VerticalAlignment="Top" Width="200" Height="18" Padding="2,0,2,0"/>
-                <TextBox x:Name="NationalityTxtBx" HorizontalAlignment="Left" Margin="555,160,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
-                <TextBox x:Name="PassportNoTxtBx" HorizontalAlignment="Left" Margin="555,185,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200"/>
-            <TextBox x:Name="AddressTxtBx" HorizontalAlignment="Left" Margin="555,210,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="40" MinWidth="200" MinHeight="40"/>
+                <TextBox x:Name="FirstnameTxtBx" HorizontalAlignment="Left" Margin="555,85,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200" GotFocus="FirstnameTxtBx_GotFocus"/>
+                <TextBox x:Name="LastNameTxtBx" HorizontalAlignment="Left" Margin="555,110,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200" GotFocus="LastNameTxtBx_GotFocus"/>
+                <ComboBox x:Name="ClassCmbBx" HorizontalAlignment="Left" Margin="555,135,0,0" Grid.Row="2" VerticalAlignment="Top" Width="200" Height="18" Padding="2,0,2,0" SelectedIndex="5"/>
+                <TextBox x:Name="NationalityTxtBx" HorizontalAlignment="Left" Margin="555,160,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200" GotFocus="NationalityTxtBx_GotFocus"/>
+                <TextBox x:Name="PassportNoTxtBx" HorizontalAlignment="Left" Margin="555,185,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.67" MinWidth="200" Height="18" Width="200" GotFocus="PassportNoTxtBx_GotFocus"/>
+            <TextBox x:Name="AddressTxtBx" HorizontalAlignment="Left" Margin="555,210,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="40" MinWidth="200" MinHeight="40" GotFocus="AddressTxtBx_GotFocus"/>
             <Label Content="Credit/Debit Card:" HorizontalAlignment="Left" Margin="60,153,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="106"/>
             <Label Content="CVV:" HorizontalAlignment="Left" Margin="280,180,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="35"/>
             <Label Content="Expiry Date:" HorizontalAlignment="Left" Margin="60,180,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="72"/>
-            <TextBox HorizontalAlignment="Left" Margin="170,158,0,0" Grid.Row="2" TextWrapping="Wrap" Text="1234-5678-8901-2345" VerticalAlignment="Top" Width="240" Height="18"/>
-            <DatePicker HorizontalAlignment="Left" Margin="170,182,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="102"/>
-            <TextBox HorizontalAlignment="Left" Margin="315,185,0,0" Grid.Row="2" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="94" Height="18"/>
-            <Button Content="Cancel" HorizontalAlignment="Left" Margin="170,230,0,0" Grid.Row="2" VerticalAlignment="Top" Padding="20,5,20,5" Width="110" Background="#FFFFD35B" Height="28">
+            <TextBox x:Name="CardNoTxtBx" HorizontalAlignment="Left" Margin="170,158,0,0" Grid.Row="2" TextWrapping="Wrap" Text="1234-5678-8901-2345" VerticalAlignment="Top" Width="240" Height="18" GotFocus="CardNoTxtBx_GotFocus"/>
+            <DatePicker x:Name="CardExpDatePckr" HorizontalAlignment="Left" Margin="170,182,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="102" GotFocus="CardExpDatePckr_GotFocus"/>
+            <TextBox x:Name="CvvTxtBx" HorizontalAlignment="Left" Margin="315,185,0,0" Grid.Row="2" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="94" Height="18" GotFocus="CvvTxtBx_GotFocus"/>
+            <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Left" Margin="170,230,0,0" Grid.Row="2" VerticalAlignment="Top" Padding="20,5,20,5" Width="110" Background="#FFFFD35B" Height="28" Click="CancelBtn_Click">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>
             </Button>
-            <Button Content="Confirm" HorizontalAlignment="Left" Margin="300,230,0,0" Grid.Row="2" VerticalAlignment="Top" Padding="20,5,20,5" Width="110" Background="#FF89E83E" Height="28">
+            <Button x:Name="ConfirmBtn" Content="Confirm" HorizontalAlignment="Left" Margin="300,230,0,0" Grid.Row="2" VerticalAlignment="Top" Padding="20,5,20,5" Width="110" Background="#FF89E83E" Height="28" Click="ConfirmBtn_Click">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>
