@@ -62,5 +62,10 @@ namespace AirLineTicketing
             new SignInSignUp().Show();
             this.Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new FAQ().Show();
+        }
     }
 }

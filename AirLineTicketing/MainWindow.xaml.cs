@@ -45,6 +45,11 @@ namespace AirLineTicketing
 
             setLogButtonText();
         }
+        
+                private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new FAQ().Show();
+        }
 
         private void logBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -164,6 +169,7 @@ namespace AirLineTicketing
             DisplayGrid.ItemsSource = allFlights;
         }
 
+
         private void DisplayGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -202,6 +208,7 @@ namespace AirLineTicketing
             catch (Exception ex) {
                 System.Windows.MessageBox.Show(ex.Message);
             }
+
         }
     }
 }

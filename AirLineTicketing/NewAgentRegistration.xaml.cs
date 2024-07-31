@@ -101,6 +101,11 @@ namespace AirLineTicketing
             request.postAgentApi(newAgent);
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new FAQ().Show();
+        }
+
         private void logInBtn_Click(object sender, RoutedEventArgs e)
         {
             new AgentSignIn().Show();
@@ -109,7 +114,10 @@ namespace AirLineTicketing
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
+            new SignInSignUp().Show();
             this.Close();
+            
+
         }
     }
 }
