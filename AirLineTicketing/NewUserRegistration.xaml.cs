@@ -65,9 +65,21 @@ namespace AirLineTicketing
             request.postUserApi(newUser);
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new FAQ().Show();
+
+        private void logInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new UserSignIn().Show();
+            this.Close();
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
         }
     }
 }

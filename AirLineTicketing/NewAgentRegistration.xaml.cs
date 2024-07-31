@@ -104,6 +104,17 @@ namespace AirLineTicketing
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new FAQ().Show();
+
+        private void logInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AgentSignIn().Show();
+            this.Close();
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
         }
     }
 }
