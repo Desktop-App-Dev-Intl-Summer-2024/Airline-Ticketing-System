@@ -24,13 +24,15 @@ namespace AirLineTicketing.Views
     {
         Flight selectedFlight;
         Request request;
+        MainWindow mainWindow;
 
-        public Booking()
+        public Booking(MainWindow mainWindow)
         {
             InitializeComponent();
 
             selectedFlight = MainWindow.selectedFlight;
             request = new Request();
+            this.mainWindow = mainWindow;
 
             setHeading();
             initializeGrid();
@@ -154,10 +156,15 @@ namespace AirLineTicketing.Views
 
                 if(confirmedDetail != null)
                 {
-                    MessageBox.Show($"Booking confirmed! " +
-                        $"\nID: {confirmedDetail.bookingId} and " +
+                    MessageBox.Show($"Booking confirmed!" +
+                        $"\nID: {confirmedDetail.bookingId}" +
                         $"\nSeat No: {confirmedDetail.seatNo}" +
                         $"\n\nPlease Check Booking History for more information");
+
+                    mainWindow.refreshDisplayGrid();
+                    selectedFlight.availableSeats--;
+                    initializeGrid();
+                    clearInputs();
                 }
             } catch(Exception ex)
             {
@@ -171,6 +178,15 @@ namespace AirLineTicketing.Views
 
             FirstnameTxtBx.Text = user?.getFirstname();
             LastNameTxtBx.Text = user?.getLastname();
+        }
+
+        private void clearInputs() {
+            FirstnameTxtBx.Text = "";
+            LastNameTxtBx.Text = "";
+            ClassCmbBx.SelectedIndex = 0;
+            NationalityTxtBx.Text = "";
+            PassportNoTxtBx.Text = "";
+            AddressTxtBx.Text = "";
         }
     }
 }

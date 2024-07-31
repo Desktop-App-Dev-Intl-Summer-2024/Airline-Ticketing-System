@@ -154,8 +154,12 @@ namespace AirLineTicketing
             baggageCmbx.SelectedIndex = 0;
         }
 
-        private async void ShowAllFlightsBtn_Click(object sender, RoutedEventArgs e)
+        private void ShowAllFlightsBtn_Click(object sender, RoutedEventArgs e)
         {
+            refreshDisplayGrid();
+        }
+
+        public async void refreshDisplayGrid() {
             List<Flight> allFlights = await request.getAllFlights();
             DisplayGrid.ItemsSource = allFlights;
         }
@@ -190,7 +194,7 @@ namespace AirLineTicketing
                         return;
                     }
 
-                    new Booking().Show();
+                    new Booking(this).Show();
                 }
                 
                 DisplayGrid.SelectedItem = null;

@@ -292,16 +292,26 @@ namespace ATS_REST_API.Models
                             $" '{detail.address}', '{detail.cardNumber}', '{detail.expiryDate}', '{detail.cardCvv}'," +
                             $" '{detail.bookingDateTime}', {detail.ticketCost}, {detail.flightNo}, {detail.seatNo})";
 
-                        response.bookingDetail = detail;
 
                         cmd = new SqlCommand(insertBookingQuery, con);
                         cmd.ExecuteNonQuery();
+
+                        string getBookingIDQuery = $"select top 1 bookingId from Bookings where bookingUserId={detail.bookingUserId} order by bookingId desc";
+                        cmd = new SqlCommand(getBookingIDQuery, con);
+                        reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            detail.bookingId = (int)reader["bookingId"];
+                        }
+
+                        reader.Close();
 
                         // Update Flights table with new Available Seats
                         string updateFlightsQuery = $"update Flights set availableSeats={availableSeats - 1} where flightNo={detail.flightNo}";
                         cmd = new SqlCommand(updateFlightsQuery, con);
                         cmd.ExecuteNonQuery();
 
+                        response.bookingDetail = detail;
                         response.statusCode = 200;
                     }
                     else {
