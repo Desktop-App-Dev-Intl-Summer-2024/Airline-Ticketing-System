@@ -18,7 +18,7 @@ namespace AirLineTicketing.Network
         public Request()
         {
             httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:7003/api/Flights/");
+            httpClient.BaseAddress = new Uri("https://localhost:7003/api/");
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json")
@@ -31,7 +31,7 @@ namespace AirLineTicketing.Network
 
             try
             {
-                HttpResponseMessage rawResponse = await httpClient.GetAsync("GetAllFlights");
+                HttpResponseMessage rawResponse = await httpClient.GetAsync("Flights/GetAllFlights");
                 Response response = await getResponse(rawResponse);
 
                 flights = response.flights;
@@ -50,7 +50,7 @@ namespace AirLineTicketing.Network
 
             try
             {
-                HttpResponseMessage rawResponse = await httpClient.GetAsync("GetOriginAndDestination");
+                HttpResponseMessage rawResponse = await httpClient.GetAsync("Flights/GetOriginAndDestination");
                 Response response = await getResponse(rawResponse);
 
                 places = response.places;
@@ -70,7 +70,7 @@ namespace AirLineTicketing.Network
             try
             {
                 StringContent jsonContent = getJsonContent(filter);
-                HttpResponseMessage rawResponse = await httpClient.PostAsync("GetFlightsByFilter", jsonContent);
+                HttpResponseMessage rawResponse = await httpClient.PostAsync("Flights/GetFlightsByFilter", jsonContent);
                 Response response = await getResponse(rawResponse);
 
                 flights = response.flights;
@@ -81,6 +81,31 @@ namespace AirLineTicketing.Network
             }
 
             return flights;
+        }
+
+        public async Task<BookingDetail> postTicketBooking(BookingDetail detail)
+        {
+            BookingDetail confirmedDetail = null;
+
+            try
+            {
+                StringContent jsonContent = getJsonContent(detail);
+                HttpResponseMessage rawResponse = await httpClient.PostAsync("Booking/PostBookingTicket", jsonContent);
+                Response response = await getResponse(rawResponse);
+
+                confirmedDetail = response.bookingDetail;
+
+                if (response.statusCode != 200)
+                {
+                    MessageBox.Show(response.statusMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return confirmedDetail;
         }
 
         private StringContent getJsonContent(Object body)

@@ -31,12 +31,13 @@ namespace AirLineTicketing
             string userName = usernameTxtBx.Text;
             string password = passwordTxtBx.Text;
 
-            int status = apiRequest.userSignInApi(userName, password);
+            User? user = apiRequest.userSignInApi(userName, password);
 
-            if (status == 1)
+            if (user != null)
             {
                 MessageBox.Show("User log in success, redirecting to landing page!");
                 MainWindow.isloggedIn = true;
+                MainWindow.user = user;
 
                 new MainWindow().Show();
                 this.Close();

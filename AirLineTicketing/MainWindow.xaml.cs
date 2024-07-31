@@ -1,10 +1,13 @@
 ﻿using AirLineTicketing.Models;
 using AirLineTicketing.Network;
+using AirLineTicketing.Views;
+using System.Data;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -19,6 +22,9 @@ namespace AirLineTicketing
     public partial class MainWindow : Window
     {
         public static bool isloggedIn = false;
+        public static User? user = null;
+        public static Flight? selectedFlight = null;
+
         public FlightsFilter flightsFilter;
         public List<CheckboxItem> passangerComboBoxItems;
         public List<CheckboxItem> baggageComboBoxtems;
@@ -39,13 +45,21 @@ namespace AirLineTicketing
 
             setLogButtonText();
         }
+        
+                private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new FAQ().Show();
+        }
 
         private void logBtn_Click(object sender, RoutedEventArgs e)
         {
             if (isloggedIn)
             {
-                MessageBox.Show("Logout success!");
+                System.Windows.MessageBox.Show("Logout success!");
+
                 isloggedIn = false;
+                user = null;
+
                 setLogButtonText();
             }
             else {
@@ -145,15 +159,56 @@ namespace AirLineTicketing
             baggageCmbx.SelectedIndex = 0;
         }
 
-        private async void ShowAllFlightsBtn_Click(object sender, RoutedEventArgs e)
+        private void ShowAllFlightsBtn_Click(object sender, RoutedEventArgs e)
         {
+            refreshDisplayGrid();
+        }
+
+        public async void refreshDisplayGrid() {
             List<Flight> allFlights = await request.getAllFlights();
             DisplayGrid.ItemsSource = allFlights;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void DisplayGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            new FAQ().Show();
+            try
+            {
+                selectedFlight = DisplayGrid.SelectedItem as Flight;
+
+                if (selectedFlight == null) return;
+
+                string message = "Do you want to proceed with: "
+                    + "\n 1. Flight No: " + selectedFlight.flightNo
+                    + "\n 2. Airlines: " + selectedFlight.airline
+                    + "\n 3. Date: " + selectedFlight.departureDate
+                    + "\n 4. Time: " + selectedFlight.departureTime
+                    + "\n 5. Origin: " + selectedFlight.origin
+                    + "\n 6. Destination: " + selectedFlight.destination;
+
+                DialogResult result = System.Windows.Forms.MessageBox.Show(
+                    message,
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (!isloggedIn) {
+                        System.Windows.MessageBox.Show("Please log in to continue...");
+                        return;
+                    }
+
+                    new Booking(this).Show();
+                }
+                
+                DisplayGrid.SelectedItem = null;
+            }
+            catch (Exception ex) {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

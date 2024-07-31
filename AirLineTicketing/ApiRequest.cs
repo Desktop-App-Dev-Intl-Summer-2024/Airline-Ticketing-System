@@ -75,9 +75,7 @@ namespace AirLineTicketing
             sqlConnection.Close();
         }
 
-        public int userSignInApi(string username, string password) { 
-            int status = 0;
-
+        public User? userSignInApi(string username, string password) {
             try {
                 string query = "select * from Users where username=@username and password=@password";
 
@@ -88,18 +86,28 @@ namespace AirLineTicketing
                 sqlCommand.Parameters.AddWithValue("@username", username);
                 sqlCommand.Parameters.AddWithValue("@password", password);
 
-                object result = sqlCommand.ExecuteScalar();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
 
-                if (result != null)
+                if (reader.Read())
                 {
-                    status = 1;
+                    int id = (int)reader["id"];
+                    string firstname = (string)reader["firstname"];
+                    string lastname = (string)reader["lastname"];
+                    string email = (string)reader["email"];
+                    string dob = Convert.ToString(reader["dob"]);
+
+                    User user = new User(username, "", firstname, lastname, email, dob);
+
+                    user.setId(id);
+
+                    return user;
                 }
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-            return status;
+            return null;
         }
 
         //AGENT REGISTRATION 
