@@ -69,6 +69,7 @@ namespace AirLineTicketing
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new FAQ().Show();
+        }
 
         private void logInBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -79,7 +80,7 @@ namespace AirLineTicketing
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-
+            new SignInSignUp().Show();
         }
     }
 }
