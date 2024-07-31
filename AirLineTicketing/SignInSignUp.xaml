@@ -53,14 +53,14 @@
                     <SolidColorBrush Color="#FFA9E679" Opacity="0.6"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Button x:Name="UserSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,0,75,35" Grid.Row="1" FontWeight="Bold" Height="22" VerticalAlignment="Bottom" Click="UserSignUpBtn_Click"/>
-            <Button x:Name="AgentSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,63,75,0" Grid.Row="2" FontWeight="Bold" Height="22" VerticalAlignment="Top" Click="AgentSignUpBtn_Click"/>
+            <Button x:Name="UserSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,138,0,0" Grid.Row="1" FontWeight="Bold" Click="UserSignUpBtn_Click" HorizontalAlignment="Left" Width="190" Height="22" VerticalAlignment="Top"/>
+            <Button x:Name="AgentSignUpBtn" Content="Sign Up" Padding="1,2,1,2" Background="White" BorderBrush="White" Margin="135,63,0,0" Grid.Row="2" FontWeight="Bold" Height="22" VerticalAlignment="Top" Click="AgentSignUpBtn_Click" HorizontalAlignment="Left" Width="190"/>
             <Label Content="New Users" HorizontalAlignment="Left" Margin="135,0,0,62" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom"/>
-            <Label Content="New Agents" HorizontalAlignment="Left" Margin="135,0,0,142" Grid.Row="2" VerticalAlignment="Bottom" FontWeight="Bold"/>
-            <Button x:Name="userSignInBtn" Content="Sign In" HorizontalAlignment="Left" Margin="40,138,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Width="190" Grid.Column="1" Click="userSignInBtn_Click" Padding="1,2,1,2"/>
-            <Button x:Name="agentSignInBtn" Content="Sign In" HorizontalAlignment="Left" Margin="40,63,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Width="190" Grid.Column="1" Click="agentSignInBtn_Click" Padding="1,2,1,2"/>
-            <Label Content="Current Agents" HorizontalAlignment="Left" Margin="40,0,0,142" Grid.Row="2" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
-            <Label Content="Current Users" HorizontalAlignment="Left" Margin="40,0,0,62" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
+            <Label Content="New Agents" HorizontalAlignment="Left" Margin="135,32,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Button x:Name="userSignInBtn" Content="Sign In" Margin="0,138,140,0" Grid.Row="1" FontWeight="Bold" Background="White" BorderBrush="White" Grid.Column="1" Click="userSignInBtn_Click" Padding="1,2,1,2" Height="22" VerticalAlignment="Top" HorizontalAlignment="Right" Width="190"/>
+            <Button x:Name="agentSignInBtn" Content="Sign In" Margin="0,63,140,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" Background="White" BorderBrush="White" Grid.Column="1" Click="agentSignInBtn_Click" Padding="1,2,1,2" HorizontalAlignment="Right" Width="190"/>
+            <Label Content="Current Agents" HorizontalAlignment="Right" Margin="0,27,234,0" Grid.Row="2" FontWeight="Bold" Grid.Column="1" Height="26" VerticalAlignment="Top"/>
+            <Label Content="Current Users" HorizontalAlignment="Right" Margin="0,0,243,62" Grid.Row="1" FontWeight="Bold" Height="26" VerticalAlignment="Bottom" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Window>
