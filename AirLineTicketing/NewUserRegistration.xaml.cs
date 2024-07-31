@@ -79,8 +79,9 @@ namespace AirLineTicketing
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             new SignInSignUp().Show();
+            this.Close();
+            
         }
     }
 }
