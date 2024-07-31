@@ -28,9 +28,8 @@
                 </Rectangle.Fill>
             </Rectangle>
             <StackPanel Margin="0,39,0,10" Grid.RowSpan="2">
-                <Button x:Name="backBtn" Content="Back" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
+                <Button x:Name="backBtn" Content="Back" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White" Click="backBtn_Click"/>
                 <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
-                <Button Content="Search" Margin="10,10,10,10" Padding="1,2,1,2" Background="#FFA9E679" BorderBrush="#FFA9E679" FontWeight="Bold"/>
             </StackPanel>
             <Rectangle HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="800">
                 <Rectangle.Stroke>
@@ -52,7 +51,7 @@
                 </Rectangle.Fill>
             </Rectangle>
             <Label Content="Airline Ticketing App" VerticalAlignment="Center" FontSize="18" Foreground="White" FontFamily="Arial" FontWeight="SemiBold" Height="31"/>
-            <Button x:Name="logInBtn" Grid.Column="1" Content="Log In" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Center" Width="135" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27">
+            <Button x:Name="logInBtn" Grid.Column="1" Content="Log In" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Center" Width="135" Background="#FFECDC49" FontWeight="Bold" Padding="5,5,5,5" Height="27" Click="logInBtn_Click">
                 <Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>

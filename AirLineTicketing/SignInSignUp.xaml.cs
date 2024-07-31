@@ -27,11 +27,13 @@ namespace AirLineTicketing
         private void AgentSignUpBtn_Click(object sender, RoutedEventArgs e)
         {
             new NewAgentRegistration().Show();
+            this.Close();
         }
 
         private void UserSignUpBtn_Click(object sender, RoutedEventArgs e)
         {
             new NewUserRegistration().Show();
+            this.Close();
         }
 
         private void userSignInBtn_Click(object sender, RoutedEventArgs e)

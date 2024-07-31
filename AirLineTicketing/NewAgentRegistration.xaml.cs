@@ -101,5 +101,15 @@ namespace AirLineTicketing
             request.postAgentApi(newAgent);
         }
 
+        private void logInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AgentSignIn().Show();
+            this.Close();
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
