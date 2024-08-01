@@ -240,5 +240,63 @@ namespace AirLineTicketing
                 System.Windows.MessageBox.Show(ex.Message);
             }
         }
+
+        //EDITING CURRENT FLIGHT RECORD
+        public Flight? searchFlightApi(string flightNo)
+        {
+            try
+            {
+                string query = "select * from Flights where flightNo=@flightNo";
+
+                Establish_Connection();
+
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                sqlCommand.Parameters.AddWithValue("@flightNo", flightNo);
+
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    string airline = (string)reader["airline"];
+                    string departureDate = Convert.ToString(reader["departureDate"]);
+                    string departureTime = Convert.ToString(reader["departureTime"]);
+                    string pilotCode = Convert.ToString(reader["pilotCode"]);
+                    string crewCode = Convert.ToString(reader["crewCode"]);
+                    string origin = (string)reader["origin"];
+                    string destination = (string)reader["destination"];
+                    string availableClasses = (string)reader["availableClasses"];
+                    string availableSeats = Convert.ToString(reader["availableSeats"]);
+                    string totalSeats = Convert.ToString(reader["totalSeats"]);
+                    string layover = (string)reader["layover"];
+                    string allowedPassengerTypes = (string)reader["allowedPassengerTypes"];
+                    string allowedBaggageTypes = (string)reader["allowedBaggageTypes"];
+
+                    Flight newFlight = new Flight();
+
+                    newFlight.airline = airline;
+                    newFlight.departureDate = departureDate;
+                    newFlight.departureTime = departureTime;
+                    newFlight.pilotCode = int.Parse(pilotCode);
+                    newFlight.crewCode = int.Parse(crewCode);
+                    newFlight.origin = origin;
+                    newFlight.destination = destination;
+                    newFlight.availableSeats = int.Parse(availableSeats);
+                    newFlight.totalSeats = int.Parse(totalSeats);
+                    newFlight.layover = layover;
+                    newFlight.availableClasses = availableClasses;
+                    newFlight.allowedPassengerTypes = allowedPassengerTypes;
+                    newFlight.allowedBaggageTypes = allowedBaggageTypes;
+
+                    return newFlight;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return null;
+        }
     }
 }
