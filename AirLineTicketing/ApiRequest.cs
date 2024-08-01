@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using AirLineTicketing.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -184,6 +185,57 @@ namespace AirLineTicketing
             }
 
             return status;
+        }
+        //NEW FLIGHT RECORD
+        public void postFlightApi(Flight flight)
+        {
+            try
+            {
+                //Call EstablishConnection method (to create and open connection)
+                Establish_Connection();
+
+                //Step 3: generate the database query
+                string query = "insert into Flights values (@airline, @departureDate, @departureTime, @pilotCode, @crewCode," +
+                    "                                       @origin, @destination, @availableClasses, @availableSeats, @totalSeats," +
+                    "                                       @layover, @allowedPassengerTypes, @allowedBaggageTypes)";
+
+                //Step 4: initialize the sql command
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                //Step 5: initialize the variables of the query
+                sqlCommand.Parameters.AddWithValue("@airline", flight.airline);
+                sqlCommand.Parameters.AddWithValue("@departureDate", flight.departureDate);
+                sqlCommand.Parameters.AddWithValue("@departureTime", flight.departureTime);
+                sqlCommand.Parameters.AddWithValue("@pilotCode", flight.pilotCode);
+                sqlCommand.Parameters.AddWithValue("@crewCode", flight.crewCode);
+                sqlCommand.Parameters.AddWithValue("@origin", flight.origin);
+                sqlCommand.Parameters.AddWithValue("@destination", flight.destination);
+                sqlCommand.Parameters.AddWithValue("@availableClasses", flight.availableClasses);
+                sqlCommand.Parameters.AddWithValue("@availableSeats", flight.availableSeats);
+                sqlCommand.Parameters.AddWithValue("@totalSeats", flight.totalSeats);
+                sqlCommand.Parameters.AddWithValue("@layover", flight.layover);
+                sqlCommand.Parameters.AddWithValue("@allowedPassengerTypes", flight.allowedPassengerTypes);
+                sqlCommand.Parameters.AddWithValue("@allowedBaggageTypes", flight.allowedBaggageTypes);
+
+                //Step 6: execute the query with values
+                //ExecuteNonQuery returns 1 if no error occurs
+                int status = sqlCommand.ExecuteNonQuery();
+                if (status == 1)
+                {
+                    System.Windows.MessageBox.Show("New flight record saved successfully!");
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Something went wrong - please try again!");
+                }
+
+                //Step 7: Close the connection
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
     }
 }
