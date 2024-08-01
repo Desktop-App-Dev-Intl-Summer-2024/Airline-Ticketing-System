@@ -63,7 +63,7 @@
                     <SolidColorBrush Color="#FFA9E679" Opacity="0.6"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <StackPanel x:Name="mainPanel" Grid.Column="1" Grid.Row="1" Margin="22,23,416,37">
+            <StackPanel x:Name="mainPanel" Grid.Column="1" Grid.Row="1" Margin="22,23,416,20">
                 <Label Content="Select airline" Margin="4, 4, 4, 4" Padding="8,4,8,4" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <Label Content="Select departure date" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
                 <Label Content="Enter departure time" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
@@ -75,7 +75,7 @@
                 <Label Content="Total Seats" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
                 <Label Content="Layover" Margin="4, 4, 4, 4" Padding="8,4,8,4" HorizontalAlignment="Center" FontWeight="Bold"/>
             </StackPanel>
-            <StackPanel x:Name="mainPanel2" Grid.Column="1" Grid.Row="1" Margin="190,23,213,37">
+            <StackPanel x:Name="mainPanel2" Grid.Column="1" Grid.Row="1" Margin="190,23,213,20">
                 <ComboBox x:Name="airlineCombo" Width="120" Margin="4, 4, 4, 4" Padding="1,2,1,2">
                     <ComboBoxItem Content="AirCanada" FontWeight="Bold"/>
                     <ComboBoxItem Content="Delta" FontWeight="Bold"/>
@@ -91,7 +91,7 @@
                 <TextBox x:Name="totalSeatsTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4" Height="25"/>
                 <TextBox x:Name="layoverTxt" TextWrapping="Wrap" Width="120" Margin="4, 4, 4, 4" Padding="2,4,2,4" Height="25"/>
             </StackPanel>
-            <StackPanel x:Name="mainPanel3" Grid.Column="1" Grid.Row="1" Margin="382,23,25,99">
+            <StackPanel x:Name="mainPanel3" Grid.Column="1" Grid.Row="1" Margin="382,23,25,66">
                 <Label Content="Available Classes" FontWeight="Bold"/>
                 <CheckBox x:Name="businessCheck" Content="Business" FontWeight="Bold"/>
                 <CheckBox x:Name="economyCheck" Content="Economy" FontWeight="Bold"/>
@@ -109,7 +109,7 @@
                 <CheckBox x:Name="carryOnCheck" Content="Carry-on" FontWeight="Bold"/>
 
             </StackPanel>
-            <Button x:Name="saveNewRecordBtn" Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="422,313,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Background="#FFECDC49" FontWeight="Bold" Width="102" Height="36">
+            <Button x:Name="saveNewRecordBtn" Content="Save" HorizontalAlignment="Center" Margin="0,260,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Background="#FFECDC49" FontWeight="Bold" Width="102" Height="36">
                 <Button.BorderBrush>
                     <ImageBrush/>
                 </Button.BorderBrush>

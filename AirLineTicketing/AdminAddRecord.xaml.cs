@@ -39,26 +39,78 @@ namespace AirLineTicketing
             String totalSeats = totalSeatsTxt.Text;
             String layover = layoverTxt.Text;
 
-            //availClasses checkboxes
+            //availClasses checkboxes: business economy premium first
             String availableClasses = "";
-            //passengerTypes checkboxes
+            if (businessCheck.IsChecked == true)
+            {
+                availableClasses += "business";
+            }
+            if (economyCheck.IsChecked == true)
+            {
+                availableClasses += " economy";
+            }
+            if(premiumCheck.IsChecked == true)
+            {
+                availableClasses += " premium";
+            }
+            if(firstCheck.IsChecked == true)
+            {
+                availableClasses += " first";
+            }
+
+            //passengerTypes checkboxes: adults students youth children toddlers infants
             String allowedPassengerTypes = "";
-            //baggageTypes checkboxes
+            if(adultsCheck.IsChecked == true)
+            {
+                allowedPassengerTypes += "adults";
+            }
+            if(studentsCheck.IsChecked == true)
+            {
+                allowedPassengerTypes += " students";
+            }
+            if(youthCheck.IsChecked == true)
+            {
+                allowedPassengerTypes += " youth";
+            }
+            if(childrenCheck.IsChecked == true)
+            {
+                allowedPassengerTypes += " children";
+            }
+            if(toddlerCheck.IsChecked == true)
+            {
+                allowedPassengerTypes += " toddlers";
+            }
+            if(infantCheck.IsChecked == true)
+            {
+                allowedPassengerTypes += " infants";
+            }
+
+            //baggageTypes checkboxes: check-in, carry-on
             String allowedBaggageTypes = "";
+            if(checkInCheck.IsChecked == true)
+            {
+                allowedBaggageTypes += "check-in";
+            }
+            if(carryOnCheck.IsChecked == true)
+            {
+                allowedBaggageTypes += " carry-on";
+            }
 
             Flight newFlight = new Flight();
 
-            airline = newFlight.airline;
-            departureDate = newFlight.departureDate;
-            departureTime = newFlight.departureTime;
-            pilotCode = newFlight.pilotCode.ToString();
-            crewCode = newFlight.crewCode.ToString();
-            origin = newFlight.origin;
-            destination = newFlight.destination;
-            availableSeats = newFlight.availableSeats.ToString();
-            availableClasses = "";
-            allowedPassengerTypes = "";
-            allowedBaggageTypes = "";
+            newFlight.airline = airline;
+            newFlight.departureDate = departureDate;
+            newFlight.departureTime = departureTime;
+            newFlight.pilotCode = int.Parse(pilotCode);
+            newFlight.crewCode = int.Parse(crewCode);
+            newFlight.origin = origin;
+            newFlight.destination = destination;
+            newFlight.availableSeats = int.Parse(availableSeats);
+            newFlight.totalSeats = int.Parse(totalSeats);
+            newFlight.layover = layover;
+            newFlight.availableClasses = availableClasses;
+            newFlight.allowedPassengerTypes = allowedPassengerTypes;
+            newFlight.allowedBaggageTypes= allowedBaggageTypes;
 
             ApiRequest request = new ApiRequest();
 
@@ -94,5 +146,7 @@ namespace AirLineTicketing
             new SignInSignUp().Show();
             this.Close();
         }
+
+
     }
 }
