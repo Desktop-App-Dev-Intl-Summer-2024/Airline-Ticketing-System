@@ -42,7 +42,7 @@
                 <Button Content="Favs" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
                 <Button Content="Cart" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
                 <Button Content="Upcoming Trips" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
-                <Button Content="Booking History" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
+                <Button x:Name="BookingHistoryBtn" Content="Booking History" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White" Click="BookingHistoryBtn_Click"/>
                 <Button Content="FAQ" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White" Click="Button_Click"/>
                 <Button Content="Contact Us" Margin="10,10,10,10" Padding="1,2,1,2" Background="White" BorderBrush="White"/>
             </StackPanel>
@@ -99,6 +99,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Flight No" Binding="{Binding flightNo}"/>
                     <DataGridTextColumn Header="Airline" Binding="{Binding airline}"/>
+                    <DataGridTextColumn Header="Origin" Binding="{Binding origin}"/>
+                    <DataGridTextColumn Header="Destination" Binding="{Binding destination}"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding departureDate}"/>
                     <DataGridTextColumn Header="Time" Binding="{Binding departureTime}"/>
                     <DataGridTextColumn Header="Available Seats" Binding="{Binding availableSeats}"/>

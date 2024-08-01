@@ -29,7 +29,7 @@ namespace AirLineTicketing
         private void signInBtn_Click(object sender, RoutedEventArgs e)
         {
             string userName = usernameTxtBx.Text;
-            string password = passwordTxtBx.Text;
+            string password = passwordTxtBx.Password;
 
             User? user = apiRequest.userSignInApi(userName, password);
 
@@ -54,7 +54,7 @@ namespace AirLineTicketing
 
         private void passwordTxtBx_GotFocus(object sender, RoutedEventArgs e)
         {
-            passwordTxtBx.Text = "";
+            passwordTxtBx.Password = "";
         }
 
         private void logInBtn_Click(object sender, RoutedEventArgs e)

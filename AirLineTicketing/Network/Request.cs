@@ -108,6 +108,25 @@ namespace AirLineTicketing.Network
             return confirmedDetail;
         }
 
+        public async Task<List<BookingDetail>> getBookingDetailsByUserId(int userId)
+        {
+            List<BookingDetail> bookingDetails = null;
+
+            try
+            {
+                HttpResponseMessage rawResponse = await httpClient.GetAsync("Booking/GetBookingHistoryByUserId/" + userId);
+                Response response = await getResponse(rawResponse);
+
+                bookingDetails = response.bookingDetails;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return bookingDetails;
+        }
+
         private StringContent getJsonContent(Object body)
         {
             string json = JsonConvert.SerializeObject(body);
