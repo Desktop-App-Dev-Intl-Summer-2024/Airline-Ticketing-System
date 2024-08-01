@@ -330,5 +330,89 @@ namespace ATS_REST_API.Models
 
             return response;
         }
+
+        public Response GetBookingHistoryByUserId(SqlConnection con,  int userId)
+        {
+            Response response = new Response();
+
+            try
+            {
+                con.Open();
+
+                string bookingQuery = $"select * from Bookings " +
+                    $"left join Flights on Bookings.flightNo=Flights.flightNo " +
+                    $"where Bookings.bookingUserId={userId} order by Bookings.bookingId desc";
+
+                SqlCommand cmd = new SqlCommand(bookingQuery, con);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                List<BookingDetail> bookingDetails = new List<BookingDetail>();
+
+                while(reader.Read())
+                {
+                    BookingDetail detail = new BookingDetail();
+
+                    detail.bookingId = (int)reader["bookingId"];
+                    detail.bookingUserId = (int)reader["bookingUserId"];
+                    detail.firstName = (string)reader["firstName"];
+                    detail.lastName = (string)reader["lastName"];
+                    detail.classType = (string)reader["classType"];
+                    detail.nationality = (string)reader["nationality"];
+                    detail.passportNumber = (string)reader["passportNumber"];
+                    detail.address = (string)reader["address"];
+                    detail.cardNumber = (string)reader["cardNumber"];
+                    detail.expiryDate = (string)reader["expiryDate"];
+                    detail.cardCvv = (string)reader["cardCvv"];
+                    detail.bookingDateTime = Convert.ToString(reader["bookingDateTime"]);
+                    detail.ticketCost = (double)reader["ticketCost"];
+                    detail.flightNo = (int)reader["flightNo"];
+                    detail.seatNo = (int)reader["SeatNo"];
+
+                    Flight flight = new Flight();
+
+                    flight.flightNo = (int)reader["flightNo"];
+                    flight.airline = (string)reader["airline"];
+                    flight.departureDate = Convert.ToDateTime(reader["departureDate"]).ToString("yyyy-MM-dd");
+                    flight.departureTime = Convert.ToString(reader["departureTime"]);
+                    flight.pilotCode = (int)reader["pilotCode"];
+                    flight.crewCode = (int)reader["crewCode"];
+                    flight.origin = (string)reader["origin"];
+                    flight.destination = (string)reader["destination"];
+                    flight.availableClasses = (string)reader["availableClasses"];
+                    flight.availableSeats = (int)reader["availableSeats"];
+                    flight.totalSeats = (int)reader["totalSeats"];
+                    flight.layover = (string)reader["layover"];
+                    flight.allowedPassengerTypes = (string)reader["allowedPassengerTypes"];
+                    flight.allowedBaggageTypes = (string)reader["allowedBaggageTypes"];
+
+                    detail.flight = flight;
+
+                    bookingDetails.Add(detail);
+                }
+
+                reader.Close();
+
+                response.bookingDetails = bookingDetails;
+
+                if (response.bookingDetails.Count  > 0)
+                {
+                    response.statusCode = 200;
+                    response.statusMessage = "User's booking history retrieved successfully";
+                } else
+                {
+                    response.statusCode = 404;
+                    response.statusMessage = "Couldn't find user's booking history!";
+                }
+                
+            } catch (Exception ex)
+            {
+                response.statusCode = 100;
+                response.statusMessage = ex.Message;
+            }
+
+            con.Close();
+
+            return response;
+        }
     }
 }

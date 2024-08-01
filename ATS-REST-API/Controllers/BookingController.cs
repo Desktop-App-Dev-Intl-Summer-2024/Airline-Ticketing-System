@@ -37,5 +37,13 @@ namespace ATS_REST_API.Controllers
         {
             return db.PostBookingTicket(con, detail);
         }
+
+        [HttpGet]
+        [Route("GetBookingHistoryByUserId/{userId}")]
+
+        public Response GetBookingHistoryByUserId(int userId)
+        {
+            return db.GetBookingHistoryByUserId(con, userId);
+        }
     }
 }

@@ -1,0 +1,110 @@
+﻿<Window x:Class="AirLineTicketing.Views.BookingHistory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AirLineTicketing.Views"
+        mc:Ignorable="d"
+        Title="BookingHistory" Height="450" Width="800" ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush ImageSource="/raimond-klavins-SDjolVGHLwc-unsplash.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="51*"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="54*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle HorizontalAlignment="Left" Width="800" Grid.ColumnSpan="3">
+                <Rectangle.Stroke>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.9">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="270" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF8AB644" Offset="1"/>
+                        <GradientStop Color="#FF3D501E" Offset="0"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Label Content="Airline Ticketing App" VerticalAlignment="Top" FontSize="18" Foreground="White" FontFamily="Arial" FontWeight="SemiBold" Height="31" Grid.ColumnSpan="3"/>
+            <Rectangle Margin="20,31,20,0" Stroke="Black" Grid.ColumnSpan="3" Height="378" VerticalAlignment="Top">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="#FFE6FBD8" Opacity="0.9"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <DataGrid x:Name="DisplayGrid" AutoGenerateColumns="False" Margin="20,30,20,0" VerticalAlignment="Top" MinHeight="50" Height="160" Grid.ColumnSpan="3" SelectionChanged="DisplayGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Booking ID" Binding="{Binding bookingId}"/>
+                    <DataGridTextColumn Header="Booking Date" Binding="{Binding bookingDateTime}"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding firstName}"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding lastName}"/>
+                    <DataGridTextColumn Header="Ticket Cost" Binding="{Binding ticketCost}"/>
+                    <DataGridTextColumn Header="Travel Date" Binding="{Binding flight.departureDate}"/>
+                    <DataGridTextColumn Header="Departure Time" Binding="{Binding flight.departureTime}"/>
+                    <DataGridTextColumn Header="Origin" Binding="{Binding flight.origin}"/>
+                    <DataGridTextColumn Header="Destination" Binding="{Binding flight.destination}"/>
+                    <DataGridTextColumn Header="Flight No" Binding="{Binding flightNo}"/>
+                    <DataGridTextColumn Header="Seat No" Binding="{Binding seatNo}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Content="Click on a booking to see more details" HorizontalAlignment="Center" Margin="25,190,0,0" VerticalAlignment="Top" Height="26" Width="230" FontWeight="Bold" FontStyle="Italic"/>
+            <Label Content="Booking ID:" HorizontalAlignment="Left" Margin="25,220,0,0" VerticalAlignment="Top" Height="26" Width="71"/>
+            <Label Content="First Name:" HorizontalAlignment="Left" Margin="25,240,0,0" VerticalAlignment="Top" Height="26" Width="70"/>
+            <Label Content="Last Name:" HorizontalAlignment="Left" Margin="25,260,0,0" VerticalAlignment="Top" Height="26" Width="68"/>
+            <Label Content="Class:" HorizontalAlignment="Left" Margin="25,280,0,0" VerticalAlignment="Top" Height="26" Width="39"/>
+            <Label Content="Nationality" HorizontalAlignment="Left" Margin="25,300,0,0" VerticalAlignment="Top" Height="26" Width="68"/>
+            <Label Content="Passport" HorizontalAlignment="Left" Margin="25,320,0,0" VerticalAlignment="Top" Height="26" Width="55"/>
+            <Label Content="Address" HorizontalAlignment="Left" Margin="25,340,0,0" VerticalAlignment="Top" Height="26" Width="53"/>
+            <Label Grid.Column="1" Content="Card Number:" HorizontalAlignment="Left" Margin="5,220,0,0" VerticalAlignment="Top" Height="26" Width="84"/>
+            <Label Grid.Column="1" Content="Card Expiry Date:" HorizontalAlignment="Left" Margin="5,240,0,0" VerticalAlignment="Top" Height="26" Width="100"/>
+            <Label Grid.Column="1" Content="CVV:" HorizontalAlignment="Left" Margin="5,260,0,0" VerticalAlignment="Top" Height="26" Width="35"/>
+            <Label Grid.Column="1" Content="Booking Date (UTC):" HorizontalAlignment="Left" Margin="5,280,0,0" VerticalAlignment="Top" Height="26" Width="116"/>
+            <Label Grid.Column="1" Content="Ticket Cost:" HorizontalAlignment="Left" Margin="5,300,0,0" VerticalAlignment="Top" Height="26" Width="71"/>
+            <Label Grid.Column="1" Content="Flight No:" HorizontalAlignment="Left" Margin="5,320,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
+            <Label Grid.Column="1" Content="Seat No:" HorizontalAlignment="Left" Margin="5,340,0,0" VerticalAlignment="Top" Height="26" Width="55"/>
+            <Label Grid.Column="1" Content="Airline:" HorizontalAlignment="Left" Margin="5,360,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Departure Date:" HorizontalAlignment="Left" Margin="5,220,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Departure Time:" HorizontalAlignment="Left" Margin="5,240,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Origin:" HorizontalAlignment="Left" Margin="5,260,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Lay over:" HorizontalAlignment="Left" Margin="5,280,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Destination:" HorizontalAlignment="Left" Margin="5,300,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Passengers:" HorizontalAlignment="Left" Margin="5,320,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Baggages:" HorizontalAlignment="Left" Margin="5,340,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Pilot Code:" HorizontalAlignment="Left" Margin="5,360,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Crew Code:" HorizontalAlignment="Left" Margin="5,380,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="BookingIdTxtBx" HorizontalAlignment="Left" Margin="100,225,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="FirstNameTxtBx" HorizontalAlignment="Left" Margin="100,245,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="LastNameTxtBx" HorizontalAlignment="Left" Margin="100,265,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="ClassTxtBx" HorizontalAlignment="Left" Margin="100,285,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="NationalityTxtBx" HorizontalAlignment="Left" Margin="100,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="PassportTxtBx" HorizontalAlignment="Left" Margin="100,325,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="AddressTxtBx" HorizontalAlignment="Left" Margin="100,345,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False" Height="50"/>
+            <TextBox x:Name="CardNumberTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="120,225,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="CardExpiryDateTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="120,245,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="CvvTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="120,265,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="BookingDateTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="120,285,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="TicketCostTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="120,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="FlightNoTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="120,325,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="SeatNoTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="120,345,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="AirlineTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="120,365,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="DepartureDateTxtBx" Grid.Column="2" HorizontalAlignment="Left" Margin="100,225,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="140" IsEnabled="False"/>
+            <TextBox x:Name="DepartureTimeTxtBx" Grid.Column="2" HorizontalAlignment="Left" Margin="100,245,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="140" IsEnabled="False"/>
+            <TextBox x:Name="OriginTxtBx" Grid.Column="2" HorizontalAlignment="Left" Margin="100,265,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="140" IsEnabled="False"/>
+            <TextBox x:Name="LayoverTxtBx" Grid.Column="2" HorizontalAlignment="Left" Margin="100,285,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="140" IsEnabled="False"/>
+            <TextBox x:Name="DestinationTxtBx" Grid.Column="2" HorizontalAlignment="Left" Margin="100,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="140" IsEnabled="False"/>
+            <TextBox x:Name="PassegnersTxtBx" Grid.Column="2" HorizontalAlignment="Left" Margin="100,325,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="140" IsEnabled="False"/>
+            <TextBox x:Name="BaggagesTxtBx" Grid.Column="2" HorizontalAlignment="Left" Margin="100,345,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="140" IsEnabled="False"/>
+            <TextBox x:Name="PilotCodeTxtBx" Grid.Column="2" HorizontalAlignment="Left" Margin="100,365,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="140" IsEnabled="False"/>
+            <TextBox x:Name="CrewCodeTxtBx" Grid.Column="2" HorizontalAlignment="Left" Margin="100,385,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="140" IsEnabled="False"/>
+        </Grid>
+    </Grid>
+</Window>

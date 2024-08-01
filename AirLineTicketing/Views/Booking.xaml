@@ -51,6 +51,8 @@
                     <DataGridTextColumn Header="Date" Binding="{Binding departureDate}"/>
                     <DataGridTextColumn Header="Time" Binding="{Binding departureTime}"/>
                     <DataGridTextColumn Header="Available Seats" Binding="{Binding availableSeats}"/>
+                    <DataGridTextColumn Header="Origin" Binding="{Binding origin}"/>
+                    <DataGridTextColumn Header="Destination" Binding="{Binding destination}"/>
                     <DataGridTextColumn Header="Layover" Binding="{Binding layover}"/>
                 </DataGrid.Columns>
             </DataGrid>

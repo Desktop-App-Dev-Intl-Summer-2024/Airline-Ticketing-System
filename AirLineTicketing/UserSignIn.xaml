@@ -61,7 +61,7 @@
                 </Rectangle.Fill>
             </Rectangle>
             <TextBox x:Name="usernameTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="295,47,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" Background="White" BorderBrush="#FFA9E679" FontStyle="Italic" Height="18" GotFocus="usernameTxtBx_GotFocus"/>
-            <TextBox x:Name="passwordTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="295,91,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter here" VerticalAlignment="Top" Width="180" FontStyle="Italic" BorderBrush="#FFA9E679" Height="18" GotFocus="passwordTxtBx_GotFocus"/>
+            <PasswordBox x:Name="passwordTxtBx" Grid.Column="1" HorizontalAlignment="Left" Margin="295,91,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180" FontStyle="Italic" BorderBrush="#FFA9E679" Height="18" GotFocus="passwordTxtBx_GotFocus"/>
             <Label Grid.Column="1" Content="Username*" HorizontalAlignment="Left" Margin="185,42,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="78" FontWeight="Bold"/>
             <Label Grid.Column="1" Content="Password*" HorizontalAlignment="Left" Margin="190,87,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="78" FontWeight="Bold"/>
             <Button x:Name="signInBtn" Grid.Column="1" Content="Sign In" HorizontalAlignment="Left" Margin="295,140,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Background="#FFECDC49" Height="30" Width="99" BorderBrush="#FFECDC49" Click="signInBtn_Click"/>
