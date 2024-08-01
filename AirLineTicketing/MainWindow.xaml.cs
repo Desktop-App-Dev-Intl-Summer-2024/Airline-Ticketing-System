@@ -46,7 +46,7 @@ namespace AirLineTicketing
             setLogButtonText();
         }
         
-                private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             new FAQ().Show();
         }
@@ -209,6 +209,17 @@ namespace AirLineTicketing
                 System.Windows.MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void BookingHistoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isloggedIn)
+            {
+                System.Windows.MessageBox.Show("Please log in to continue...");
+                return;
+            }
+
+            new BookingHistory().Show();
         }
     }
 }

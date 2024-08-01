@@ -23,6 +23,6 @@ namespace AirLineTicketing.Models
         public double ticketCost { get; set; }
         public int flightNo { get; set; }
         public int seatNo { get; set; }
-
+        public Flight? flight { get; set; }
     }
 }
