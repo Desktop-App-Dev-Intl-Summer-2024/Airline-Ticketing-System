@@ -97,7 +97,7 @@ namespace AirLineTicketing
                     string lastname = (string)reader["lastname"];
                     string email = (string)reader["email"];
                     string dob = Convert.ToString(reader["dob"]);
-                    string userType = (string)reader["userType"];
+                    string userType = Convert.ToString(reader["userType"]);
 
                     User user = new User(username, "", firstname, lastname, email, dob);
                     user.setUserType(userType);
