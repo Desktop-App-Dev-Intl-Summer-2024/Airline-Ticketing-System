@@ -41,7 +41,7 @@ namespace AirLineTicketing
                 Establish_Connection();
 
                 // step 3: Generate the db query
-                string query = "insert into Users values(@username, @password, @firstname, @lastname, @email, @dob)";
+                string query = "insert into Users values(@username, @password, @firstname, @lastname, @email, @dob, @userType)";
 
                 // step 4: Initialize the sql command
                 sqlCommand = new SqlCommand(query, sqlConnection);
@@ -53,6 +53,7 @@ namespace AirLineTicketing
                 sqlCommand.Parameters.AddWithValue("@lastname", user.getLastname());
                 sqlCommand.Parameters.AddWithValue("@email", user.getEmail());
                 sqlCommand.Parameters.AddWithValue("@dob", user.getDob());
+                sqlCommand.Parameters.AddWithValue("@userType", user.getUserType());
 
                 // step 6: Execute the Query with values
                 // ExecuteNonQuery returns 1 if no error happens
