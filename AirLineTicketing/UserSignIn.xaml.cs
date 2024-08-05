@@ -35,12 +35,23 @@ namespace AirLineTicketing
 
             if (user != null)
             {
-                MessageBox.Show("User log in success, redirecting to landing page!");
-                MainWindow.isloggedIn = true;
-                MainWindow.user = user;
+                String type = user.getUserType();
 
-                new MainWindow().Show();
-                this.Close();
+                if (type.Contains("admin"))
+                {
+                    MessageBox.Show("Admin log in success, redirecting to Admin Module!");
+                    new AdminAddRecord().Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("User log in success, redirecting to landing page!");
+                    MainWindow.isloggedIn = true;
+                    MainWindow.user = user;
+
+                    new MainWindow().Show();
+                    this.Close();
+                }
             }
             else { 
                 MessageBox.Show("User log in failed, check username and password!");

@@ -6,5 +6,7 @@ firstName varchar(30) not null,
 lastName varchar(40) not null,
 email varchar(30) not null,
 dob date not null,
+userType varchar(10),
 CONSTRAINT UC_User UNIQUE (id,username)
 );
+

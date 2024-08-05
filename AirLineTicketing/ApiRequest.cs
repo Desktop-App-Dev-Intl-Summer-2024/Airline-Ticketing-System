@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using AirLineTicketing.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace AirLineTicketing
                 Establish_Connection();
 
                 // step 3: Generate the db query
-                string query = "insert into Users values(@username, @password, @firstname, @lastname, @email, @dob)";
+                string query = "insert into Users values(@username, @password, @firstname, @lastname, @email, @dob, @userType)";
 
                 // step 4: Initialize the sql command
                 sqlCommand = new SqlCommand(query, sqlConnection);
@@ -52,6 +53,7 @@ namespace AirLineTicketing
                 sqlCommand.Parameters.AddWithValue("@lastname", user.getLastname());
                 sqlCommand.Parameters.AddWithValue("@email", user.getEmail());
                 sqlCommand.Parameters.AddWithValue("@dob", user.getDob());
+                sqlCommand.Parameters.AddWithValue("@userType", user.getUserType());
 
                 // step 6: Execute the Query with values
                 // ExecuteNonQuery returns 1 if no error happens
@@ -95,8 +97,10 @@ namespace AirLineTicketing
                     string lastname = (string)reader["lastname"];
                     string email = (string)reader["email"];
                     string dob = Convert.ToString(reader["dob"]);
+                    string userType = Convert.ToString(reader["userType"]);
 
                     User user = new User(username, "", firstname, lastname, email, dob);
+                    user.setUserType(userType);
 
                     user.setId(id);
 
@@ -184,6 +188,115 @@ namespace AirLineTicketing
             }
 
             return status;
+        }
+        //NEW FLIGHT RECORD
+        public void postFlightApi(Flight flight)
+        {
+            try
+            {
+                //Call EstablishConnection method (to create and open connection)
+                Establish_Connection();
+
+                //Step 3: generate the database query
+                string query = "insert into Flights values (@airline, @departureDate, @departureTime, @pilotCode, @crewCode," +
+                    "                                       @origin, @destination, @availableClasses, @availableSeats, @totalSeats," +
+                    "                                       @layover, @allowedPassengerTypes, @allowedBaggageTypes)";
+
+                //Step 4: initialize the sql command
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                //Step 5: initialize the variables of the query
+                sqlCommand.Parameters.AddWithValue("@airline", flight.airline);
+                sqlCommand.Parameters.AddWithValue("@departureDate", flight.departureDate);
+                sqlCommand.Parameters.AddWithValue("@departureTime", flight.departureTime);
+                sqlCommand.Parameters.AddWithValue("@pilotCode", flight.pilotCode);
+                sqlCommand.Parameters.AddWithValue("@crewCode", flight.crewCode);
+                sqlCommand.Parameters.AddWithValue("@origin", flight.origin);
+                sqlCommand.Parameters.AddWithValue("@destination", flight.destination);
+                sqlCommand.Parameters.AddWithValue("@availableClasses", flight.availableClasses);
+                sqlCommand.Parameters.AddWithValue("@availableSeats", flight.availableSeats);
+                sqlCommand.Parameters.AddWithValue("@totalSeats", flight.totalSeats);
+                sqlCommand.Parameters.AddWithValue("@layover", flight.layover);
+                sqlCommand.Parameters.AddWithValue("@allowedPassengerTypes", flight.allowedPassengerTypes);
+                sqlCommand.Parameters.AddWithValue("@allowedBaggageTypes", flight.allowedBaggageTypes);
+
+                //Step 6: execute the query with values
+                //ExecuteNonQuery returns 1 if no error occurs
+                int status = sqlCommand.ExecuteNonQuery();
+                if (status == 1)
+                {
+                    System.Windows.MessageBox.Show("New flight record saved successfully!");
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Something went wrong - please try again!");
+                }
+
+                //Step 7: Close the connection
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
+        //EDITING CURRENT FLIGHT RECORD
+        public Flight? searchFlightApi(string flightNo)
+        {
+            try
+            {
+                string query = "select * from Flights where flightNo=@flightNo";
+
+                Establish_Connection();
+
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                sqlCommand.Parameters.AddWithValue("@flightNo", flightNo);
+
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    string airline = (string)reader["airline"];
+                    string departureDate = Convert.ToString(reader["departureDate"]);
+                    string departureTime = Convert.ToString(reader["departureTime"]);
+                    string pilotCode = Convert.ToString(reader["pilotCode"]);
+                    string crewCode = Convert.ToString(reader["crewCode"]);
+                    string origin = (string)reader["origin"];
+                    string destination = (string)reader["destination"];
+                    string availableClasses = (string)reader["availableClasses"];
+                    string availableSeats = Convert.ToString(reader["availableSeats"]);
+                    string totalSeats = Convert.ToString(reader["totalSeats"]);
+                    string layover = (string)reader["layover"];
+                    string allowedPassengerTypes = (string)reader["allowedPassengerTypes"];
+                    string allowedBaggageTypes = (string)reader["allowedBaggageTypes"];
+
+                    Flight newFlight = new Flight();
+
+                    newFlight.airline = airline;
+                    newFlight.departureDate = departureDate;
+                    newFlight.departureTime = departureTime;
+                    newFlight.pilotCode = int.Parse(pilotCode);
+                    newFlight.crewCode = int.Parse(crewCode);
+                    newFlight.origin = origin;
+                    newFlight.destination = destination;
+                    newFlight.availableSeats = int.Parse(availableSeats);
+                    newFlight.totalSeats = int.Parse(totalSeats);
+                    newFlight.layover = layover;
+                    newFlight.availableClasses = availableClasses;
+                    newFlight.allowedPassengerTypes = allowedPassengerTypes;
+                    newFlight.allowedBaggageTypes = allowedBaggageTypes;
+
+                    return newFlight;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return null;
         }
     }
 }

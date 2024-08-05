@@ -7,6 +7,15 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="AdminAddRecord.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminEditRecord.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminMainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="AgentSignIn.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -30,6 +39,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AdminAddRecord.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminEditRecord.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminMainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="AgentSignIn.xaml">
       <SubType>Designer</SubType>
     </Page>
